@@ -1,5 +1,5 @@
 <template>
-  <section class="one-level-page">
+  <section>
     <ul class="mui-table-view mui-table-view-chevron top-mine">
       <li class="mui-table-view-cell mui-media">
         <router-link class="mui-navigate-right" to="/login">

@@ -1,5 +1,5 @@
 <template>
-  <section class="one-level-page">
+  <section>
     <banner></banner>
     <div class="neck-nav">
       <ul>

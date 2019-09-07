@@ -17,18 +17,24 @@
     text-align: center;
     font-size: 23px;
     overflow: hidden;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    top: 0;
+    background: #ffffff;
+    z-index: 99999;
   }
   header h4{
     float: left;
     font-weight: normal;
-    line-height: 40px;
+    line-height: 50px;
     width: 80%;
     margin: 0;
   }
   header span{
     float: left;
     width: 10%;
-    height: 40px;
+    height: 50px;
     line-height: 40px;
     color: orange;
   }

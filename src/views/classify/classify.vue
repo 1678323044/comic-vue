@@ -55,6 +55,9 @@
 </script>
 
 <style scoped>
+  .one-level-page{
+    margin-top: 50px;
+  }
   nav{
     padding: 0 16px;
   }
