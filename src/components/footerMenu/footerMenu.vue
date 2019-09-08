@@ -47,5 +47,6 @@
   }
   .mint-tabbar{
     position: fixed;
+    z-index: 99999;
   }
 </style>
