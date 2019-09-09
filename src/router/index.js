@@ -7,11 +7,12 @@ import bookshelf from '../views/bookshelf/bookshelf'
 import classify from '../views/classify/classify'
 import mine from '../views/mine/mine'
 import ranking from '../views/ranking/ranking'
-import recharge from "../views/recharge/recharge"
+import memberCenter from "../views/memberCenter/memberCenter"
 import chapterList from '../views/chapterList/chapterList'
 import chapter from '../views/chapter/chapter'
 import endingWorks from "../views/endingWorks/endingWorks"
 import memberArea from "../views/memberArea/memberArea";
+import recharge from '../views/recharge/recharge'
 
 export default new Router({
   routes: [
@@ -51,8 +52,8 @@ export default new Router({
       }
     },
     {
-      path: '/recharge',
-      component: recharge
+      path: '/memberCenter',
+      component: memberCenter
     },
     {
       path: '/chapterList',
@@ -69,6 +70,10 @@ export default new Router({
     {
       path: '/memberArea',
       component: memberArea
+    },
+    {
+      path: '/recharge',
+      component: recharge
     },
     {
       path: '/',

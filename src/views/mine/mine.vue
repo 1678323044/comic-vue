@@ -26,9 +26,9 @@
     </nav>
     <ul class="mui-table-view mui-table-view-chevron list-menu">
       <li class="mui-table-view-cell">
-        <router-link class="mui-navigate-right" to="/recharge">
+        <router-link class="mui-navigate-right" to="/memberCenter">
           <i class="iconfont iconchongzhi2"></i>
-          VIP专区
+          会员中心
         </router-link>
       </li>
       <li class="mui-table-view-cell">
