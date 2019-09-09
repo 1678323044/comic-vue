@@ -1,19 +1,23 @@
 <template>
-  <section>
+  <section class="home">
     <banner></banner>
     <div class="neck-nav">
       <ul>
         <li>
-          <img src="./image/icon111.png" alt="">
-          <p>VIP专区</p>
+          <router-link to="/endingWorks">
+            <img src="./image/icon111.png" alt="">
+            <p>VIP专区</p>
+          </router-link>
         </li>
         <li>
           <img src="./image/icon111.png" alt="">
           <p>充值优惠</p>
         </li>
         <li>
-          <img src="./image/icon111.png" alt="">
-          <p>完美佳作</p>
+          <router-link to="/memberArea">
+            <img src="./image/icon111.png" alt="">
+            <p>完美佳作</p>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -136,6 +140,9 @@
 </script>
 
 <style scoped>
+  .home{
+    padding-bottom: 50px;
+  }
   main{
     margin: 10px 0 0 0;
     padding: 0 10px;
@@ -156,6 +163,7 @@
   }
   .con{
     overflow: hidden;
+    margin: 0 0 30px 0;
   }
   .con h5{
     position: relative;
@@ -193,6 +201,5 @@
     background: #f1f1f1;
     border-radius: 20px;
     border: none;
-    margin: 0 0 30px 0;
   }
 </style>

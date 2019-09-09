@@ -28,7 +28,13 @@
       <li class="mui-table-view-cell">
         <router-link class="mui-navigate-right" to="/recharge">
           <i class="iconfont iconchongzhi2"></i>
-          充值中心
+          VIP专区
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell">
+        <router-link class="mui-navigate-right" to="/recharge">
+          <i class="iconfont iconchongzhi2"></i>
+          金币充值
         </router-link>
       </li>
       <li class="mui-table-view-cell">

@@ -172,6 +172,9 @@
 </script>
 
 <style scoped>
+  .one-level-page{
+    margin-bottom: 50px;
+  }
   .mui-table-view .mui-media-object{
     height: auto;
     max-width: 120px;

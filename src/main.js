@@ -11,8 +11,8 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
-/* 引入mui */
-import './lib/mui/css/mui.min.css'
+/* 引入swiper */
+import 'swiper/dist/css/swiper.min.css'
 
 /* eslint-disable no-new */
 new Vue({

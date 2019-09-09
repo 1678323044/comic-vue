@@ -1,74 +1,93 @@
 <template>
-  <section>
-    <head-title title="储值"></head-title>
-    <div class="pic">
-      <img src="./image/1111.jpg" width="100%" alt="">
-    </div>
-    <nav class="mui-bar mui-bar-tab">
-      <a class="mui-tab-item" href="#">
-        <span>20</span>
-        书币
-      </a>
-      <a class="mui-tab-item" href="#">
-        <span><i>0</i>个</span>
-        剩余数量
-      </a>
-      <a class="mui-tab-item" href="#">
-        <span>111</span>
-        VIP
-      </a>
-      <a class="mui-tab-item" href="#">
-        <span>未开通</span>
-        剩余：0
-      </a>
-    </nav>
-    <div class="con con01">
-      <h6>漫币充值（可购买所有付费章节）</h6>
-      <ul>
-        <li>
-          <span>30 元</span>
-          <p>3000+600 送600书币</p>
-        </li>
-        <li>
-          <span>30 元</span>
-          <p>3000+600 送600书币</p>
-        </li>
-        <li>
-          <span>30 元</span>
-          <p>3000+600 送600书币</p>
-        </li>
-        <li>
-          <span>30 元</span>
-          <p>3000+600 送600书币</p>
-        </li>
-      </ul>
-    </div>
-    <div class="con con01">
-      <h6>VIP充值（免费阅读VIP所有作品）</h6>
-      <ul>
-        <li>
-          <span>月卡100元</span>
-          <p>月卡 开通VIP30天！</p>
-        </li>
-        <li>
-          <span>季卡200元</span>
-          <p>季卡 开通VIP91天！</p>
-        </li>
-      </ul>
-    </div>
-    <div class="con con02">
-      <h6>选择支付方式（1元=100书币）</h6>
-      <ul>
-        <li>
-          <span>月卡100元</span>
-          <p>月卡 开通VIP30天！</p>
-        </li>
-        <li>
-          <span>季卡200元</span>
-          <p>季卡 开通VIP91天！</p>
-        </li>
-      </ul>
-    </div>
+  <section class="recharge">
+    <head-title title="VIP专区"></head-title>
+    <section class="main">
+      <div class="mine">
+        <div class="top">
+          <div>
+            <img src="./image/IMG_2475.jpg" width="100%" alt="">
+          </div>
+          <div>
+            <h6>zheng04190</h6>
+            <p>开通VIP，享多重特权</p>
+          </div>
+          <div>
+            <span>成为VIP</span>
+          </div>
+        </div>
+        <ul class="btm">
+          <li>
+            <span class="iconfont iconjiaoshi_shujia"></span>
+            VIP漫画免费
+          </li>
+          <li>
+            <span class="iconfont iconjiaoshi_shujia"></span>
+            VIP尊贵标识
+          </li>
+          <li>
+            <span class="iconfont iconjiaoshi_shujia"></span>
+            精品漫画折扣
+          </li>
+        </ul>
+      </div>
+      <div class="set-meal">
+        <h5>付费VIP套餐</h5>
+        <ul>
+          <li>
+            <h6>夏日特惠</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+            <span>推荐</span>
+          </li>
+          <li>
+            <h6>VIP季度</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+          </li>
+          <li>
+            <h6>VIP月度</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+          </li>
+          <li>
+            <h6>VIP半年</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+          </li>
+          <li>
+            <h6>VIP年度</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+          </li>
+          <li>
+            <h6>VIP终身</h6>
+            <p>￥98.00</p>
+            <p>246</p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h6>关于付费VIP常见问题</h6>
+        <ul>
+          <li>
+            <div>1、什么是付费VIP</div>
+            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+          </li>
+          <li>
+            <div>2、支付成功了，但是没有显示会员</div>
+            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+          </li>
+          <li>
+            <div>3、通常会有哪些原因造成支付失败</div>
+            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+          </li>
+          <li>
+            <div>4、我不小心开通了两次会员怎么办？</div>
+            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+          </li>
+        </ul>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -82,57 +101,54 @@
 </script>
 
 <style scoped>
-  .con{
-    padding: 20px 16px 0;
+  .recharge{
+    margin-top: 50px;
   }
-  .con h6{
-    margin: 0 0 15px 0;
+  .main{
+    padding: 0 16px;
   }
-  .con01 ul{
+  .main .top{
+    display: flex;
+  }
+  .main .top div:nth-child(1){
+    width: 60px;
+    border-radius: 50%;
     overflow: hidden;
-    padding: 10px;
-    box-sizing: border-box;
   }
-  .con01 ul li{
-    width: 46%;
-    float: left;
-    box-shadow: 0 0 6px #cccccc;
-    text-align: center;
-    margin: 0 4% 4% 0;
-    padding: 20px 0;
+  .main .top div:nth-child(2){
+    margin: 0 10px 0 10px;
   }
-  .con01 ul li p{
-    margin: 10px 0 0 0;
-    color: red;
+  .main .top div:nth-child(2) h6{
+    font-size: 18px;
+    font-weight: 500;
   }
-  .pic{
-    padding: 20px 16px;
+  .main .top div:nth-child(3){
+    padding-top: 6px;
   }
-  .mui-bar{
-    position: static;
-    box-shadow: 0 0 1px #cccccc;
-    font-size: 12px;
-    padding: 7px 0;
-    background-color: #ffffff;
-    border-bottom: solid 1px #f6f6f6;
+  .main .top div:nth-child(3) span{
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: orange;
   }
-  .mui-tab-item{
-    position: relative;
+  .main .btm{
+    display: flex;
   }
-  .mui-tab-item:nth-child(2):before{
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 0;
-    width: 1px;
-    height: 30px;
-    background-color: #cccccc;
-  }
-  .mui-bar span{
+  .main .btm li span{
     display: block;
+    font-size: 32px;
   }
-  .mui-bar span i{
-    font-size: 20px;
-    color: orange;
+
+  .main .set-meal{
+    margin: 30px 0 0 0;
+  }
+  .main .set-meal ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .main .set-meal li{
+    border: solid orange 1px;
+    width: 50%;
+    text-align: center;
+    border-radius: 6px;
   }
 </style>

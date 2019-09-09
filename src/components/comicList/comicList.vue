@@ -220,7 +220,6 @@
 
 <script>
   import Swiper from 'swiper'
-  import 'swiper/dist/css/swiper.min.css'
   export default {
     mounted() {
       new Swiper('.swiper-container',{

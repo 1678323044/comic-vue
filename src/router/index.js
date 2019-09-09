@@ -10,6 +10,8 @@ import ranking from '../views/ranking/ranking'
 import recharge from "../views/recharge/recharge"
 import chapterList from '../views/chapterList/chapterList'
 import chapter from '../views/chapter/chapter'
+import endingWorks from "../views/endingWorks/endingWorks"
+import memberArea from "../views/memberArea/memberArea";
 
 export default new Router({
   routes: [
@@ -59,6 +61,14 @@ export default new Router({
     {
       path: '/chapter',
       component: chapter
+    },
+    {
+      path: '/endingWorks',
+      component: endingWorks
+    },
+    {
+      path: '/memberArea',
+      component: memberArea
     },
     {
       path: '/',
