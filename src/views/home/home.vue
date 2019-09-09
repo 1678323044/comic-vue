@@ -21,46 +21,58 @@
       <div class="con">
         <h5>小编推荐</h5>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
+          <router-link to="/chapterList">
+            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dd>
+              <h6>我的守护女友</h6>
+              <p>Amber漫研社</p>
+            </dd>
+          </router-link>
         </dl>
         <button class="btn">查看更多 >></button>
       </div>

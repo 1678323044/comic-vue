@@ -58,7 +58,6 @@
             <li class="mui-table-view-cell mui-media">
               <a href="javascript:;">
                 <div class="pic">
-                  <span class="three">NO.3</span>
                   <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
                 </div>
                 <div class="mui-media-body">
@@ -128,7 +127,6 @@
             <li class="mui-table-view-cell mui-media">
               <a href="javascript:;">
                 <div class="pic">
-                  <span class="three">NO.3</span>
                   <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/211.jpg">
                 </div>
                 <div class="mui-media-body">
@@ -200,7 +198,6 @@
             <li class="mui-table-view-cell mui-media">
               <a href="javascript:;">
                 <div class="pic">
-                  <span class="three">NO.3</span>
                   <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/212.jpg">
                 </div>
                 <div class="mui-media-body">

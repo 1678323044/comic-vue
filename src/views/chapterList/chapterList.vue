@@ -20,28 +20,34 @@
       </div>
       <div class="chapter">
         <dl>
-          <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
-          <dd>
-            <h6>1话 第一小分队</h6>
-            <span>免费</span>
-            <p>12-11</p>
-          </dd>
+          <router-link to="/chapter">
+            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
+            <dd>
+              <h6>1话 第一小分队</h6>
+              <span>免费</span>
+              <p>12-11</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
-          <dd>
-            <h6>1话 第一小分队</h6>
-            <span>免费</span>
-            <p>12-11</p>
-          </dd>
+          <router-link to="/chapter">
+            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
+            <dd>
+              <h6>1话 第一小分队</h6>
+              <span>免费</span>
+              <p>12-11</p>
+            </dd>
+          </router-link>
         </dl>
         <dl>
-          <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
-          <dd>
-            <h6>1话 第一小分队</h6>
-            <span>免费</span>
-            <p>12-11</p>
-          </dd>
+          <router-link to="/chapter">
+            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
+            <dd>
+              <h6>1话 第一小分队</h6>
+              <span>免费</span>
+              <p>12-11</p>
+            </dd>
+          </router-link>
         </dl>
       </div>
     </div>
