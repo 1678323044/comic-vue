@@ -1,8 +1,10 @@
 <template>
   <header>
-    <span></span>
+    <!--<span><i class="mui-icon mui-icon-back"></i></span>-->
+    <slot name=""></slot>
     <h4>{{title}}</h4>
-    <span><i class="mui-icon mui-icon-search"></i></span>
+    <slot name=""></slot>
+    <!--<span><i class="mui-icon mui-icon-search"></i></span>-->
   </header>
 </template>
 

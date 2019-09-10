@@ -18,12 +18,12 @@
         <a href="#">异能</a>
         <a href="#">总裁</a>
       </div>
-      <div>
+      <div v-show="isShow">
         <a class="active" href="#">全部</a>
         <a href="#">连载</a>
         <a href="#">完结</a>
       </div>
-      <div>
+      <div v-show="isShow">
         <a class="active" href="#">全部</a>
         <a href="#">免费</a>
         <a href="#">付费</a>
@@ -32,7 +32,7 @@
         <a class="active" href="#">最新更新</a>
         <a href="#">总点击</a>
         <a href="#">收藏</a>
-        <span><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
+        <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
       </div>
     </nav>
     <ul class="mui-table-view">
@@ -113,11 +113,21 @@
   export default {
       data(){
           return{
+              isShow: false
           }
       },
       components: {
           headTitle,
+      },
+      methods: {
+          showClassify(i){
+            if (i === true){
+                this.isShow = false
+            }else if (i === false) {
+                this.isShow = true
+            }
 
+          }
       }
   }
 </script>

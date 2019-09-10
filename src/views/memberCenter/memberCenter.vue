@@ -1,6 +1,6 @@
 <template>
-  <section class="recharge">
-    <head-title title="会员中心"></head-title>
+  <section class="member">
+    <head-title :class="{'head-bg': isBg}" title="会员中心"></head-title>
     <section class="main">
       <div class="mine">
         <mine-info></mine-info>
@@ -24,58 +24,38 @@
         <ul>
           <li>
             <h6>夏日特惠</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
             <span>推荐</span>
           </li>
           <li>
             <h6>VIP季度</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
           </li>
           <li>
             <h6>VIP月度</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
           </li>
           <li>
             <h6>VIP半年</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
           </li>
           <li>
             <h6>VIP年度</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
           </li>
           <li>
             <h6>VIP终身</h6>
-            <p>￥98.00</p>
-            <p>246</p>
+            <p class="now">￥98.00</p>
+            <p class="original">246</p>
           </li>
         </ul>
       </div>
-      <div>
-        <h6>关于付费VIP常见问题</h6>
-        <ul>
-          <li>
-            <div>1、什么是付费VIP</div>
-            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
-          </li>
-          <li>
-            <div>2、支付成功了，但是没有显示会员</div>
-            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
-          </li>
-          <li>
-            <div>3、通常会有哪些原因造成支付失败</div>
-            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
-          </li>
-          <li>
-            <div>4、我不小心开通了两次会员怎么办？</div>
-            <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
-          </li>
-        </ul>
-      </div>
+      <problem></problem>
     </section>
   </section>
 </template>
@@ -83,40 +63,110 @@
 <script>
   import headTitle from '../../components/header/header'
   import mineInfo from '../../components/mineInfo/mineInfo'
+  import problem from '../../components/problem/problem'
   export default {
+      data(){
+          return{
+              scrollHei: 0,
+              isBg: false
+          }
+      },
       components: {
         headTitle,
-        mineInfo
+        mineInfo,
+        problem
+      },
+      created() {
+          addEventListener('scroll',this.scrollFunc,true)
+      },
+      methods: {
+          scrollFunc(){
+              this.scrollHei = document.documentElement.scrollTop || document.body.scrollTop
+              if (this.scrollHei === 0){
+                  this.isBg = false
+                  return
+              }
+              this.isBg = true
+          }
       }
   }
 </script>
 
 <style scoped>
-  .recharge{
-    margin-top: 50px;
+  header{
+    background: transparent;
+    color: #ffffff;
+  }
+  .head-bg{
+    background: #13124e;
+  }
+  .member{
+    padding-top: 50px;
+    background: url("./image/true1111.png") no-repeat;
+    background-size: 100%;
   }
   .main{
-    padding: 0 16px;
+    padding: 0 16px 40px 16px;
+  }
+  .main .mine{
+    color: #ffffff;
+    border-radius: 8px;
+    background: linear-gradient(90deg,#5D8EFB, #91DCFD);
   }
   .main .btm{
     display: flex;
   }
+  .main .btm li{
+    margin: 0 29px;
+    text-align: center;
+  }
   .main .btm li span{
     display: block;
     font-size: 32px;
+    margin: 0 0 10px 0;
   }
-
   .main .set-meal{
-    margin: 30px 0 0 0;
+    margin: 30px 0 20px 0;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+  }
+  .main .set-meal h5{
+    line-height: 60px;
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
   }
   .main .set-meal ul{
     display: flex;
     flex-wrap: wrap;
   }
   .main .set-meal li{
-    border: solid orange 1px;
-    width: 50%;
+    border: solid #FFEA55 2px;
+    width: 46%;
     text-align: center;
     border-radius: 6px;
+    margin: 2%;
+    padding: 0 0 8px 0;
+  }
+  .main .set-meal li h6{
+    line-height: 30px;
+    color: #333333;
+    font-size: 16px;
+  }
+  .main .set-meal li .now{
+    font-size: 34px;
+    color: #333333;
+    font-weight: bold;
+    line-height: 40px;
+  }
+  .main .set-meal li .original{
+    color: #333333;
+  }
+  .main .set-meal li span{
+    padding: 6px;
+    background: #FA6653;
+    border-radius: 4px;
+    color: #ffffff;
   }
 </style>

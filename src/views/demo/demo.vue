@@ -1,6 +1,5 @@
 <template>
   <section>
-    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -214,67 +213,24 @@
             </li>
           </ul>
         </div>
-        <!-- 如果需要滚动条 -->
+
       </div>
     </div>
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
   </section>
 </template>
 
 <script>
   import Swiper from 'swiper'
   export default {
-    mounted() {
-      new Swiper('.swiper-container',{
-          // 如果需要滚动条
-          scrollbar: {
-              el: '.swiper-scrollbar',
-          },
-      })
-    }
+      mounted() {
+          new Swiper('.swiper-container',{
+              // 如果需要滚动条
+              scrollbar: {
+                  el: '.swiper-scrollbar',
+              },
+          })
+      }
   }
 </script>
-
-<style scoped>
-  .swiper-scrollbar{
-    height: 2px;
-  }
-  .mui-media-body{
-    font-size: 18px;
-  }
-  .mui-table-view .mui-media-object{
-    height: auto;
-    max-width: 120px;
-  }
-  .mui-table-view .mui-media-object.mui-pull-left{
-    border-radius: 10px;
-  }
-  .mui-table-view .pic{
-    position: relative;
-  }
-  .mui-table-view .pic span{
-    width: 60px;
-    line-height: 36px;
-    background: #DB383C;
-    position: absolute;
-    left: 0;
-    top: 10px;
-    border-bottom-right-radius: 40px;
-    border-top-right-radius: 40px;
-    text-align: center;
-    font-size: 14px;
-    color: #ffffff;
-  }
-  .mui-table-view .pic .two{
-    background: #FD7746;
-  }
-  .mui-table-view .pic .three{
-    background: #6AE867;
-  }
-  .mui-ellipsis{
-    line-height: 34px;
-  }
-  .update{
-    margin-top: 50px;
-    color: orange;
-  }
-</style>

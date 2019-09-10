@@ -1,15 +1,6 @@
 <template>
-  <section>
-    <ul class="mui-table-view mui-table-view-chevron top-mine">
-      <li class="mui-table-view-cell mui-media">
-        <router-link class="mui-navigate-right" to="/login">
-          <img class="mui-media-object mui-pull-left head-img" id="head-img" src="./image/IMG_2475.jpg">
-          <div class="mui-media-body">
-            <p class="mui-ellipsis">暂未绑定手机号</p>
-          </div>
-        </router-link>
-      </li>
-    </ul>
+  <section class="mine-bg">
+    <mine-info></mine-info>
     <nav class="mui-bar mui-bar-tab ">
       <a class="mui-tab-item" href="#">
         <span><i>0.00</i>元</span>
@@ -24,7 +15,7 @@
         我的积分
       </a>
     </nav>
-    <ul class="mui-table-view mui-table-view-chevron list-menu">
+    <ul class="mui-table-view mui-table-view-chevron mine-list">
       <li class="mui-table-view-cell">
         <router-link class="mui-navigate-right" to="/memberCenter">
           <i class="iconfont iconchongzhi2"></i>
@@ -43,25 +34,48 @@
           推荐好友领会员
         </a>
       </li>
+    </ul>
+    <ul class="mui-table-view mui-table-view-chevron mine-list">
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
           <i class="iconfont iconqianbi"></i>
           在线客服
         </a>
       </li>
+      <li class="mui-table-view-cell">
+        <a href="#" class="mui-navigate-right">
+          <i class="iconfont iconqianbi"></i>
+          系统设置
+        </a>
+      </li>
     </ul>
-    <button class="btn">切换账号</button>
   </section>
 </template>
 
 <script>
-
+  import mineInfo from "../../components/mineInfo/mineInfo"
+  export default {
+      components: {
+          mineInfo
+      }
+  }
 </script>
 
 <style scoped>
+  .mine-bg{
+    height: 100%;
+    background: #f6f6f6;
+  }
+  .mine-info{
+    background: #ffffff;
+  }
   .top-mine{
     background: lightcoral;
     padding: 20px 0;
+  }
+  .mine-list{
+    margin: 10px 0 0 0;
+    font-size: 14px;
   }
   .mui-table-view .mui-media-object{
     height: 55px;
@@ -79,10 +93,11 @@
   .mui-bar{
     position: static;
     box-shadow: 0 0 1px #cccccc;
-    font-size: 12px;
+    font-size: 14px;
     padding: 7px 0;
     background-color: #ffffff;
   }
+
   .mui-tab-item{
     position: relative;
   }
@@ -102,13 +117,11 @@
     font-size: 20px;
     color: orange;
   }
-  .list-menu{
-    margin: 10px 0 0 0;
-  }
   .iconfont{
     font-size: 22px;
     color: orange;
     vertical-align: middle;
+    margin: 0 5px 0 0;
   }
   .list-menu .mui-table-view-cell{
     padding-top: 20px;

@@ -4,7 +4,7 @@
     <div class="neck-nav">
       <ul>
         <li>
-          <router-link to="/endingWorks">
+          <router-link to="/memberArea">
             <img src="./image/icon111.png" alt="">
             <p>VIP专区</p>
           </router-link>
@@ -14,7 +14,7 @@
           <p>充值优惠</p>
         </li>
         <li>
-          <router-link to="/memberArea">
+          <router-link to="/endingWorks">
             <img src="./image/icon111.png" alt="">
             <p>完美佳作</p>
           </router-link>
@@ -23,7 +23,7 @@
     </div>
     <main>
       <div class="con">
-        <h5>小编推荐</h5>
+        <h5>小编推荐 <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
         <dl>
           <router-link to="/chapterList">
             <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
@@ -81,7 +81,7 @@
         <button class="btn">查看更多 >></button>
       </div>
       <div class="con">
-        <h5>今日更新</h5>
+        <h5>今日更新 <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
         <dl>
           <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
           <dd>
@@ -172,6 +172,7 @@
     font-size: 16px;
     font-weight: 600;
     color: #333333;
+    line-height: 40px;
   }
   .con h5:before{
     content: '';
@@ -182,6 +183,15 @@
     border-radius: 10px;
     left: 0;
     top: 0;
+  }
+  .con h5 span{
+    font-size: 12px;
+    float: right;
+    color: #999999;
+  }
+  .con h5 span i{
+    margin: 0 4px 0 0;
+    font-size: 15px;
   }
   .con dl{
     width: 33.33%;

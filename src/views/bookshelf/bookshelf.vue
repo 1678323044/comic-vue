@@ -2,6 +2,7 @@
   <section class="one-level-page">
     <head-title title="书架"></head-title>
     <neck-tab></neck-tab>
+    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
@@ -165,7 +166,10 @@
       },
       mounted(){
         new Swiper('.swiper-container',{
-
+            // 如果需要滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
         })
       }
   }
@@ -174,6 +178,9 @@
 <style scoped>
   .one-level-page{
     margin-bottom: 50px;
+  }
+  .swiper-scrollbar{
+    height: 2px;
   }
   .mui-table-view .mui-media-object{
     height: auto;
