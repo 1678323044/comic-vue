@@ -6,7 +6,7 @@
     <div class="headImg"></div>
     <div class="btn">
       <ul>
-        <li><button class="addBookshelf">加入书架</button></li>
+        <li><button @click="addBookshelf" class="addBookshelf">加入书架</button></li>
         <li><button class="reading">开始阅读</button></li>
       </ul>
     </div>
@@ -66,6 +66,9 @@
       methods: {
           returnFunc(){
               this.$router.go(-1)
+          },
+          addBookshelf(){
+            this.$store.dispatch('addBookshelf')
           }
       }
   }

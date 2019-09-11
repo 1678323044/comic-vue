@@ -1,14 +1,17 @@
 /* 间接更新state对象 */
 import {
   RECEIVE_RECOMMENDS,
-  RECEIVE_CLASSIFY
+  RECEIVE_CLASSIFY,
+  RECEIVE_RANKSORT,
+  RECEIVE_ADDBOOKSHELF
 } from './mutations-type'
 
 import {
   reqRecommends,
-  reqClassify
+  reqClassify,
+  reqRankSort,
+  reqAddBookshelf
 } from '../api/index'
-import classify from "../views/classify/classify";
 
 export default {
   //异步获取推荐信息
@@ -19,12 +22,28 @@ export default {
       commit(RECEIVE_RECOMMENDS,{recommends})
     }
   },
-  //异步获取分类信息
+  //异步获取漫画分类信息
   async getClassify({commit}){
     let result = await reqClassify()
     if (result.state === 'ok'){
       let classes = result.data
       commit(RECEIVE_CLASSIFY,{classes})
+    }
+  },
+  //异步获取排行榜排序方式
+  async getRankSort({commit}){
+    let result = await reqRankSort()
+    if (result.state === 'ok'){
+      let rankSorts = result.data
+      commit(RECEIVE_RANKSORT,{rankSorts})
+    }
+  },
+  //处理加入书架功能
+  async addBookshelf({commit}){
+    let result = await reqAddBookshelf
+    if (result.state === 'ok') {
+      let message = result.message
+      commit(RECEIVE_ADDBOOKSHELF,{message})
     }
   }
 }

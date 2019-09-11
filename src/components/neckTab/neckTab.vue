@@ -1,13 +1,15 @@
 <template>
   <nav class="mui-bar mui-bar-tab">
-    <a class="mui-tab-item" href="#Popover_0">上升榜</a>
-    <a class="mui-tab-item" href="#Popover_1">周排行</a>
-    <a class="mui-tab-item" href="#Popover_2">收藏榜</a>
+    <a v-for="rankSort in rankSorts" class="mui-tab-item" href="#Popover_0">
+      {{rankSort.name}}
+    </a>
   </nav>
 </template>
 
 <script>
-
+  export default {
+    props: ['rankSorts']
+  }
 </script>
 
 <style scoped>
