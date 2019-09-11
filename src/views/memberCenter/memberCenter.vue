@@ -1,6 +1,8 @@
 <template>
   <section class="member">
-    <head-title :class="{'head-bg': isBg}" title="会员中心"></head-title>
+    <head-title :class="{'head-bg': isBg}" title="会员中心">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <section class="main">
       <div class="mine">
         <mine-info></mine-info>
@@ -87,6 +89,9 @@
                   return
               }
               this.isBg = true
+          },
+          returnFunc(){
+              this.$router.go(-1)
           }
       }
   }

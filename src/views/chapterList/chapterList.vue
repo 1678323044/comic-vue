@@ -1,5 +1,8 @@
 <template>
   <section>
+    <head-title>
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <div class="headImg"></div>
     <div class="btn">
       <ul>
@@ -55,10 +58,23 @@
 </template>
 
 <script>
-
+  import headTitle from '../../components/header/header'
+  export default {
+      components: {
+          headTitle
+      },
+      methods: {
+          returnFunc(){
+              this.$router.go(-1)
+          }
+      }
+  }
 </script>
 
 <style scoped>
+  header{
+    background: transparent;
+  }
   .headImg{
     height: 218px;
     background: url("./image/0.jpg") no-repeat;

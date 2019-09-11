@@ -5,126 +5,35 @@
       <ul>
         <li>
           <router-link to="/memberArea">
-            <img src="./image/icon111.png" alt="">
+            <img src="./image/icon111.png" width="100%" alt="">
             <p>VIP专区</p>
           </router-link>
         </li>
         <li>
-          <img src="./image/icon111.png" alt="">
+          <img src="./image/icon111.png" width="100%" alt="">
           <p>充值优惠</p>
         </li>
         <li>
           <router-link to="/endingWorks">
-            <img src="./image/icon111.png" alt="">
+            <img src="./image/icon111.png" width="100%" alt="">
             <p>完美佳作</p>
           </router-link>
         </li>
       </ul>
     </div>
     <main>
-      <div class="con">
-        <h5>小编推荐 <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
-        <dl>
+      <div class="con" v-for="recommend in recommends">
+        <h5>{{recommends[0].name}} <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
+        <dl v-for="dataItem in recommend.datalist">
           <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
+            <dt><img :src="dataItem.coverImagePath" width="100%" alt=""></dt>
             <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
+              <h6>{{dataItem.name}}</h6>
+              <p>{{dataItem.author}}</p>
             </dd>
           </router-link>
         </dl>
-        <dl>
-          <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-            <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-            <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-            <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-            <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapterList">
-            <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-            <dd>
-              <h6>我的守护女友</h6>
-              <p>Amber漫研社</p>
-            </dd>
-          </router-link>
-        </dl>
-        <button class="btn">查看更多 >></button>
-      </div>
-      <div class="con">
-        <h5>今日更新 <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="./image/0000.jpg" width="100%" alt=""></dt>
-          <dd>
-            <h6>我的守护女友</h6>
-            <p>Amber漫研社</p>
-          </dd>
-        </dl>
-        <button class="btn">查看更多 >></button>
+        <router-link to="/classify"><button class="btn">查看更多 >></button></router-link>
       </div>
     </main>
   </section>
@@ -132,9 +41,16 @@
 
 <script>
   import banner from '../../components/banner/banner'
+  import {mapState} from 'vuex'
   export default {
       components: {
-          banner,
+          banner
+      },
+      created() {
+          this.$store.dispatch('getRecommends')
+      },
+      computed: {
+          ...mapState(['recommends'])
       }
   }
 </script>
@@ -143,8 +59,10 @@
   .home{
     padding-bottom: 50px;
   }
-  main{
+  .neck-nav{
     margin: 10px 0 0 0;
+  }
+  main{
     padding: 0 10px;
   }
   .neck-nav ul{
@@ -168,21 +86,20 @@
   .con h5{
     position: relative;
     padding: 0 0 0 10px;
-    margin: 0 0 10px 0;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #333333;
     line-height: 40px;
   }
   .con h5:before{
     content: '';
-    width: 5px;
+    width: 6px;
     height: 18px;
-    background: orange;
+    background: #FC5F45;
     position: absolute;
     border-radius: 10px;
     left: 0;
-    top: 0;
+    top: 10px;
   }
   .con h5 span{
     font-size: 12px;
@@ -191,12 +108,14 @@
   }
   .con h5 span i{
     margin: 0 4px 0 0;
-    font-size: 15px;
+    font-size: 17px;
+    color: #666666;
+    font-weight: bold;
   }
   .con dl{
     width: 33.33%;
     float: left;
-    padding: 0 8px 4px 8px;
+    padding: 0 5px 4px;
     box-sizing: border-box;
   }
   .con dl dt{
@@ -205,11 +124,26 @@
   }
   .con dd h6{
     margin: 3px 0;
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+  .con dd p{
+    font-size: 12px;
+    color: #666666;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
   .con .btn{
     width: 100%;
     background: #f1f1f1;
-    border-radius: 20px;
+    border-radius: 40px;
     border: none;
+    line-height: 32px;
+    color: #999999;
   }
 </style>

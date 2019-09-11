@@ -1,22 +1,13 @@
 <template>
   <section class="one-level-page">
-    <head-title title="分类"></head-title>
+    <head-title title="分类">
+      <span slot="return"></span>
+      <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
+    </head-title>
     <nav>
       <div>
         <a class="active" href="#">全部</a>
-        <a href="#">韩漫</a>
-        <a href="#">日漫</a>
-        <a href="#">国产</a>
-        <a href="#">伦理</a>
-        <a href="#">都市</a>
-        <a href="#">校园</a>
-        <a href="#">养成</a>
-        <a href="#">恋爱</a>
-        <a href="#">恐怖</a>
-        <a href="#">魔幻</a>
-        <a href="#">古风</a>
-        <a href="#">异能</a>
-        <a href="#">总裁</a>
+        <a v-for="classitem in classes" href="#">{{classitem.name}}</a>
       </div>
       <div v-show="isShow">
         <a class="active" href="#">全部</a>
@@ -109,7 +100,7 @@
 
 <script>
   import headTitle from '../../components/header/header'
-
+  import {mapState} from 'vuex'
   export default {
       data(){
           return{
@@ -119,6 +110,13 @@
       components: {
           headTitle,
       },
+      created(){
+        this.$store.dispatch('getClassify')
+      },
+      computed: {
+          ...mapState(['classes'])
+      }
+      ,
       methods: {
           showClassify(i){
             if (i === true){
@@ -126,7 +124,6 @@
             }else if (i === false) {
                 this.isShow = true
             }
-
           }
       }
   }
@@ -135,6 +132,9 @@
 <style scoped>
   .one-level-page{
     margin-top: 50px;
+  }
+  .mui-icon-search{
+    color: #FC5F45;
   }
   nav{
     padding: 0 16px;

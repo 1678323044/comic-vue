@@ -1,6 +1,8 @@
 <template>
   <section class="ending">
-    <head-title title="完结佳作"></head-title>
+    <head-title title="完结佳作">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <section class="ending-list">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -97,8 +99,12 @@
       },
       mounted() {
         new Swiper('.swiper-container',{
-
         })
+      },
+      methods: {
+          returnFunc(){
+              this.$router.go(-1)
+          }
       }
   }
 </script>

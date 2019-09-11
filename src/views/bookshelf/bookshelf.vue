@@ -1,6 +1,8 @@
 <template>
   <section class="one-level-page">
-    <head-title title="书架"></head-title>
+    <head-title title="书架">
+      <span slot="return"></span>
+    </head-title>
     <neck-tab></neck-tab>
     <div class="swiper-scrollbar"></div>
     <div class="swiper-container">

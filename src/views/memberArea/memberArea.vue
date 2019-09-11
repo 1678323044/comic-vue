@@ -1,6 +1,8 @@
 <template>
   <section class="head-Padding">
-    <head-title title="VIP专区"></head-title>
+    <head-title title="VIP专区">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <section class="bg-img"></section>
     <section class="main">
       <mine-info></mine-info>
@@ -149,8 +151,12 @@
       },
       mounted() {
           new Swiper('.swiper-container',{
-
           })
+      },
+      methods: {
+          returnFunc(){
+              this.$router.go(-1)
+          }
       }
   }
 </script>

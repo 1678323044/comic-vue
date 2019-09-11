@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {
+        target: 'http://103.229.214.108/comic',//目标接口域名
+        changeOrigin: true,//是否跨域
+        pathRewrite: {
+          '^/api': '' //重写接口,后面可以使重写的新路径，一般不做更改
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

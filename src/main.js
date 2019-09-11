@@ -6,13 +6,16 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-/* 引入mint-ui */
+// 引入mint-ui
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
-/* 引入swiper */
+// 引入swiper
 import 'swiper/dist/css/swiper.min.css'
+
+// 引入vuex
+import store from './store/index'
 
 /* eslint-disable no-new */
 new Vue({
@@ -20,5 +23,6 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  MintUI
+  MintUI,
+  store
 })

@@ -1,9 +1,8 @@
 <template>
   <section>
-    <div class="float-bar top">
-      <span class="mui-icon mui-icon-back"></span>
-      <h6>第0话 烧火山</h6>
-    </div>
+    <head-title class="float-bar top" title="第一话 莫欺少年穷">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <div class="chapter">
       <ul>
         <li><img src="./image/800.jpg" alt=""></li>
@@ -51,7 +50,17 @@
 </template>
 
 <script>
-
+  import headTitle from '../../components/header/header'
+  export default {
+      components: {
+          headTitle
+      },
+      methods: {
+        returnFunc(){
+            this.$router.go(-1)
+        }
+      }
+  }
 </script>
 
 <style scoped>

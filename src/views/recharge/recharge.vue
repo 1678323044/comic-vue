@@ -1,6 +1,8 @@
 <template>
   <section class="head-Padding">
-    <head-title title="金币充值"></head-title>
+    <head-title title="金币充值">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    </head-title>
     <section class="main">
       <div class="box">
         <p>漫币余额：222</p>
@@ -67,6 +69,11 @@
     components: {
       headTitle,
       problem
+    },
+    methods: {
+        returnFunc(){
+            this.$router.go(-1)
+        }
     }
   }
 </script>

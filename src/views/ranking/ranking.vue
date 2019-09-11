@@ -1,6 +1,9 @@
 <template>
   <section class="one-level-page">
-    <head-title title="排行"></head-title>
+    <head-title title="排行">
+      <span slot="return"></span>
+      <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
+    </head-title>
     <neck-tab></neck-tab>
     <comic-list></comic-list>
   </section>
