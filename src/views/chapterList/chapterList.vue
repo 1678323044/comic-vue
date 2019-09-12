@@ -3,7 +3,17 @@
     <head-title>
       <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
     </head-title>
-    <div class="headImg"></div>
+    <div class="head-pic">
+      <img src="./image/0.jpg" width="100%" alt="">
+      <div class="head-title">
+        {{comicInfo.name}}
+        <p>
+          <span class="iconfont iconxingxing"></span>
+          <span class="iconfont iconxingxing"></span>
+          <span class="iconfont iconxingxing"></span>
+        </p>
+      </div>
+    </div>
     <div class="btn">
       <ul>
         <li><button @click="addBookshelf" class="addBookshelf">加入书架</button></li>
@@ -11,10 +21,8 @@
       </ul>
     </div>
     <div class="content">
-      <p>作者：正宗刀&nbsp;&nbsp;&nbsp;<span>连载中</span></p>
-      <p>她是现代赫赫有名的毒药神医，一朝穿越成丞相府大小姐，撞破庶妹和未婚夫的奸情被灭口？
-        还要被下人奸尸？老虎不发威当她是猫啊！一把毒粉撒过去，让你怎么死的都不知道！柳心月玩的不亦乐乎，
-        岂料，一切都被一名面具男子看在眼里。“够劲，够毒，够狠，本宫看上你了。”“你个废柴，看上你妹，毒死你！”</p>
+      <p>作者：{{comicInfo.author}} &nbsp;&nbsp;&nbsp;<span>{{comicInfo.endState | endState}}</span></p>
+      <p>{{comicInfo.introduction}}</p>
     </div>
     <div class="list">
       <div class="title">
@@ -22,33 +30,13 @@
         <span></span>
       </div>
       <div class="chapter">
-        <dl>
+        <dl v-for="chapter in chapters">
           <router-link to="/chapter">
-            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
+            <dt><img src="" width="100%" alt=""></dt>
             <dd>
-              <h6>1话 第一小分队</h6>
+              <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
               <span>免费</span>
-              <p>12-11</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapter">
-            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
-            <dd>
-              <h6>1话 第一小分队</h6>
-              <span>免费</span>
-              <p>12-11</p>
-            </dd>
-          </router-link>
-        </dl>
-        <dl>
-          <router-link to="/chapter">
-            <dt><img src="./image/1553848797-1.jpeg" width="100%" alt=""></dt>
-            <dd>
-              <h6>1话 第一小分队</h6>
-              <span>免费</span>
-              <p>12-11</p>
+              <p>{{chapter.publishTime}}</p>
             </dd>
           </router-link>
         </dl>
@@ -59,7 +47,14 @@
 
 <script>
   import headTitle from '../../components/header/header'
+  import {mapState} from 'vuex'
   export default {
+      data(){
+          return{
+            bookId: 0,
+            comicId: {}
+          }
+      },
       components: {
           headTitle
       },
@@ -68,8 +63,20 @@
               this.$router.go(-1)
           },
           addBookshelf(){
-            this.$store.dispatch('addBookshelf')
+            this.$store.dispatch('addBookshelf',this.comicId)
           }
+      },
+      created() {
+          this.bookId = this.$route.query.bookId
+          this.comicId = {"bookId": this.bookId}
+          this.$store.dispatch('getComicInfo',this.comicId)
+          let setPage = {"bookId": this.bookId,"page": 1,"pageSize": 3}
+          this.$store.dispatch('getChapters',setPage)
+      },
+      computed: {
+          ...mapState(['comicInfo']),
+          ...mapState(['chapters']),
+          ...mapState(['message'])
       }
   }
 </script>
@@ -78,10 +85,23 @@
   header{
     background: transparent;
   }
-  .headImg{
-    height: 218px;
-    background: url("./image/0.jpg") no-repeat;
-    background-size: 100%;
+  .head-pic{
+    position: relative;
+  }
+  .head-title{
+    top: 60%;
+    left: 5%;
+    color: #ffffff;
+    font-size: 20px;
+    position: absolute;
+  }
+  .head-title p{
+    margin: 6px 0 0 0;
+  }
+  .head-title p span{
+    color: #FC5F45;
+    margin: 0 0 0 4px;
+    font-size: 14px;
   }
   .btn{
     padding: 10px 0;

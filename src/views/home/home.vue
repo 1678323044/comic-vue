@@ -25,7 +25,7 @@
       <div class="con" v-for="recommend in recommends">
         <h5>{{recommends[0].name}} <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
         <dl v-for="dataItem in recommend.datalist">
-          <router-link to="/chapterList">
+          <router-link :to="url+dataItem.id">
             <dt><img :src="dataItem.coverImagePath" width="100%" alt=""></dt>
             <dd>
               <h6>{{dataItem.name}}</h6>
@@ -43,6 +43,11 @@
   import banner from '../../components/banner/banner'
   import {mapState} from 'vuex'
   export default {
+      data(){
+          return{
+            url: '/chapterList?bookId='
+          }
+      },
       components: {
           banner
       },

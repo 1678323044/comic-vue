@@ -5,7 +5,20 @@
       <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
     </head-title>
     <neck-tab :rankSorts="rankSorts"></neck-tab>
-    <comic-list></comic-list>
+    <div class="swiper-scrollbar"></div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <comic-list></comic-list>
+        </div>
+        <div class="swiper-slide">
+        </div>
+        <div class="swiper-slide">
+        </div>
+        <div class="swiper-slide">
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -13,6 +26,7 @@
   import headTitle from '../../components/header/header'
   import neckTab from '../../components/neckTab/neckTab'
   import comicList from '../../components/comicList/comicList'
+  import Swiper from 'swiper'
   import {mapState} from 'vuex'
   export default {
       components: {
@@ -20,8 +34,14 @@
           neckTab,
           comicList
       },
-      created() {
-        this.$store.dispatch('getRankSort')
+      mounted() {
+          this.$store.dispatch('getRankSort')
+          new Swiper('.swiper-container',{
+              // 如果需要滚动条
+              scrollbar: {
+                  el: '.swiper-scrollbar',
+              },
+          })
       },
       computed: {
         ...mapState(['rankSorts'])
@@ -29,6 +49,10 @@
   }
 </script>
 
-<style>
-
+<style scoped>
+  .swiper-scrollbar{
+    height: 2px;
+    position: fixed;
+    top: 102px;
+  }
 </style>

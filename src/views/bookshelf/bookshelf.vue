@@ -3,101 +3,24 @@
     <head-title title="书架">
       <span slot="return"></span>
     </head-title>
-    <neck-tab></neck-tab>
+    <neck-tab :bookshelfTab="bookshelfTab"></neck-tab>
     <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <ul class="mui-table-view">
-          <li class="mui-table-view-cell mui-media">
-            <a href="javascript:;">
-              <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-              <div class="mui-media-body">
-                永恒至尊
-                <p class="mui-ellipsis">作者：风人动漫</p>
-                <p class="mui-ellipsis">上次看到：第2话</p>
-                <p class="update">更新至：第29话</p>
-              </div>
-            </a>
-          </li>
-          <li class="mui-table-view-cell mui-media">
-            <a href="javascript:;">
-              <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-              <div class="mui-media-body">
-                永恒至尊
-                <p class="mui-ellipsis">作者：风人动漫</p>
-                <p class="mui-ellipsis">上次看到：第2话</p>
-                <p class="update">更新至：第29话</p>
-              </div>
-            </a>
-          </li>
-          <li class="mui-table-view-cell mui-media">
-            <a href="javascript:;">
-              <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-              <div class="mui-media-body">
-                永恒至尊
-                <p class="mui-ellipsis">作者：风人动漫</p>
-                <p class="mui-ellipsis">上次看到：第2话</p>
-                <p class="update">更新至：第29话</p>
-              </div>
-            </a>
-          </li>
-          <li class="mui-table-view-cell mui-media">
-            <a href="javascript:;">
-              <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-              <div class="mui-media-body">
-                永恒至尊
-                <p class="mui-ellipsis">作者：风人动漫</p>
-                <p class="mui-ellipsis">上次看到：第2话</p>
-                <p class="update">更新至：第29话</p>
-              </div>
-            </a>
-          </li>
-        </ul>
+          </ul>
         </div>
         <div class="swiper-slide">
           <ul class="mui-table-view">
-            <li class="mui-table-view-cell mui-media">
+            <li class="mui-table-view-cell mui-media" v-for="collect in collections">
               <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
+                <img alt="" class="mui-media-object mui-pull-left" :src="collect.coverImagePath">
                 <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
+                  {{collect.name}}
+                  <p class="mui-ellipsis">作者：{{collect.author}}</p>
+                  <p class="mui-ellipsis">上次看到：{{collect.provChapterTitle}}</p>
+                  <p class="update">更新至：{{collect.lastUpdateChapterTitle}}</p>
                 </div>
               </a>
             </li>
@@ -105,50 +28,6 @@
         </div>
         <div class="swiper-slide">
           <ul class="mui-table-view">
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
-            <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
-                <img alt="" class="mui-media-object mui-pull-left" src="./image/210.jpg">
-                <div class="mui-media-body">
-                  永恒至尊
-                  <p class="mui-ellipsis">作者：风人动漫</p>
-                  <p class="mui-ellipsis">上次看到：第2话</p>
-                  <p class="update">更新至：第29话</p>
-                </div>
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -160,8 +39,13 @@
   import headTitle from '../../components/header/header'
   import neckTab from '../../components/neckTab/neckTab'
   import Swiper from 'swiper'
-  import 'swiper/dist/css/swiper.min.css'
+  import {mapState} from 'vuex'
   export default {
+      data(){
+        return{
+            bookshelfTab: ['我的购买','兴趣收藏','历史记录']
+        }
+      },
       components: {
           headTitle,
           neckTab
@@ -173,6 +57,13 @@
                 el: '.swiper-scrollbar',
             },
         })
+      },
+      created() {
+          this.$store.dispatch('getCollect')
+          this.$store.dispatch('getReadHistory')
+      },
+      computed: {
+          ...mapState(['collections'])
       }
   }
 </script>
@@ -183,6 +74,8 @@
   }
   .swiper-scrollbar{
     height: 2px;
+    position: fixed;
+    top: 100px;
   }
   .mui-table-view .mui-media-object{
     height: auto;

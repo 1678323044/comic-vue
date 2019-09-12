@@ -14,92 +14,19 @@
         <a href="#">连载</a>
         <a href="#">完结</a>
       </div>
-      <div v-show="isShow">
-        <a class="active" href="#">全部</a>
-        <a href="#">免费</a>
-        <a href="#">付费</a>
-      </div>
       <div>
         <a class="active" href="#">最新更新</a>
         <a href="#">总点击</a>
-        <a href="#">收藏</a>
         <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
       </div>
     </nav>
-    <ul class="mui-table-view">
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <div class="pic">
-            <span>NO.1</span>
-            <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
-          </div>
-          <div class="mui-media-body">
-            永恒至尊
-            <p class="mui-ellipsis">作者：风人动漫</p>
-            <p class="text">以蛊入道，亘古未有，蛊龙仙尊叶尊遭遇问情天劫，兵解重修，夺舍到了废柴富二代叶尊
-              的身上，要想再次渡劫，必须勘误情之一字。刚一醒来，绝色女总裁带着女儿驾到，且看叶尊如何红尘炼心，宠娃护妻，
-              一路逆袭，重回人生巅峰。</p>
-            <p class="tag"><span>新作</span><span>推荐</span></p>
-            <p class="update">2019-09-06 更新至第25话</p>
-          </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <div class="pic">
-            <span class="two">NO.2</span>
-            <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
-          </div>
-          <div class="mui-media-body">
-            永恒至尊
-            <p class="mui-ellipsis">作者：风人动漫</p>
-            <p class="text">以蛊入道，亘古未有，蛊龙仙尊叶尊遭遇问情天劫，兵解重修，夺舍到了废柴富二代叶尊
-              的身上，要想再次渡劫，必须勘误情之一字。刚一醒来，绝色女总裁带着女儿驾到，且看叶尊如何红尘炼心，宠娃护妻，
-              一路逆袭，重回人生巅峰。</p>
-            <p class="tag"><span>新作</span><span>推荐</span></p>
-            <p class="update">2019-09-06 更新至第25话</p>
-          </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <div class="pic">
-            <span class="three">NO.3</span>
-            <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
-          </div>
-          <div class="mui-media-body">
-            永恒至尊
-            <p class="mui-ellipsis">作者：风人动漫</p>
-            <p class="text">以蛊入道，亘古未有，蛊龙仙尊叶尊遭遇问情天劫，兵解重修，夺舍到了废柴富二代叶尊
-              的身上，要想再次渡劫，必须勘误情之一字。刚一醒来，绝色女总裁带着女儿驾到，且看叶尊如何红尘炼心，宠娃护妻，
-              一路逆袭，重回人生巅峰。</p>
-            <p class="tag"><span>新作</span><span>推荐</span></p>
-            <p class="update">2019-09-06 更新至第25话</p>
-          </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <div class="pic">
-            <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
-          </div>
-          <div class="mui-media-body">
-            永恒至尊
-            <p class="mui-ellipsis">作者：风人动漫</p>
-            <p class="text">以蛊入道，亘古未有，蛊龙仙尊叶尊遭遇问情天劫，兵解重修，夺舍到了废柴富二代叶尊
-              的身上，要想再次渡劫，必须勘误情之一字。刚一醒来，绝色女总裁带着女儿驾到，且看叶尊如何红尘炼心，宠娃护妻，
-              一路逆袭，重回人生巅峰。</p>
-            <p class="tag"><span>新作</span><span>推荐</span></p>
-            <p class="update">2019-09-06 更新至第25话</p>
-          </div>
-        </a>
-      </li>
-    </ul>
+    <comic-list></comic-list>
   </section>
 </template>
 
 <script>
   import headTitle from '../../components/header/header'
+  import comicList from '../../components/comicList/comicList'
   import {mapState} from 'vuex'
   export default {
       data(){
@@ -109,6 +36,7 @@
       },
       components: {
           headTitle,
+          comicList
       },
       created(){
         this.$store.dispatch('getClassify')
@@ -124,7 +52,8 @@
             }else if (i === false) {
                 this.isShow = true
             }
-          }
+          },
+
       }
   }
 </script>
@@ -148,8 +77,8 @@
     margin: 0 0 8px 0;
   }
   nav a.active{
-    border: solid 1px red;
-    color: red;
+    border: solid 1px #FC5F45;
+    color: #FC5F45;
     border-radius: 20px;
   }
   nav span{
