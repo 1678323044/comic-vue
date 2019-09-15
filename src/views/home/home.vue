@@ -23,8 +23,8 @@
     </div>
     <main>
       <div class="con" v-for="recommend in recommends">
-        <h5>{{recommends[0].name}} <span><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
-        <dl v-for="dataItem in recommend.datalist">
+        <h5>{{recommend.name}} <span @click="changeContents(recommend.id)"><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
+        <dl v-for="dataItem in changeRecommends.datalist || recommend.datalist">
           <router-link :to="url+dataItem.id">
             <dt><img :src="dataItem.coverImagePath" width="100%" alt=""></dt>
             <dd>
@@ -54,8 +54,16 @@
       created() {
           this.$store.dispatch('getRecommends')
       },
+      methods: {
+        changeContents(id){
+          let recommendId = {"id": id};
+
+          this.$store.dispatch('getRecommendChange',recommendId)
+        }
+      },
       computed: {
-          ...mapState(['recommends'])
+          ...mapState(['recommends']),
+          ...mapState(['changeRecommends'])
       }
   }
 </script>

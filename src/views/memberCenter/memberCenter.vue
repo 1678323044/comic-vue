@@ -1,3 +1,4 @@
+<script src="../../store/state.js"></script>
 <template>
   <section class="member">
     <head-title :class="{'head-bg': isBg}" title="会员中心">
@@ -23,39 +24,7 @@
       </div>
       <div class="set-meal">
         <h5>付费VIP套餐</h5>
-        <ul>
-          <li>
-            <h6>夏日特惠</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-            <span>推荐</span>
-          </li>
-          <li>
-            <h6>VIP季度</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-          </li>
-          <li>
-            <h6>VIP月度</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-          </li>
-          <li>
-            <h6>VIP半年</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-          </li>
-          <li>
-            <h6>VIP年度</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-          </li>
-          <li>
-            <h6>VIP终身</h6>
-            <p class="now">￥98.00</p>
-            <p class="original">246</p>
-          </li>
-        </ul>
+        <set-meals :setMeals="setMeals"></set-meals>
       </div>
       <problem></problem>
     </section>
@@ -66,34 +35,42 @@
   import headTitle from '../../components/header/header'
   import mineInfo from '../../components/mineInfo/mineInfo'
   import problem from '../../components/problem/problem'
+  import setMeals from '../../components/setMeals/setMeals'
+  import {mapState} from 'vuex'
   export default {
-      data(){
-          return{
-              scrollHei: 0,
-              isBg: false
-          }
-      },
-      components: {
-        headTitle,
-        mineInfo,
-        problem
-      },
-      created() {
-          addEventListener('scroll',this.scrollFunc,true)
-      },
-      methods: {
-          scrollFunc(){
-              this.scrollHei = document.documentElement.scrollTop || document.body.scrollTop
-              if (this.scrollHei === 0){
-                  this.isBg = false
-                  return
-              }
-              this.isBg = true
-          },
-          returnFunc(){
-              this.$router.go(-1)
-          }
+    data(){
+      return{
+        scrollHei: 0,
+        isBg: false
       }
+    },
+    components: {
+      headTitle,
+      mineInfo,
+      problem,
+      setMeals
+    },
+    created() {
+      this.$store.dispatch('getSetMeals');
+      addEventListener('scroll',this.scrollFunc,true)
+
+    },
+    methods: {
+      scrollFunc(){
+        this.scrollHei = document.documentElement.scrollTop || document.body.scrollTop
+        if (this.scrollHei === 0){
+          this.isBg = false
+          return
+        }
+        this.isBg = true
+      },
+      returnFunc(){
+        this.$router.go(-1)
+      }
+    },
+    computed: {
+      ...mapState(['setMeals'])
+    }
   }
 </script>
 
@@ -141,37 +118,5 @@
     font-size: 16px;
     color: #333333;
     font-weight: bold;
-  }
-  .main .set-meal ul{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .main .set-meal li{
-    border: solid #FFEA55 2px;
-    width: 46%;
-    text-align: center;
-    border-radius: 6px;
-    margin: 2%;
-    padding: 0 0 8px 0;
-  }
-  .main .set-meal li h6{
-    line-height: 30px;
-    color: #333333;
-    font-size: 16px;
-  }
-  .main .set-meal li .now{
-    font-size: 34px;
-    color: #333333;
-    font-weight: bold;
-    line-height: 40px;
-  }
-  .main .set-meal li .original{
-    color: #333333;
-  }
-  .main .set-meal li span{
-    padding: 6px;
-    background: #FA6653;
-    border-radius: 4px;
-    color: #ffffff;
   }
 </style>

@@ -5,8 +5,8 @@
       <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
     </head-title>
     <neck-tab :rankSorts="rankSorts"></neck-tab>
-    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
+      <div class="swiper-scrollbar"></div>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <comic-list></comic-list>
@@ -35,7 +35,8 @@
           comicList
       },
       mounted() {
-          this.$store.dispatch('getRankSort')
+          this.$store.dispatch('getRankSort');
+          //this.$store.dispatch('getRankingList');
           new Swiper('.swiper-container',{
               // 如果需要滚动条
               scrollbar: {

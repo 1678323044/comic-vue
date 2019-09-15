@@ -6,12 +6,15 @@
     <a v-for="item in bookshelfTab" class="mui-tab-item" href="#Popover_0">
       {{item}}
     </a>
+    <a v-for="item in endComicsTab" class="mui-tab-item" href="#Popover_0">
+      {{item}}
+    </a>
   </nav>
 </template>
 
 <script>
   export default {
-    props: ['rankSorts','bookshelfTab']
+    props: ['rankSorts','bookshelfTab','endComicsTab']
   }
 </script>
 

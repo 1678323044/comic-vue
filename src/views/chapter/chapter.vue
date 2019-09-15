@@ -59,6 +59,10 @@
         returnFunc(){
             this.$router.go(-1)
         }
+      },
+      created() {
+        let id ={"bookId": this.$route.query.bookId,"chaprerId": this.$route.query.serialNumber}
+        this.$store.dispatch('getComicContent',id)
       }
   }
 </script>

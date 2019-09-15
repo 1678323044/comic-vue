@@ -21,7 +21,11 @@ export default function ajax (url,data={},type='GET'){
       })
     }else{
       //发送post请求
-      promise = axios.post(url,data)
+      promise = axios.post(url,data,{
+        headers: {
+          authorization: "d198dff49a696e8dc5a9b4036c87125b" // 授权码
+        }
+      })
     }
     promise.then(function(response){
       resolve(response.data)

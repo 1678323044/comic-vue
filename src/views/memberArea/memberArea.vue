@@ -15,124 +15,16 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <dl>
-              <dt><img src="./image/210.jpg" alt=""></dt>
-              <dd>
-                <h6>子沐物语</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/210.jpg" alt=""></dt>
-              <dd>
-                <h6>子沐物语</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/210.jpg" alt=""></dt>
-              <dd>
-                <h6>子沐物语</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/210.jpg" alt=""></dt>
-              <dd>
-                <h6>子沐物语</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
+            <vip-comic-list :sellWellComics="sellWellComics"></vip-comic-list>
           </div>
           <div class="swiper-slide">
-            <dl>
-              <dt><img src="./image/211.jpg" alt=""></dt>
-              <dd>
-                <h6>我的反派女友</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/211.jpg" alt=""></dt>
-              <dd>
-                <h6>我的反派女友</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/211.jpg" alt=""></dt>
-              <dd>
-                <h6>我的反派女友</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/211.jpg" alt=""></dt>
-              <dd>
-                <h6>子沐物语</h6>
-                <p>校园 恋爱</p>
-              </dd>
-            </dl>
+            <vip-comic-list :serialComics="serialComics"></vip-comic-list>
           </div>
           <div class="swiper-slide">
-            <dl>
-              <dt><img src="./image/212.jpg" alt=""></dt>
-              <dd>
-                <h6>妖怪名单</h6>
-                <p>古风 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/212.jpg" alt=""></dt>
-              <dd>
-                <h6>妖怪名单</h6>
-                <p>古风 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/212.jpg" alt=""></dt>
-              <dd>
-                <h6>妖怪名单</h6>
-                <p>古风 恋爱</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/212.jpg" alt=""></dt>
-              <dd>
-                <h6>妖怪名单</h6>
-                <p>古风 恋爱</p>
-              </dd>
-            </dl>
+            <vip-comic-list :memberEndComics="memberEndComics"></vip-comic-list>
           </div>
           <div class="swiper-slide">
-            <dl>
-              <dt><img src="./image/213.jpg" alt=""></dt>
-              <dd>
-                <h6>元尊</h6>
-                <p>玄幻 冒险</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/213.jpg" alt=""></dt>
-              <dd>
-                <h6>元尊</h6>
-                <p>玄幻 冒险</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/213.jpg" alt=""></dt>
-              <dd>
-                <h6>元尊</h6>
-                <p>玄幻 冒险</p>
-              </dd>
-            </dl>
-            <dl>
-              <dt><img src="./image/213.jpg" alt=""></dt>
-              <dd>
-                <h6>元尊</h6>
-                <p>玄幻 冒险</p>
-              </dd>
-            </dl>
+            <vip-comic-list :memberComics="memberComics"></vip-comic-list>
           </div>
         </div>
       </div>
@@ -143,20 +35,33 @@
 <script>
   import headTitle from '../../components/header/header'
   import mineInfo from '../../components/mineInfo/mineInfo'
+  import vipComicList from '../../components/vipComicList/vipComicList'
   import Swiper from 'swiper'
+  import {mapState} from 'vuex'
   export default {
       components: {
           headTitle,
-          mineInfo
+          mineInfo,
+          vipComicList
       },
       mounted() {
           new Swiper('.swiper-container',{
-          })
+          });
+          this.$store.dispatch('getSellWellComics');
+          this.$store.dispatch('getSerialComics');
+          this.$store.dispatch('getMemberEndComics');
+          this.$store.dispatch('getMemberComics')
       },
       methods: {
           returnFunc(){
               this.$router.go(-1)
           }
+      },
+      computed: {
+        ...mapState(['sellWellComics']),
+        ...mapState(['serialComics']),
+        ...mapState(['memberEndComics']),
+        ...mapState(['memberComics'])
       }
   }
 </script>
@@ -185,19 +90,5 @@
   .main .mine-info{
     background: #ffffff;
     margin: 0 0 30px 0;
-  }
-  .main .swiper-slide dl{
-    float: left;
-    width: 33.33%;
-    padding: 0 10px 0 0;
-
-  }
-  .main .swiper-slide dl img{
-    width: 100%;
-    border-radius: 10px;
-  }
-  .main .swiper-slide dd h6{
-    color: #ffffff;
-    font-size: 14px;
   }
 </style>

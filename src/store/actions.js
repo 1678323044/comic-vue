@@ -9,7 +9,19 @@ import {
   RECEIVE_COLLECT,
   RECEIVE_READHISTORIES,
   RECEIVE_SEARCHLIST,
-  RECEIVE_SEARCHRESULT
+  RECEIVE_SEARCHRESULT,
+  RECEIVE_SELLWELLCOMICS,
+  RECEIVE_SERIALCOMICS,
+  RECEIVE_MEMBERENDCOMICS,
+  RECEIVE_MEMBERCOMICS,
+  RECEIVE_SETMEALS,
+  RECEIVE_RECHARGELIST,
+  RECEIVE_BUYHISTORY,
+  RECEIVE_COMICCONTENT,
+  RECEIVE_RECOMMENDCHANGE,
+  RECEIVE_ENDEASYSELL,
+  RECEIVE_ENDCOMICS,
+  RECEIVE_RECENTENDS
 } from './mutations-type'
 
 import {
@@ -22,7 +34,19 @@ import {
   reqCollect,
   reqReadHistory,
   reqSearchList,
-  reqSearchResult
+  reqSearchResult,
+  reqSellWellComics,
+  reqSerialComics,
+  reqMemberEndComics,
+  reqMemberComics,
+  reqSetMeals,
+  reqRechargeList,
+  reqBuyHistory,
+  reqComicContent,
+  reqRecommendChange,
+  reqEndEasySell,
+  reqEndComics,
+  reqRecentEnd
 } from '../api/index'
 
 export default {
@@ -32,6 +56,14 @@ export default {
     if (result.state === 'ok'){
       let recommends = result.data
       commit(RECEIVE_RECOMMENDS,{recommends})
+    }
+  },
+  //异步获取更换推荐信息
+  async getRecommendChange({commit},id){
+    let result = await reqRecommendChange(id)
+    if (result.state === 'ok'){
+      let changeRecommends = result.data
+      commit(RECEIVE_RECOMMENDCHANGE,{changeRecommends})
     }
   },
   //异步获取漫画分类信息
@@ -67,12 +99,20 @@ export default {
       commit(RECEIVE_COMICINFO,{comicInfo})
     }
   },
-  //异步获取漫画章节
+  //异步获取漫画章节列表
   async getChapters({commit},setPage){
     let result = await reqChapters(setPage)
     if (result.state === 'ok'){
       let chapters = result.data
       commit(RECEIVE_CHAPTERS,{chapters})
+    }
+  },
+  //异步获取漫画内容
+  async getComicContent({commit},id){
+    let result = await reqComicContent(id)
+    if (result.state === 'ok') {
+      let comicContents = result.data
+      commit(RECEIVE_COMICCONTENT,{comicContents})
     }
   },
   //异步获取漫画收藏列表
@@ -105,6 +145,85 @@ export default {
     if (result.state === 'ok'){
       let searchResult = result.data
       commit(RECEIVE_SEARCHRESULT,{searchResult})
+    }
+  },
+  //异步获取畅销漫画
+  async getSellWellComics({commit}){
+    let result = await reqSellWellComics()
+    if (result.state === 'ok') {
+      let sellWellComics = result.data
+      commit(RECEIVE_SELLWELLCOMICS,{sellWellComics})
+    }
+  },
+  //异步获取连载漫画
+  async getSerialComics({commit}){
+    let result = await reqSerialComics()
+    if (result.state === 'ok'){
+      let serialComics = result.data
+      commit(RECEIVE_SERIALCOMICS,{serialComics})
+    }
+  },
+  //异步获取会员区完结漫画
+  async getMemberEndComics({commit}){
+    let result = await reqMemberEndComics()
+    if (result.state === 'ok') {
+      let memberEndComics = result.data
+      commit(RECEIVE_MEMBERENDCOMICS,{memberEndComics})
+    }
+  },
+  //异步获取全部会员漫画
+  async getMemberComics({commit}){
+    let result = await reqMemberComics()
+    if (result.state === 'ok') {
+      let memberComics = result.data
+      commit(RECEIVE_MEMBERCOMICS,{memberComics})
+    }
+  },
+  //异步获取套餐列表
+  async getSetMeals({commit}){
+    let result = await reqSetMeals()
+    if (result.state === 'ok') {
+      let setMeals = result.data
+      commit(RECEIVE_SETMEALS,{setMeals})
+    }
+  },
+  //异步获取金币充值列表
+  async getRechargeList({commit}){
+    let result = await reqRechargeList()
+    if (result.state === 'ok') {
+      let rechargeList = result.data
+      commit(RECEIVE_RECHARGELIST,{rechargeList})
+    }
+  },
+  //异步获取购买漫画历史
+  async getBuyHistory({commit}){
+    let result = await reqBuyHistory()
+    if (result.state === 'ok') {
+      let buyHistory = result.data
+      commit(RECEIVE_BUYHISTORY,{buyHistory})
+    }
+  },
+  //异步获取完结佳作列表
+  async getEndEasySell({commit}){
+    let result = await reqEndEasySell()
+    if (result.state === 'ok') {
+      let endEasySell = result.data
+      commit(RECEIVE_ENDEASYSELL,{endEasySell})
+    }
+  },
+  //异步获取完结全本列表
+  async getEndComics({commit}){
+    let result = await reqEndComics()
+    if (result.state === 'ok'){
+      let endComics = result.data
+      commit(RECEIVE_ENDCOMICS,{endComics})
+    }
+  },
+  async getRecentEnd({commit}){
+    let result = await reqRecentEnd()
+    if (result.state === 'ok') {
+      let recentEnds = result.data
+      commit(RECEIVE_RECENTENDS,{recentEnds})
     }
   }
 }

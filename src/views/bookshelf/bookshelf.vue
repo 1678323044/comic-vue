@@ -4,8 +4,8 @@
       <span slot="return"></span>
     </head-title>
     <neck-tab :bookshelfTab="bookshelfTab"></neck-tab>
-    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
+      <div class="swiper-scrollbar"></div>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <ul class="mui-table-view">
@@ -59,8 +59,9 @@
         })
       },
       created() {
-          this.$store.dispatch('getCollect')
-          this.$store.dispatch('getReadHistory')
+          this.$store.dispatch('getCollect');
+          this.$store.dispatch('getReadHistory');
+          this.$store.dispatch('getBuyHistory');
       },
       computed: {
           ...mapState(['collections'])

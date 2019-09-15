@@ -4,11 +4,14 @@
 */
 import ajax from "./ajax"
 
-//const API_URL = 'http://103.229.214.108/comic'
+//const API_URL = 'http://106.53.110.107/comic'
 const API_URL = '/api'
 
 //推荐信息模块
 export const reqRecommends = () => ajax(`${API_URL}/recommends.do`)
+
+//更换推荐信息模块
+export const reqRecommendChange = (data) => ajax(`${API_URL}/recommendChange.do`,data)
 
 //分类信息模块
 export const reqClassify = () => ajax(`${API_URL}/bookcategory.do`)
@@ -25,6 +28,9 @@ export const reqComicInfo = (data) => ajax(`${API_URL}/bookinfo.do`,data)
 //漫画章节模块
 export const reqChapters = (data) => ajax(`${API_URL}/chapters.do`,data)
 
+//漫画内容模块
+export const reqComicContent = (data) => ajax(`${API_URL}/reading.do`,data,'POST')
+
 //漫画收藏模块
 export const reqCollect = () => ajax(`${API_URL}/mycollect.do`)
 
@@ -36,3 +42,34 @@ export const reqSearchList = (data) => ajax(`${API_URL}/search.do`,data)
 
 //查看搜索结果模块
 export const reqSearchResult = (data) => ajax(`${API_URL}/bookinfo.do`,data)
+
+//会员区畅销漫画模块
+export const reqSellWellComics = (data) => ajax(`${API_URL}/vipEasySell.do`,data)
+
+//会员区连载漫画模块
+export const reqSerialComics = (data) => ajax(`${API_URL}/vipSerialize.do`,data)
+
+//会员区完结漫画模块
+export const reqMemberEndComics = (data) => ajax(`${API_URL}/VipEnd.do`,data)
+
+//会员区全部漫画模块
+export const reqMemberComics = (data) => ajax(`${API_URL}/vipBooks.do`,data)
+
+//会员套餐模块
+export const reqSetMeals = () => ajax(`${API_URL}/vipCombo.do`)
+
+//金币充值模块
+export const reqRechargeList = () => ajax(`${API_URL}/readCoinCombo.do`)
+
+//历史购买漫画模块
+export const reqBuyHistory = () => ajax(`${API_URL}/buyHistory.do`)
+
+//完结人气畅销模块
+export const reqEndEasySell = (data) => ajax(`${API_URL}/endEasySell.do`,data)
+
+//完结全本模块
+export const reqEndComics = (data) => ajax(`${API_URL}/endBooks.do`,data)
+
+//最新完结模块
+export const reqRecentEnd = (data) => ajax(`${API_URL}/recentEnd.do`,data)
+

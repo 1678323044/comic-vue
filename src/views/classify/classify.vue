@@ -6,16 +6,13 @@
     </head-title>
     <nav>
       <div>
-        <a class="active" href="#">全部</a>
-        <a v-for="classitem in classes" href="#">{{classitem.name}}</a>
+        <a v-for="classItem in classes" href="#">{{classItem.name}}</a>
       </div>
       <div v-show="isShow">
-        <a class="active" href="#">全部</a>
-        <a href="#">连载</a>
-        <a href="#">完结</a>
+        <a href="#" :class="{active: item.isSelected}" @click="handleComicState(item)" v-for="item in comicState">{{item.state}}</a>
       </div>
       <div>
-        <a class="active" href="#">最新更新</a>
+        <a href="#">最新更新</a>
         <a href="#">总点击</a>
         <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
       </div>
@@ -31,7 +28,12 @@
   export default {
       data(){
           return{
-              isShow: false
+              isShow: false,
+              comicState: [
+                {state:'全部', isSelected: true},
+                {state:'连载', isSelected: false},
+                {state:'完结', isSelected: false}
+              ]
           }
       },
       components: {
@@ -53,7 +55,12 @@
                 this.isShow = true
             }
           },
-
+          handleComicState(item){
+            this.comicState.forEach(function (obj) {
+              obj.isSelected = false
+            });
+            item.isSelected = true
+          }
       }
   }
 </script>

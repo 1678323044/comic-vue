@@ -31,7 +31,7 @@
       </div>
       <div class="chapter">
         <dl v-for="chapter in chapters">
-          <router-link to="/chapter">
+          <router-link :to="url+chapter.bookId+param+chapter.serialNumber">
             <dt><img src="" width="100%" alt=""></dt>
             <dd>
               <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
@@ -52,7 +52,9 @@
       data(){
           return{
             bookId: 0,
-            comicId: {}
+            comicId: {},
+            url: '/chapter?bookId=',
+            param: '&serialNumber='
           }
       },
       components: {
