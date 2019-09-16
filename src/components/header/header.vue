@@ -2,7 +2,7 @@
   <header>
     <slot name="return"></slot>
     <h4>{{title}}</h4>
-    <slot name="search"></slot>
+    <slot name="right"></slot>
   </header>
 </template>
 
@@ -37,5 +37,8 @@
     height: 50px;
     line-height: 40px;
     color: orange;
+  }
+  header span i.iconfont{
+    font-size: 22px;
   }
 </style>

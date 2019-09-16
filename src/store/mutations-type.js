@@ -21,4 +21,5 @@ export const RECEIVE_BUYHISTORY = 'receive_buyHistory'        //接收购买历�
 export const RECEIVE_ENDEASYSELL = 'receive_endEasySell'      //接收完结人气畅销列表
 export const RECEIVE_ENDCOMICS = 'receive_endComics'          //接收完结漫画列表
 export const RECEIVE_RECENTENDS = 'receive_recentEnds'        //接收最新完结漫画列表
+export const RECEIVE_QUERYCOMICS = 'receive_queryComics'      //接收条件查询漫画列表
 

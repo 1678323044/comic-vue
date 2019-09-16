@@ -49,7 +49,7 @@
   }
   .mint-tabbar{
     position: fixed;
-    z-index: 99999;
+    z-index: 9999;
   }
   .mint-tabbar > .mint-tab-item.is-selected{
     background: transparent;

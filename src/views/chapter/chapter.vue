@@ -61,7 +61,7 @@
         }
       },
       created() {
-        let id ={"bookId": this.$route.query.bookId,"chaprerId": this.$route.query.serialNumber}
+        let id ={"bookId": this.$route.query.bookId,"chapterId": this.$route.query.serialNumber}
         this.$store.dispatch('getComicContent',id)
       }
   }

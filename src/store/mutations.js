@@ -21,7 +21,8 @@ import {
   RECEIVE_RECOMMENDCHANGE,
   RECEIVE_ENDEASYSELL,
   RECEIVE_ENDCOMICS,
-  RECEIVE_RECENTENDS
+  RECEIVE_RECENTENDS,
+  RECEIVE_QUERYCOMICS
 } from './mutations-type'
 
 export default {
@@ -90,5 +91,8 @@ export default {
   },
   [RECEIVE_RECENTENDS](state,{recentEnds}){
     state.recentEnds = recentEnds
+  },
+  [RECEIVE_QUERYCOMICS](state,{queryComics}){
+    state.queryComics = queryComics
   }
 }

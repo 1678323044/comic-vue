@@ -1,12 +1,12 @@
 <template>
   <nav class="mui-bar mui-bar-tab">
-    <a v-for="rankSort in rankSorts" class="mui-tab-item" href="#Popover_0">
+    <a v-for="rankSort in rankSorts" class="mui-tab-item">
       {{rankSort.name}}
     </a>
-    <a v-for="item in bookshelfTab" class="mui-tab-item" href="#Popover_0">
+    <a v-for="item in bookshelfTab" class="mui-tab-item">
       {{item}}
     </a>
-    <a v-for="item in endComicsTab" class="mui-tab-item" href="#Popover_0">
+    <a v-for="item in endComicsTab" class="mui-tab-item">
       {{item}}
     </a>
   </nav>

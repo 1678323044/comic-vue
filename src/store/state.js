@@ -21,5 +21,6 @@ export default {
   comicContents: {},    //漫画内容
   endEasySell: [],      //完结人气畅销列表
   endComics: [],        //完结整本列表
-  recentEnds: []        //最新完结列表
+  recentEnds: [],       //最新完结列表
+  queryComics: [],      //查询全部分类漫画列表
 }

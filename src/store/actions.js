@@ -21,7 +21,8 @@ import {
   RECEIVE_RECOMMENDCHANGE,
   RECEIVE_ENDEASYSELL,
   RECEIVE_ENDCOMICS,
-  RECEIVE_RECENTENDS
+  RECEIVE_RECENTENDS,
+  RECEIVE_QUERYCOMICS
 } from './mutations-type'
 
 import {
@@ -46,7 +47,8 @@ import {
   reqRecommendChange,
   reqEndEasySell,
   reqEndComics,
-  reqRecentEnd
+  reqRecentEnd,
+  reqQueryComics,
 } from '../api/index'
 
 export default {
@@ -219,11 +221,21 @@ export default {
       commit(RECEIVE_ENDCOMICS,{endComics})
     }
   },
+  //异步获取最新完结列表
   async getRecentEnd({commit}){
     let result = await reqRecentEnd()
     if (result.state === 'ok') {
       let recentEnds = result.data
       commit(RECEIVE_RECENTENDS,{recentEnds})
+    }
+  },
+  //异步获取分类条件数据列表
+  async getQueryComics({commit},query){
+    let result = await reqQueryComics(query);
+    if (result.state === 'ok'){
+      let queryComics = result.data;
+      console.log(queryComics)
+      commit(RECEIVE_QUERYCOMICS,{queryComics})
     }
   }
 }

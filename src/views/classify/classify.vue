@@ -5,19 +5,24 @@
       <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
     </head-title>
     <nav>
-      <div>
-        <a v-for="classItem in classes" href="#">{{classItem.name}}</a>
-      </div>
-      <div v-show="isShow">
-        <a href="#" :class="{active: item.isSelected}" @click="handleComicState(item)" v-for="item in comicState">{{item.state}}</a>
-      </div>
-      <div>
-        <a href="#">最新更新</a>
-        <a href="#">总点击</a>
+      <form action="" method="">
+        <label :class="{'active': item.state}" v-for="(item,index) in classes" :key="index">
+          <input @change="handleClassify(item,'category')" v-model="categoryId" type="radio" :value="item.id">{{item.name}}
+        </label>
+      </form>
+      <form action="" method="" v-show="isShow">
+        <label :class="{'active': item.isSelected}" v-for="item in comicState">
+          <input @change="handleClassify(item,'state')" v-model="endState" type="radio" :value="item.id">{{item.name}}
+        </label>
+      </form>
+      <form action="" method="">
+        <label :class="{'active': item.isSelected}" v-for="item in comicHot">
+          <input @change="handleClassify(item,'hot')" v-model="orderItem" type="radio" :value="item.id">{{item.name}}
+        </label>
         <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
-      </div>
+      </form>
     </nav>
-    <comic-list></comic-list>
+    <comic-list :queryComics="queryComics"></comic-list>
   </section>
 </template>
 
@@ -30,10 +35,17 @@
           return{
               isShow: false,
               comicState: [
-                {state:'全部', isSelected: true},
-                {state:'连载', isSelected: false},
-                {state:'完结', isSelected: false}
-              ]
+                {name:'全部', id: 0, isSelected: true},
+                {name:'连载', id: 1, isSelected: false},
+                {name:'完结', id: 2, isSelected: false}
+              ],
+              comicHot: [
+                  {name: '最新更新',id: 1,isSelected: true},
+                  {name: '总点击',id: 2,isSelected: false}
+              ],
+              categoryId: 0,
+              endState: 0,
+              orderItem: 1
           }
       },
       components: {
@@ -41,12 +53,13 @@
           comicList
       },
       created(){
-        this.$store.dispatch('getClassify')
+        this.$store.dispatch('getClassify');
+        this.$store.dispatch('getQueryComics')
       },
       computed: {
-          ...mapState(['classes'])
-      }
-      ,
+          ...mapState(['classes']),
+          ...mapState(['queryComics'])
+      },
       methods: {
           showClassify(i){
             if (i === true){
@@ -55,11 +68,30 @@
                 this.isShow = true
             }
           },
-          handleComicState(item){
-            this.comicState.forEach(function (obj) {
-              obj.isSelected = false
-            });
-            item.isSelected = true
+          handleClassify(item,param){
+            //处理选中状态
+            if (param === 'category'){
+                this.classes.forEach(function (obj) {
+                    obj.isSelected = false
+                });
+                item.isSelected = true
+            }
+            if (param === 'state'){
+                this.comicState.forEach(function (obj) {
+                    obj.isSelected = false
+                });
+                item.isSelected = true
+            }
+            if (param === 'hot'){
+                this.comicHot.forEach(function (obj) {
+                  obj.isSelected = false
+                });
+                item.isSelected = true
+            }
+            //发送条件请求
+            let query = {"categoryId": this.categoryId,"endState": this.endState,"orderItem": this.orderItem}
+            console.log(query)
+            this.$store.dispatch('getQueryComics',query)
           }
       }
   }
@@ -75,7 +107,7 @@
   nav{
     padding: 0 16px;
   }
-  nav a{
+  nav label{
     padding: 0 13px;
     text-align: center;
     display: inline-block;
@@ -83,10 +115,13 @@
     color: #333333;
     margin: 0 0 8px 0;
   }
-  nav a.active{
+  nav label.active{
     border: solid 1px #FC5F45;
     color: #FC5F45;
     border-radius: 20px;
+  }
+  nav label input{
+    display: none;
   }
   nav span{
     float: right;

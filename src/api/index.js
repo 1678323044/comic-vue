@@ -34,8 +34,14 @@ export const reqComicContent = (data) => ajax(`${API_URL}/reading.do`,data,'POST
 //漫画收藏模块
 export const reqCollect = () => ajax(`${API_URL}/mycollect.do`)
 
+//取消收藏模块
+export const reqCancelCollection = (data) => ajax(`${API_URL}/cancelCollect.do`,data)
+
 //阅读历史记录模块
 export const reqReadHistory = () => ajax(`${API_URL}/readhistory.do`)
+
+//删除历史记录模块
+export const reqDelHistory = (data) => ajax(`${API_URL}/delHistory.do`,data)
 
 //搜素列表模块
 export const reqSearchList = (data) => ajax(`${API_URL}/search.do`,data)
@@ -71,5 +77,10 @@ export const reqEndEasySell = (data) => ajax(`${API_URL}/endEasySell.do`,data)
 export const reqEndComics = (data) => ajax(`${API_URL}/endBooks.do`,data)
 
 //最新完结模块
-export const reqRecentEnd = (data) => ajax(`${API_URL}/recentEnd.do`,data)
+export const reqRecentEnd = (data) => ajax(`${API_URL}/recentEnd.do`,data);
+
+//分类查询模块
+export const reqQueryComics = (data) => ajax(`${API_URL}/querybooks.do`,data)
+
+
 

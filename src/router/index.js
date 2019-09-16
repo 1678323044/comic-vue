@@ -14,9 +14,14 @@ import endingWorks from "../views/endingWorks/endingWorks"
 import memberArea from "../views/memberArea/memberArea";
 import recharge from '../views/recharge/recharge'
 import search from '../views/search/search'
+import demo from '../views/demo/demo'
 
 export default new Router({
   routes: [
+    {
+      path: '/demo',
+      component: demo
+    },
     {
       path: '/home',
       component: home,
