@@ -1,27 +1,35 @@
 <template>
-  <section class="one-level-page">
+  <section class="public-main">
     <head-title title="书架">
       <span slot="return"></span>
       <span slot="right" @click="showEdit(isShow)"><i class="iconfont iconbianji"></i></span>
     </head-title>
     <neck-tab :bookshelfTab="bookshelfTab"></neck-tab>
+    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
-      <div class="swiper-scrollbar"></div>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <my-books></my-books>
+          <div class="pop-up-btn buy-btn" v-show="isShow">
+            <span @click="buySelectAll">全选</span>
+            <span @click="buyDelete">删除</span>
+          </div>
         </div>
         <div class="swiper-slide">
-          <my-books :collections="collections" :isShow="isShow" :comicId="comicId"></my-books>
+          <my-books :collections="collections" :isShow="isShow" :collectId="collectId"></my-books>
+          <div class="pop-up-btn collect-btn" v-show="isShow">
+            <span @click="collectSelectAll">全选</span>
+            <span @click="collectDelete">删除</span>
+          </div>
         </div>
         <div class="swiper-slide">
-          <my-books :readHistories="readHistories" :isShow="isShow" :comicId="comicId"></my-books>
+          <my-books :readHistories="readHistories" :isShow="isShow" :recordId="recordId"></my-books>
+          <div class="pop-up-btn record-btn" v-show="isShow">
+            <span @click="recordSelectAll">全选</span>
+            <span @click="recordDelete">删除</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="pop-up-btn" v-show="isShow">
-      <span @click="handleSelectAll">全选</span>
-      <span @click="handleDelete">删除</span>
     </div>
   </section>
 </template>
@@ -38,8 +46,9 @@
         return{
             bookshelfTab: ['我的购买','兴趣收藏','历史记录'],
             isShow: false,
-            comicId: [],
-            currentPage: []
+            collectId: [],
+            recordId: [],
+            currentPage: 0
         }
       },
       components: {
@@ -51,33 +60,36 @@
           showEdit(isShow){
             this.isShow = !isShow;
           },
-          handleSelectAll(){
-              if (this.currentPage === 1){
-                  this.comicId = [];
-                  this.collections.forEach((item) => {
-                      this.comicId.push(item.bookId)
-                  })
-              }else if(this.currentPage === 2){
-                  this.comicId = [];
-                  this.readHistories.forEach((item) => {
-                      this.comicId.push(item.bookId)
-                  })
+          buySelectAll(){
+          },
+          async buyDelete(){
+          },
+          collectSelectAll(){
+              console.log(this.currentPage);
+              this.collectId = [];
+              this.collections.forEach((item) => {
+                  this.collectId.push(item.bookId)
+              })
+          },
+          async collectDelete(){
+              let param = {"bookId": this.collectId.join('$')};
+              let result = await reqCancelCollection(param);
+              if (result.state === 'ok'){
+                  alert(result.message)
               }
           },
-          async handleDelete(){
-              if (this.currentPage === 1){
-                  let param = {"bookId": this.comicId.join('$')};
-                  let result = await reqCancelCollection(param);
-                  if (result.state === 'ok'){
-                      alert(result.message)
-                  }
-              }
-              if (this.currentPage === 2){
-                  let param = {"bookId": this.comicId.join('$')};
-                  let result = await reqDelHistory(param);
-                  if (result.state === 'ok'){
-                      alert(result.message)
-                  }
+          recordSelectAll(){
+              console.log(this.currentPage);
+              this.recordId = [];
+              this.readHistories.forEach((item) => {
+                  this.recordId.push(item.bookId)
+              })
+          },
+          async recordDelete(){
+              let param = {"bookId": this.recordId.join('$')};
+              let result = await reqDelHistory(param);
+              if (result.state === 'ok'){
+                  alert(result.message)
               }
           }
       },
@@ -91,9 +103,9 @@
                   el: '.swiper-scrollbar',
               }
           })
-          mySwiper.on('slideChangeTransitionEnd',function () {
+          mySwiper.on('slideChangeTransitionEnd', () => {
+              this.currentPage = mySwiper.activeIndex
           })
-
       },
       computed: {
           ...mapState(['collections']),
@@ -103,17 +115,9 @@
 </script>
 
 <style scoped>
-  .one-level-page{
-    margin-bottom: 50px;
-  }
-  .swiper-scrollbar{
-    height: 2px;
-    position: fixed;
-    top: 100px;
-  }
   .pop-up-btn{
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    bottom: 102px;
     left: 0;
     background: #333333;
     z-index: 99999;

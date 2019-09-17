@@ -22,9 +22,7 @@
   .mui-bar-tab{
     background: #ffffff;
     box-shadow: 0 0 0 transparent;
-    font-size: 14px;
-    position: fixed;
-    top: 50px;
+    position: static;
   }
   .mui-bar-tab .mui-tab-item{
     color: #333333;

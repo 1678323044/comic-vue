@@ -12,6 +12,7 @@
         <a class="mui-tab-item" href="#Popover_2">VIP完结</a>
         <a class="mui-tab-item" href="#Popover_2">全部</a>
       </nav>
+      <div class="swiper-scrollbar"></div>
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -46,6 +47,10 @@
       },
       mounted() {
           new Swiper('.swiper-container',{
+              //滚动条
+              scrollbar: {
+                  el: '.swiper-scrollbar',
+              }
           });
           this.$store.dispatch('getSellWellComics');
           this.$store.dispatch('getSerialComics');
@@ -67,6 +72,14 @@
 </script>
 
 <style scoped>
+  .mine-info{
+    display: flex;
+    padding: 16px 20px;
+    border-radius: 6px;
+  }
+  .swiper-container{
+    padding: 6px 0 0 0;
+  }
   .mui-bar-tab{
     box-shadow: 0 0 0 transparent;
     font-size: 14px;
@@ -77,7 +90,6 @@
   .mui-bar-tab .mui-tab-item{
     color: #ffffff;
   }
-
   .bg-img{
     background: url("./image/bg0000.png") no-repeat;
     background-size: 100%;

@@ -41,15 +41,16 @@
 <style scoped>
   .iconfont{
     display: block;
-    font-size: 22px;
+    font-size: 24px;
     margin: 0 0 5px 0;
   }
   .mint-tab-item{
     color: #999999;
+    padding: 10px 0;
   }
   .mint-tabbar{
     position: fixed;
-    z-index: 9999;
+    z-index: 99999;
   }
   .mint-tabbar > .mint-tab-item.is-selected{
     background: transparent;

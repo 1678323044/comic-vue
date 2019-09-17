@@ -4,8 +4,8 @@
 */
 import ajax from "./ajax"
 
-//const API_URL = 'http://106.53.110.107/comic'
-const API_URL = '/api'
+const API_URL = 'http://106.53.110.107/comic'
+//const API_URL = '/api'
 
 //推荐信息模块
 export const reqRecommends = () => ajax(`${API_URL}/recommends.do`)
@@ -17,7 +17,10 @@ export const reqRecommendChange = (data) => ajax(`${API_URL}/recommendChange.do`
 export const reqClassify = () => ajax(`${API_URL}/bookcategory.do`)
 
 //排行榜排序方式模块
-export const reqRankSort = () => ajax(`${API_URL}/rankCategory.do`)
+export const reqRankSort = () => ajax(`${API_URL}/rankCategory.do`);
+
+//排行榜列表模块
+export const reqRankingList = (data) => ajax(`${API_URL}/rankinglist.do`,data);
 
 //加入书架模块
 export const reqAddBookshelf = (data) => ajax(`${API_URL}/collect.do`,data)

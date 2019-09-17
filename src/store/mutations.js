@@ -22,7 +22,8 @@ import {
   RECEIVE_ENDEASYSELL,
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
-  RECEIVE_QUERYCOMICS
+  RECEIVE_QUERYCOMICS,
+  RECEIVE_RANKINGLIST
 } from './mutations-type'
 
 export default {
@@ -94,5 +95,8 @@ export default {
   },
   [RECEIVE_QUERYCOMICS](state,{queryComics}){
     state.queryComics = queryComics
+  },
+  [RECEIVE_RANKINGLIST](state,{rankingList}){
+    state.rankingList = rankingList
   }
 }

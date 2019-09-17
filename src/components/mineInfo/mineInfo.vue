@@ -20,11 +20,6 @@
 </script>
 
 <style scoped>
-  .mine-info{
-    display: flex;
-    padding: 16px 20px;
-    border-radius: 6px;
-  }
   .mine-info div:nth-child(1){
     width: 60px;
     height: 60px;
@@ -37,10 +32,11 @@
   .mine-info div:nth-child(2) h6{
     font-size: 18px;
     font-weight: 500;
-    color: #333333;
+    color: #ffffff;
+    margin: 0 0 10px 0;
   }
   .mine-info div:nth-child(2) p{
-    color: #333333;
+    color: #ffffff;
   }
   .mine-info div:nth-child(3){
     padding-top: 6px;

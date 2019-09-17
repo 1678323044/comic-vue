@@ -2,7 +2,7 @@
   <ul class="mui-table-view">
     <li class="mui-table-view-cell mui-media" v-for="collect in collections">
       <label>
-        <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="comicId">
+        <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectId">
         <a href="javascript:;">
           <img alt="" class="mui-media-object mui-pull-left" :src="collect.coverImagePath">
           <div class="mui-media-body">
@@ -16,7 +16,7 @@
     </li>
     <li class="mui-table-view-cell mui-media" v-for="readHistory in readHistories">
       <label>
-        <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="comicId">
+        <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="recordId">
         <a href="javascript:;">
           <img alt="" class="mui-media-object mui-pull-left" :src="readHistory.coverImagePath">
           <div class="mui-media-body">
@@ -33,7 +33,7 @@
 
 <script>
   export default {
-      props: ['collections','readHistories','isShow','comicId'],
+      props: ['collections','readHistories','isShow','collectId','recordId'],
   }
 </script>
 

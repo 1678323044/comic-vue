@@ -1,5 +1,5 @@
 <template>
-  <section class="mine-bg">
+  <section class="mine-page">
     <mine-info></mine-info>
     <nav class="mui-bar mui-bar-tab ">
       <a class="mui-tab-item" href="#">
@@ -35,7 +35,7 @@
         </a>
       </li>
     </ul>
-    <ul class="mui-table-view mui-table-view-chevron mine-list">
+    <ul class="mui-table-view mui-table-view-chevron">
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
           <i class="iconfont iconqianbi"></i>
@@ -62,20 +62,17 @@
 </script>
 
 <style scoped>
-  .mine-bg{
+  .mine-page{
     height: 100%;
     background: #f6f6f6;
   }
   .mine-info{
-    background: #ffffff;
+    display: flex;
+    padding: 48px 20px;
+    background: -webkit-linear-gradient(left,#e60817,#ff801a);
   }
-  .top-mine{
-    background: lightcoral;
-    padding: 20px 0;
-  }
-  .mine-list{
+  .mui-table-view{
     margin: 10px 0 0 0;
-    font-size: 14px;
   }
   .mui-table-view .mui-media-object{
     height: 55px;
@@ -97,7 +94,9 @@
     padding: 7px 0;
     background-color: #ffffff;
   }
-
+  .mui-table-view-cell{
+    padding: 14px 15px;
+  }
   .mui-tab-item{
     position: relative;
   }
@@ -122,16 +121,5 @@
     color: orange;
     vertical-align: middle;
     margin: 0 5px 0 0;
-  }
-  .list-menu .mui-table-view-cell{
-    padding-top: 20px;
-    padding-bottom: 15px;
-  }
-  .btn{
-    width: 100%;
-    margin: 30px 0 0 0;
-    color: red;
-    background: pink;
-    border: solid 1px red;
   }
 </style>

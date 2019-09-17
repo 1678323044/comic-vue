@@ -23,4 +23,5 @@ export default {
   endComics: [],        //完结整本列表
   recentEnds: [],       //最新完结列表
   queryComics: [],      //查询全部分类漫画列表
+  rankingList: []       //排行榜漫画列表
 }

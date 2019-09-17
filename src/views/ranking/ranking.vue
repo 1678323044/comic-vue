@@ -1,21 +1,24 @@
 <template>
-  <section class="one-level-page">
+  <section class="public-main">
     <head-title title="排行">
       <span slot="return"></span>
       <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
     </head-title>
     <neck-tab :rankSorts="rankSorts"></neck-tab>
+    <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
-      <div class="swiper-scrollbar"></div>
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <comic-list></comic-list>
+          <comic-list :rankingList="rankingList"></comic-list>
         </div>
         <div class="swiper-slide">
+          <comic-list :rankingList="rankingList"></comic-list>
         </div>
         <div class="swiper-slide">
+          <comic-list :rankingList="rankingList"></comic-list>
         </div>
         <div class="swiper-slide">
+          <comic-list :rankingList="rankingList"></comic-list>
         </div>
       </div>
     </div>
@@ -29,6 +32,11 @@
   import Swiper from 'swiper'
   import {mapState} from 'vuex'
   export default {
+      data(){
+        return{
+            currentPage: 0
+        }
+      },
       components: {
           headTitle,
           neckTab,
@@ -36,24 +44,39 @@
       },
       mounted() {
           this.$store.dispatch('getRankSort');
-          //this.$store.dispatch('getRankingList');
-          new Swiper('.swiper-container',{
+          let pageNumber = {"rankcategoryid": 1}
+          this.$store.dispatch('getRankingList',pageNumber);
+          let mySwiper = new Swiper('.swiper-container',{
               // 如果需要滚动条
               scrollbar: {
                   el: '.swiper-scrollbar',
               },
+          });
+          mySwiper.on('slideChangeTransitionEnd',() => {
+              this.currentPage = mySwiper.activeIndex
+              if (this.currentPage === 0){
+                  let pageNumber = {"rankcategoryid": 1}
+                  this.$store.dispatch('getRankingList',pageNumber);
+              }
+              if (this.currentPage === 1){
+                  let pageNumber = {"rankcategoryid": 2}
+                  this.$store.dispatch('getRankingList',pageNumber);
+              }if (this.currentPage === 2){
+                  let pageNumber = {"rankcategoryid": 3}
+                  this.$store.dispatch('getRankingList',pageNumber);
+              }if (this.currentPage === 3){
+                  let pageNumber = {"rankcategoryid": 4}
+                  this.$store.dispatch('getRankingList',pageNumber);
+              }
           })
       },
+      methods: {
+
+      },
       computed: {
-        ...mapState(['rankSorts'])
+          ...mapState(['rankSorts']),
+          ...mapState(['rankingList'])
       }
   }
 </script>
 
-<style scoped>
-  .swiper-scrollbar{
-    height: 2px;
-    position: fixed;
-    top: 102px;
-  }
-</style>

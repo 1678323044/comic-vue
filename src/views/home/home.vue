@@ -70,7 +70,7 @@
 
 <style scoped>
   .home{
-    padding-bottom: 50px;
+    padding: 0 0 50px 0;
   }
   .neck-nav{
     margin: 10px 0 0 0;

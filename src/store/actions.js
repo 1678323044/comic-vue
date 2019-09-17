@@ -22,7 +22,8 @@ import {
   RECEIVE_ENDEASYSELL,
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
-  RECEIVE_QUERYCOMICS
+  RECEIVE_QUERYCOMICS,
+  RECEIVE_RANKINGLIST
 } from './mutations-type'
 
 import {
@@ -49,6 +50,7 @@ import {
   reqEndComics,
   reqRecentEnd,
   reqQueryComics,
+  reqRankingList
 } from '../api/index'
 
 export default {
@@ -82,6 +84,14 @@ export default {
     if (result.state === 'ok'){
       let rankSorts = result.data
       commit(RECEIVE_RANKSORT,{rankSorts})
+    }
+  },
+  //异步获取排行榜列表
+  async getRankingList({commit},pageNumber){
+    let result = await reqRankingList(pageNumber);
+    if (result.state === 'ok'){
+      let rankingList = result.data
+      commit(RECEIVE_RANKINGLIST,{rankingList})
     }
   },
   //处理加入书架功能

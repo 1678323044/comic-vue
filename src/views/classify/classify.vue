@@ -1,5 +1,5 @@
 <template>
-  <section class="one-level-page">
+  <section class="public-main">
     <head-title title="分类">
       <span slot="return"></span>
       <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
@@ -22,7 +22,7 @@
         <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
       </form>
     </nav>
-    <comic-list :queryComics="queryComics"></comic-list>
+    <comic-list class="classify-list" :queryComics="queryComics"></comic-list>
   </section>
 </template>
 
@@ -98,9 +98,6 @@
 </script>
 
 <style scoped>
-  .one-level-page{
-    margin-top: 50px;
-  }
   .mui-icon-search{
     color: #FC5F45;
   }
