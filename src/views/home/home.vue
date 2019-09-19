@@ -23,8 +23,13 @@
     </div>
     <main>
       <div class="con" v-for="recommend in recommends">
-        <h5>{{recommend.name}} <span @click="changeContents(recommend.id)"><i class="mui-icon mui-icon-loop"></i>换一批</span></h5>
-        <dl v-for="dataItem in changeRecommends.datalist || recommend.datalist">
+        <h5>{{recommend.name}}
+          <span @click="changeContents(recommend.id)">
+            <i v-show="recommend.changeState ? 1 : false" class="mui-icon mui-icon-loop"></i>
+            {{recommend.changeState | filterReplace}}
+          </span>
+        </h5>
+        <div class="con-list"><dl v-for="dataItem in changeRecommends.datalist || recommend.datalist">
           <router-link :to="url+dataItem.id">
             <dt><img :src="dataItem.coverImagePath" width="100%" alt=""></dt>
             <dd>
@@ -32,7 +37,7 @@
               <p>{{dataItem.author}}</p>
             </dd>
           </router-link>
-        </dl>
+        </dl></div>
         <router-link to="/classify"><button class="btn">查看更多 >></button></router-link>
       </div>
     </main>
@@ -73,7 +78,7 @@
     padding: 0 0 50px 0;
   }
   .neck-nav{
-    margin: 10px 0 0 0;
+    margin: 5% 0;
   }
   main{
     padding: 0 10px;
@@ -91,6 +96,10 @@
   }
   .neck-nav ul li img{
     width: 40px;
+    margin: 0 auto 5%;
+  }
+  .neck-nav ul li p{
+    font-size: 1.6rem;
   }
   .con{
     overflow: hidden;
@@ -99,7 +108,7 @@
   .con h5{
     position: relative;
     padding: 0 0 0 10px;
-    font-size: 18px;
+    font-size: 2.0rem;
     font-weight: 600;
     color: #333333;
     line-height: 40px;
@@ -115,37 +124,45 @@
     top: 10px;
   }
   .con h5 span{
-    font-size: 12px;
+    font-size: 1.4rem;
     float: right;
     color: #999999;
   }
   .con h5 span i{
-    margin: 0 4px 0 0;
-    font-size: 17px;
+    margin: 0 2px 0 0;
+    font-size: 2.2rem;
     color: #666666;
     font-weight: bold;
   }
-  .con dl{
-    width: 33.33%;
-    float: left;
-    padding: 0 5px 4px;
+  .con .con-list{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .con .con-list dl{
+    width: 31.66%;
+    margin: 0 2.5% 2% 0;
     box-sizing: border-box;
   }
-  .con dl dt{
+  .con .con-list dl:nth-child(3n){
+    margin-right: 0;
+  }
+  .con .con-list dl dt{
     border-radius: 12px;
     overflow: hidden;
   }
-  .con dd h6{
-    margin: 3px 0;
-    font-size: 14px;
+  .con .con-list dl dt img{
+    display: block;
+  }
+  .con .con-list dd h6{
+    margin: 6% 0 5% 0;
+    font-size: 1.6rem;
     color: #333333;
-    font-weight: bold;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
   }
-  .con dd p{
-    font-size: 12px;
+  .con .con-list dd p{
+    font-size: 1.5rem;
     color: #666666;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -156,7 +173,9 @@
     background: #f1f1f1;
     border-radius: 40px;
     border: none;
-    line-height: 32px;
+    padding: 4% 0;
     color: #999999;
+    font-size: 1.6rem;
+    margin: 4% 0 0 0;
   }
 </style>

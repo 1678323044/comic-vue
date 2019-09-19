@@ -1,16 +1,16 @@
 <template>
-  <section class="head-Padding">
+  <section class="public-main">
     <head-title title="金币充值">
-      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+      <router-link to="" slot="return" @click.native="returnFunc">
+        <i class="mui-icon mui-icon-back" style="color: #ffffff"></i>
+      </router-link>
     </head-title>
     <section class="main">
       <div class="box">
         <p>漫币余额：222</p>
       </div>
-      <div class="coin-list">
-        <golds :rechargeList="rechargeList"></golds>
-      </div>
-      <problem></problem>
+      <golds :rechargeList="rechargeList"></golds>
+      <problem :problems="problems"></problem>
     </section>
   </section>
 </template>
@@ -21,6 +21,32 @@
   import golds from '../../components/golds/golds'
   import {mapState} from 'vuex'
   export default {
+    data(){
+      return{
+          problems: [
+              {
+                  "state": false,
+                  "doubt": "1、什么是金币",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "2、支付成功了，但是金币没有到账怎么办？",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "3、通常会有哪些原因造成支付失败",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "4、我卸载应用再下载，购买的金币没了？",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              }
+          ]
+      }
+    },
     components: {
       headTitle,
       problem,
@@ -46,7 +72,9 @@
     color: #ffffff;
   }
   .main{
-    padding: 0 16px;
+    padding: 0 3%;
+    height: 91%;
+    overflow: auto!important;
   }
   .main .box{
     line-height: 70px;

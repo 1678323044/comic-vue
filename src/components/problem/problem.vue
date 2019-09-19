@@ -1,52 +1,71 @@
 <template>
   <div class="problem">
-    <h6>关于金币充值常见问题</h6>
+    <h5>关于金币充值常见问题</h5>
     <ul>
-      <li>
-        <div>1、什么是付费VIP <span class="mui-icon mui-icon-arrowdown"></span></div>
-        <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+      <li v-for="(problem,index) in problems" :key="index">
+        <div @click="handleShow(index)">{{problem.doubt}} <i class="mui-icon mui-icon-arrowdown"></i></div>
+        <div v-show="problem.state">{{problem.answer}}</div>
       </li>
       <li>
-        <div>2、支付成功了，但是没有显示会员 <span class="mui-icon mui-icon-arrowdown"></span></div>
-        <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+        <div>5、如有其他问题请联系客服</div>
       </li>
       <li>
-        <div>3、通常会有哪些原因造成支付失败 <span class="mui-icon mui-icon-arrowdown"></span></div>
-        <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
-      </li>
-      <li>
-        <div>4、我不小心开通了两次会员怎么办？ <span class="mui-icon mui-icon-arrowdown"></span></div>
-        <div>付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中</div>
+        <button>联系客服</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-
+  export default {
+      props: ['problems'],
+      methods: {
+          handleShow(index){
+            this.problems[index].state = !this.problems[index].state
+          }
+      }
+  }
 </script>
 
 <style scoped>
   .problem{
     background: #ffffff;
     border-radius: 8px;
-    padding: 10px;
   }
-  .problem h6{
-    text-align: center;
+  .problem h5{
     line-height: 60px;
-    font-size: 16px;
+    font-size: 18px;
     color: #333333;
-    font-weight: bold;
+    text-align: center;
   }
-  .problem span{
-    float: right;
+  .problem li{
+    border-bottom: #f6f6f6 solid 1px;
+    padding: 0 10px 0 17px;
   }
-  .problem div:nth-child(1){
-    line-height: 30px;
-    font-size: 14px;
+  .problem li:last-child{
+    text-align: center;
+    padding: 30px 0;
+    border: none;
   }
-  .problem div:nth-child(2){
-    display: none;
+  .problem li:last-child button{
+    padding: 3% 15%;
+    background: #FA6653;
+    border: 1px transparent solid;
+    color: #ffffff;
+    border-radius: 40px;
+    font-size: 18px;
+  }
+  .problem li div:nth-child(1){
+    font-size: 17px;
+    display: flex;
+    padding: 14px 0;
+    justify-content: space-between;
+  }
+  .problem li div:nth-child(1) i{
+    color: #666666;
+  }
+  .problem li div:nth-child(2){
+    line-height: 28px;
+    color: #999999;
   }
 </style>

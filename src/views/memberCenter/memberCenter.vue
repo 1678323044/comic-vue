@@ -1,10 +1,11 @@
-<script src="../../store/state.js"></script>
 <template>
-  <section class="member">
-    <head-title :class="{'head-bg': isBg}" title="会员中心">
-      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+  <section class="public-main">
+    <head-title title="会员中心">
+      <router-link to="" slot="return" @click.native="returnFunc">
+        <i class="mui-icon mui-icon-back" style="color: #ffffff"></i>
+      </router-link>
     </head-title>
-    <section class="main">
+    <section class="member-con">
       <div class="mine">
         <mine-info></mine-info>
         <ul class="btm">
@@ -26,7 +27,10 @@
         <h5>付费VIP套餐</h5>
         <set-meals :setMeals="setMeals"></set-meals>
       </div>
-      <problem></problem>
+      <problem :problems="problems"></problem>
+      <div class="opening-btn">
+        <button>立即开通</button>
+      </div>
     </section>
   </section>
 </template>
@@ -40,8 +44,30 @@
   export default {
     data(){
       return{
-        scrollHei: 0,
-        isBg: false
+          scrollHei: 0,
+          isBg: false,
+          problems: [
+              {
+                  "state": false,
+                  "doubt": "1、什么是付费VIP",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "2、支付成功了，但是没有显示会员",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "3、通常会有哪些原因造成支付失败",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              },
+              {
+                  "state": false,
+                  "doubt": "4、我不小心开通了两次会员怎么办？",
+                  "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
+              }
+          ],
       }
     },
     components: {
@@ -56,14 +82,6 @@
 
     },
     methods: {
-      scrollFunc(){
-        this.scrollHei = document.documentElement.scrollTop || document.body.scrollTop
-        if (this.scrollHei === 0){
-          this.isBg = false
-          return
-        }
-        this.isBg = true
-      },
       returnFunc(){
         this.$router.go(-1)
       }
@@ -75,48 +93,72 @@
 </script>
 
 <style scoped>
+  .public-main{
+    background: linear-gradient(#3550c3,#23378f,#0b0a2b);
+  }
   header{
+    color: #ffffff;
     background: transparent;
+  }
+  .member-con{
+    overflow: auto;
+    height: 93%;
+    padding: 0 16px 85px 16px;
+  }
+  .member-con > div{
+    margin: 0 0 36px 0;
+  }
+  .member-con .mine{
     color: #ffffff;
-  }
-  .head-bg{
-    background: #13124e;
-  }
-  .member{
-    padding-top: 50px;
-    background: url("./image/true1111.png") no-repeat;
-    background-size: 100%;
-  }
-  .main{
-    padding: 0 16px 40px 16px;
-  }
-  .main .mine{
-    color: #ffffff;
+    padding: 0 0 10px 0;
     border-radius: 8px;
     background: linear-gradient(90deg,#5D8EFB, #91DCFD);
   }
-  .main .btm{
-    display: flex;
+  .member-con .mine .mine-info{
+    padding: 25px 16px;
   }
-  .main .btm li{
-    margin: 0 29px;
+  .member-con .mine .btm{
+    display: flex;
+    padding: 6px 0;
+  }
+  .member-con .mine .btm li{
+    width: 33.33%;
+    font-size: 14px;
     text-align: center;
   }
-  .main .btm li span{
+  .member-con .mine .btm li span{
     display: block;
     font-size: 32px;
     margin: 0 0 10px 0;
   }
-  .main .set-meal{
-    margin: 30px 0 20px 0;
+  .member-con .set-meal h5{
+    line-height: 60px;
+    font-size: 18px;
+    color: #333333;
+  }
+  .member-con .set-meal{
     background: #ffffff;
     text-align: center;
     border-radius: 8px;
   }
-  .main .set-meal h5{
-    line-height: 60px;
-    font-size: 16px;
-    color: #333333;
-    font-weight: bold;
+  .opening-btn{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    margin: 0!important;
+    background: #ffffff;
+    text-align: center;
+    border-top: solid 1px #eeeeee;
+  }
+  .opening-btn button{
+    width: 95%;
+    line-height: 43px;
+    border-radius: 50px;
+    background: #FA6653;
+    color: #ffffff;
+    font-size: 18px;
+    margin: 14px 0;
+    border: none;
   }
 </style>

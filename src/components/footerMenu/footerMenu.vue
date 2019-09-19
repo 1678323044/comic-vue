@@ -41,7 +41,7 @@
 <style scoped>
   .iconfont{
     display: block;
-    font-size: 24px;
+    font-size: 2.4rem;
     margin: 0 0 5px 0;
   }
   .mint-tab-item{

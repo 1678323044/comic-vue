@@ -1,82 +1,101 @@
 <template>
   <ul class="mui-table-view">
-    <li class="mui-table-view-cell mui-media" v-for="queryComic in queryComics">
-      <a href="javascript:;">
+    <li class="mui-table-view-cell mui-media" v-for="comicItem in comicList">
+      <router-link :to="url+comicItem.id">
         <div class="pic">
           <span>NO.1</span>
-          <img alt="" class="mui-media-object mui-pull-left" :src="queryComic.coverImagePath">
+          <img alt="" class="mui-media-object mui-pull-left" :src="comicItem.coverImagePath">
         </div>
         <div class="mui-media-body">
-          {{queryComic.name}}
-          <p class="mui-ellipsis">{{queryComic.author}}</p>
-          <p class="text">{{queryComic.introduction}}</p>
-          <p class="tag"><span>{{queryComic.tags}}</span></p>
-          <p class="update">{{queryComic.lastUpdateTime}}</p>
+          <div class="top-text">
+            {{comicItem.name}}
+            <p>作者：{{comicItem.author}}</p>
+            <p>{{comicItem.introduction}}</p>
+          </div>
+          <div class="btm-text">
+            <p><span>{{comicItem.tags}}</span></p>
+            <p>{{comicItem.lastUpdateTime}}</p>
+          </div>
         </div>
-      </a>
-    </li>
-    <li class="mui-table-view-cell mui-media" v-for="ranking in rankingList">
-      <a href="javascript:;">
-        <div class="pic">
-          <span>NO.1</span>
-          <img alt="" class="mui-media-object mui-pull-left" :src="ranking.coverImagePath">
-        </div>
-        <div class="mui-media-body">
-          {{ranking.name}}
-          <p class="mui-ellipsis">{{ranking.author}}</p>
-          <p class="text">{{ranking.introduction}}</p>
-          <p class="tag"><span>{{ranking.tags}}</span></p>
-          <p class="update">{{ranking.lastUpdateTime}}</p>
-        </div>
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>
 
 <script>
   export default {
-      props: ['queryComics','rankingList']
+      props: ['comicList'],
+      data(){
+          return{
+              url: '/chapterList?bookId='
+          }
+      }
   }
 </script>
 
 <style scoped>
-  .mui-media-body{
-    font-size: 18px;
+  .mui-table-view{
+    padding: 2% 3% 0;
   }
-  .mui-table-view .mui-media-object{
-    height: auto;
-    max-width: 120px;
+  .mui-table-view-cell{
+    margin: 0 0 3% 0;
+    padding: 0;
   }
-  .mui-table-view .mui-media-object.mui-pull-left{
-    border-radius: 10px;
+  .mui-table-view-cell:after{
+    background: transparent;
+  }
+  .mui-table-view-cell a{
+    display: flex;
+    margin: 0;
   }
   .mui-table-view .pic{
     position: relative;
+    width: 30%;
+    margin: 0 3% 0 0;
+  }
+  .mui-table-view .mui-media-object{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+  .mui-media-body{
+    font-size: 18px;
+    width: 67%;
+  }
+  .mui-media-body .top-text{
+    height: 70%;
+  }
+  .mui-media-body .top-text p:nth-child(1){
+    margin: 3% 0 2% 0;
+  }
+  .mui-media-body .btm-text{
+    height: 30%;
+  }
+  .mui-media-body .btm-text p{
+    height: 50%;
+  }
+  .mui-media-body .btm-text p:nth-child(1) span{
+    padding: 1% 2%;
+    background: orange;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .mui-media-body .btm-text p:nth-child(2){
+    color: #FC5F45;
   }
   .mui-table-view .pic span{
-    width: 60px;
-    line-height: 36px;
+    width: 45%;
+    line-height: 2.6rem;
     background: #DB383C;
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 7%;
     border-bottom-right-radius: 40px;
     border-top-right-radius: 40px;
     text-align: center;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #ffffff;
-  }
-  .mui-table-view .pic .two{
-    background: #FD7746;
-  }
-  .mui-table-view .pic .three{
-    background: #6AE867;
-  }
-  .mui-ellipsis{
-    line-height: 34px;
-  }
-  .update{
-    margin-top: 50px;
-    color: orange;
   }
 </style>

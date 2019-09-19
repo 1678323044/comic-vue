@@ -15,25 +15,27 @@
 <style>
   header{
     text-align: center;
-    font-size: 23px;
-    height: 50px;
+    height: 9%;
     background: #ffffff;
     display:flex;
   }
   header h4{
     font-weight: normal;
-    line-height: 50px;
-    width: 80%;
+    width: 72%;
+    font-size: 2.3rem;
     margin: 0;
-    font-size: 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
-  header span{
-    width: 10%;
-    height: 50px;
-    line-height: 40px;
-    color: orange;
+  header a{
+    width: 14%;
+    color: #FC5F45;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
-  header span i.iconfont{
+  header a i.iconfont{
     font-size: 22px;
   }
 </style>

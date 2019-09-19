@@ -1,9 +1,9 @@
 <template>
   <ul class="mui-table-view">
-    <li class="mui-table-view-cell mui-media" v-for="collect in collections">
+    <li class="mui-table-view-cell mui-media" v-for="(collect,index) in collections" :key="index">
       <label>
         <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectId">
-        <a href="javascript:;">
+        <router-link :to="url+collect.bookId">
           <img alt="" class="mui-media-object mui-pull-left" :src="collect.coverImagePath">
           <div class="mui-media-body">
             {{collect.name}}
@@ -11,13 +11,13 @@
             <p>上次看到：{{collect.provChapterTitle}}</p>
             <p>更新至：{{collect.lastUpdateChapterTitle}}</p>
           </div>
-        </a>
+        </router-link>
       </label>
     </li>
-    <li class="mui-table-view-cell mui-media" v-for="readHistory in readHistories">
+    <li class="mui-table-view-cell mui-media" v-for="(readHistory,index) in readHistories" :key="index">
       <label>
         <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="recordId">
-        <a href="javascript:;">
+        <router-link :to="url+readHistory.bookId">
           <img alt="" class="mui-media-object mui-pull-left" :src="readHistory.coverImagePath">
           <div class="mui-media-body">
             {{readHistory.name}}
@@ -25,7 +25,7 @@
             <p>上次看到：{{readHistory.provChapterTitle}}</p>
             <p>更新至：{{readHistory.lastUpdateChapterTitle}}</p>
           </div>
-        </a>
+        </router-link>
       </label>
     </li>
   </ul>
@@ -34,6 +34,11 @@
 <script>
   export default {
       props: ['collections','readHistories','isShow','collectId','recordId'],
+      data(){
+          return{
+              url: '/chapterList?bookId='
+          }
+      }
   }
 </script>
 

@@ -3,7 +3,6 @@ import {
   RECEIVE_RECOMMENDS,
   RECEIVE_CLASSIFY,
   RECEIVE_RANKSORT,
-  RECEIVE_ADDBOOKSHELF,
   RECEIVE_COMICINFO,
   RECEIVE_CHAPTERS,
   RECEIVE_COLLECT,
@@ -30,7 +29,6 @@ import {
   reqRecommends,
   reqClassify,
   reqRankSort,
-  reqAddBookshelf,
   reqComicInfo,
   reqChapters,
   reqCollect,
@@ -94,18 +92,9 @@ export default {
       commit(RECEIVE_RANKINGLIST,{rankingList})
     }
   },
-  //处理加入书架功能
-  async addBookshelf({commit},bookId){
-    let result = await reqAddBookshelf(bookId)
-    if (result.state === 'ok') {
-      let message = result.message
-      commit(RECEIVE_ADDBOOKSHELF,{message})
-    }
-  },
   //异步获取漫画信息
   async getComicInfo({commit},comicId){
     let result = await reqComicInfo(comicId)
-    console.log(comicId)
     if (result.state === 'ok'){
       let comicInfo = result.data
       commit(RECEIVE_COMICINFO,{comicInfo})
@@ -244,7 +233,6 @@ export default {
     let result = await reqQueryComics(query);
     if (result.state === 'ok'){
       let queryComics = result.data;
-      console.log(queryComics)
       commit(RECEIVE_QUERYCOMICS,{queryComics})
     }
   }

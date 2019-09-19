@@ -1,64 +1,79 @@
 <template>
   <ul>
     <li v-for="item in endEasySell">
-      <div>
-        <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
-      </div>
-      <div>
-        <p>{{item.name}}</p>
-      </div>
-      <div>
-        <span>
-          <a>{{item.tags}}</a>
-        </span>
-        <p>去阅读 ></p>
-      </div>
+      <router-link :to="url+item.id">
+        <div>
+          <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
+        </div>
+        <div>
+          <p>{{item.name}}</p>
+        </div>
+        <div>
+          <span>
+            <a>{{item.tags}}</a>
+          </span>
+          <p>去阅读 ></p>
+        </div>
+      </router-link>
     </li>
     <li v-for="item in endComics">
-      <div>
-        <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
-      </div>
-      <div>
-        <p>{{item.name}}</p>
-      </div>
-      <div>
-        <span>
-          <a>{{item.tags}}</a>
-        </span>
-        <p>去阅读 ></p>
-      </div>
+      <router-link :to="url+item.id">
+        <div>
+          <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
+        </div>
+        <div>
+          <p>{{item.name}}</p>
+        </div>
+        <div>
+          <span>
+            <a>{{item.tags}}</a>
+          </span>
+          <p>去阅读 ></p>
+        </div>
+      </router-link>
     </li>
     <li v-for="item in recentEnds">
-      <div>
-        <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
-      </div>
-      <div>
-        <p>{{item.name}}</p>
-      </div>
-      <div>
-        <span>
-          <a>{{item.tags}}</a>
-        </span>
-        <p>去阅读 ></p>
-      </div>
+      <router-link :to="url+item.id">
+        <div>
+          <span><i class="mui-icon mui-icon-star"></i>{{item.avgscore}}</span>
+        </div>
+        <div>
+          <p>{{item.name}}</p>
+        </div>
+        <div>
+          <span>
+            <a>{{item.tags}}</a>
+          </span>
+          <p>去阅读 ></p>
+        </div>
+      </router-link>
     </li>
   </ul>
 </template>
 
 <script>
   export default {
-    props: ['endEasySell','endComics','recentEnds']
+    props: ['endEasySell','endComics','recentEnds'],
+    data(){
+        return{
+            url: '/chapterList?bookId='
+        }
+    }
   }
 </script>
 
 <style scoped>
   .ending-list .swiper-slide li{
-    height: 220px;
     background: url("./image/1.jpg") no-repeat;
     background-size: 100%;
-    border-radius: 8px;
-    padding: 10px 8px 0 8px;
     margin: 0 0 10px 0;
+  }
+  .ending-list .swiper-slide li a{
+    height: 30%;
+    display: block;
+    padding: 2% 2%;
+    border-radius: 8px;
+    background: linear-gradient(transparent, transparent,#333333);
   }
   .ending-list .swiper-slide li div:nth-child(1){
     text-align: right;

@@ -1,12 +1,12 @@
 <template>
-  <nav class="mui-bar mui-bar-tab">
-    <a v-for="rankSort in rankSorts" class="mui-tab-item">
+  <nav class="neck-tab">
+    <a v-for="rankSort in rankSorts">
       {{rankSort.name}}
     </a>
-    <a v-for="item in bookshelfTab" class="mui-tab-item">
+    <a v-for="item in bookshelfTab">
       {{item}}
     </a>
-    <a v-for="item in endComicsTab" class="mui-tab-item">
+    <a v-for="item in endComicsTab">
       {{item}}
     </a>
   </nav>
@@ -19,12 +19,14 @@
 </script>
 
 <style scoped>
-  .mui-bar-tab{
-    background: #ffffff;
-    box-shadow: 0 0 0 transparent;
-    position: static;
+  .neck-tab{
+    display: flex;
+    height: 5%;
+    text-align: center;
   }
-  .mui-bar-tab .mui-tab-item{
+  .neck-tab a{
+    width: 33.33%;
     color: #333333;
+    font-size: 1.7rem;
   }
 </style>

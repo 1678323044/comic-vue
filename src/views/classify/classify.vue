@@ -1,28 +1,30 @@
 <template>
   <section class="public-main">
     <head-title title="分类">
-      <span slot="return"></span>
-      <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
+      <router-link to="" slot="return"></router-link>
+      <router-link to="/search" slot="right"><i class="iconfont iconsousuo"></i></router-link>
     </head-title>
-    <nav>
-      <form action="" method="">
-        <label :class="{'active': item.state}" v-for="(item,index) in classes" :key="index">
-          <input @change="handleClassify(item,'category')" v-model="categoryId" type="radio" :value="item.id">{{item.name}}
-        </label>
-      </form>
-      <form action="" method="" v-show="isShow">
-        <label :class="{'active': item.isSelected}" v-for="item in comicState">
-          <input @change="handleClassify(item,'state')" v-model="endState" type="radio" :value="item.id">{{item.name}}
-        </label>
-      </form>
-      <form action="" method="">
-        <label :class="{'active': item.isSelected}" v-for="item in comicHot">
-          <input @change="handleClassify(item,'hot')" v-model="orderItem" type="radio" :value="item.id">{{item.name}}
-        </label>
-        <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
-      </form>
-    </nav>
-    <comic-list class="classify-list" :queryComics="queryComics"></comic-list>
+    <section class="classify-list">
+      <nav>
+        <form action="" method="">
+          <label :class="{'active': item.state}" v-for="(item,index) in classes" :key="index">
+            <input @change="handleClassify(item,'category')" v-model="categoryId" type="radio" :value="item.id">{{item.name}}
+          </label>
+        </form>
+        <form action="" method="" v-show="isShow">
+          <label :class="{'active': item.isSelected}" v-for="item in comicState">
+            <input @change="handleClassify(item,'state')" v-model="endState" type="radio" :value="item.id">{{item.name}}
+          </label>
+        </form>
+        <form action="" method="">
+          <label :class="{'active': item.isSelected}" v-for="item in comicHot">
+            <input @change="handleClassify(item,'hot')" v-model="orderItem" type="radio" :value="item.id">{{item.name}}
+          </label>
+          <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
+        </form>
+      </nav>
+      <comic-list :comicList="comicList"></comic-list>
+    </section>
   </section>
 </template>
 
@@ -58,7 +60,7 @@
       },
       computed: {
           ...mapState(['classes']),
-          ...mapState(['queryComics'])
+          ...mapState(['comicList'])
       },
       methods: {
           showClassify(i){
@@ -72,9 +74,9 @@
             //处理选中状态
             if (param === 'category'){
                 this.classes.forEach(function (obj) {
-                    obj.isSelected = false
+                    obj.state = false
                 });
-                item.isSelected = true
+                item.state = true
             }
             if (param === 'state'){
                 this.comicState.forEach(function (obj) {
@@ -90,7 +92,6 @@
             }
             //发送条件请求
             let query = {"categoryId": this.categoryId,"endState": this.endState,"orderItem": this.orderItem}
-            console.log(query)
             this.$store.dispatch('getQueryComics',query)
           }
       }
@@ -101,16 +102,23 @@
   .mui-icon-search{
     color: #FC5F45;
   }
+  .classify-list{
+    height: 84%;
+    overflow: auto!important;
+  }
   nav{
     padding: 0 16px;
   }
+  nav form{
+    margin: 0 0 4% 0;
+  }
   nav label{
-    padding: 0 13px;
+    padding: 3px 13px;
     text-align: center;
     display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
     color: #333333;
-    margin: 0 0 8px 0;
+    margin: 0 10px 0 0;
   }
   nav label.active{
     border: solid 1px #FC5F45;

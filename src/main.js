@@ -18,7 +18,7 @@ import 'swiper/dist/css/swiper.min.css'
 import store from './store/index'
 
 // 引入过滤器
-import './fiters'
+import './filters'
 
 /* eslint-disable no-new */
 new Vue({

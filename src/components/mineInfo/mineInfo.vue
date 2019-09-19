@@ -4,8 +4,8 @@
       <img src="./image/IMG_2475.jpg" width="100%" alt="">
     </div>
     <div>
-      <h6 class="">zheng04190</h6>
-      <p>开通VIP，享多重特权</p>
+      <h6 :style="{'color': color}">zheng04190</h6>
+      <p :style="{'color': color}">开通VIP，享多重特权</p>
     </div>
     <div>
       <span>成为VIP</span>
@@ -15,23 +15,25 @@
 
 <script>
   export default {
-
+    props: ['color']
   }
 </script>
 
 <style scoped>
+  .mine-info{
+    display: flex;
+  }
   .mine-info div:nth-child(1){
-    width: 60px;
-    height: 60px;
+    width: 20%;
     border-radius: 50%;
     overflow: hidden;
   }
   .mine-info div:nth-child(2){
-    margin: 0 10px 0 10px;
+    width: 46%;
+    margin: 0 0 0 4%;
   }
   .mine-info div:nth-child(2) h6{
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
     color: #ffffff;
     margin: 0 0 10px 0;
   }
@@ -39,12 +41,13 @@
     color: #ffffff;
   }
   .mine-info div:nth-child(3){
-    padding-top: 6px;
+    width: 30%;
   }
   .mine-info div:nth-child(3) span{
-    padding: 8px 20px;
+    padding: 4% 6%;
     border-radius: 20px;
     background: orange;
     color: #ffffff;
+    font-size: 1.6rem;
   }
 </style>

@@ -1,8 +1,9 @@
-<script src="../../store/actions.js"></script>
 <template>
-  <section class="ending">
+  <section class="public-main">
     <head-title title="完结佳作">
-      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+      <router-link to="" slot="return" @click.native="returnFunc">
+        <i class="mui-icon mui-icon-back"></i>
+      </router-link>
     </head-title>
     <neck-tab :endComicsTab="endComicsTab"></neck-tab>
     <section class="ending-list">
@@ -70,7 +71,9 @@
     padding-top: 102px;
   }
   .ending-list{
-    padding: 0 16px;
+    height: 86%;
+    overflow-y: auto;
+    padding: 3% 3% 0;
   }
   .swiper-scrollbar{
     position: fixed;

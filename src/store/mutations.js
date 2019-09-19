@@ -3,7 +3,6 @@ import {
   RECEIVE_RECOMMENDS,
   RECEIVE_CLASSIFY,
   RECEIVE_RANKSORT,
-  RECEIVE_ADDBOOKSHELF,
   RECEIVE_COMICINFO,
   RECEIVE_CHAPTERS,
   RECEIVE_COLLECT,
@@ -38,9 +37,6 @@ export default {
   },
   [RECEIVE_RANKSORT](state,{rankSorts}){
     state.rankSorts = rankSorts
-  },
-  [RECEIVE_ADDBOOKSHELF](state,{message}){
-    state.message = message
   },
   [RECEIVE_COMICINFO](state,{comicInfo}){
     state.comicInfo = comicInfo
@@ -94,9 +90,9 @@ export default {
     state.recentEnds = recentEnds
   },
   [RECEIVE_QUERYCOMICS](state,{queryComics}){
-    state.queryComics = queryComics
+    state.comicList = queryComics
   },
   [RECEIVE_RANKINGLIST](state,{rankingList}){
-    state.rankingList = rankingList
+    state.comicList = rankingList
   }
 }

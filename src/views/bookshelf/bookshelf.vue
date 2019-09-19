@@ -1,8 +1,8 @@
 <template>
   <section class="public-main">
     <head-title title="书架">
-      <span slot="return"></span>
-      <span slot="right" @click="showEdit(isShow)"><i class="iconfont iconbianji"></i></span>
+      <router-link to="" slot="return"></router-link>
+      <router-link to="" slot="right" @click.native="showEdit(isShow)"><i class="iconfont iconbianji"></i></router-link>
     </head-title>
     <neck-tab :bookshelfTab="bookshelfTab"></neck-tab>
     <div class="swiper-scrollbar"></div>

@@ -1,24 +1,24 @@
 <template>
   <section class="public-main">
     <head-title title="排行">
-      <span slot="return"></span>
-      <span slot="search"><i class="mui-icon mui-icon-search"></i></span>
+      <router-link to="" slot="return"></router-link>
+      <router-link to="/search" slot="right"><i class="iconfont iconsousuo"></i></router-link>
     </head-title>
     <neck-tab :rankSorts="rankSorts"></neck-tab>
     <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <comic-list :rankingList="rankingList"></comic-list>
+          <comic-list :comicList="comicList"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :rankingList="rankingList"></comic-list>
+          <comic-list :comicList="comicList"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :rankingList="rankingList"></comic-list>
+          <comic-list :comicList="comicList"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :rankingList="rankingList"></comic-list>
+          <comic-list :comicList="comicList"></comic-list>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
       },
       computed: {
           ...mapState(['rankSorts']),
-          ...mapState(['rankingList'])
+          ...mapState(['comicList'])
       }
   }
 </script>

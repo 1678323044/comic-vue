@@ -1,9 +1,11 @@
 <template>
   <section>
-    <head-title>
-      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
-    </head-title>
     <div class="head-pic">
+      <head-title>
+        <router-link to="" slot="return" @click.native="returnFunc">
+          <i class="mui-icon mui-icon-back"></i>
+        </router-link>
+      </head-title>
       <img src="./image/0.jpg" width="100%" alt="">
       <div class="head-title">
         {{comicInfo.name}}
@@ -17,7 +19,11 @@
     <div class="btn">
       <ul>
         <li><button @click="addBookshelf" class="addBookshelf">加入书架</button></li>
-        <li><button class="reading">开始阅读</button></li>
+        <li>
+          <router-link class="reading" :to="url+this.bookId+param+this.$store.getters.handleRead">
+            {{comicInfo.provChapterTitle | filterReading}}
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="content">
@@ -47,6 +53,8 @@
 
 <script>
   import headTitle from '../../components/header/header'
+  import {Toast} from 'mint-ui';
+  import {reqAddBookshelf} from "../../api";
   import {mapState} from 'vuex'
   export default {
       data(){
@@ -54,7 +62,8 @@
             bookId: 0,
             comicId: {},
             url: '/chapter?bookId=',
-            param: '&serialNumber='
+            param: '&serialNumber=',
+            tipsText: ''
           }
       },
       components: {
@@ -64,9 +73,19 @@
           returnFunc(){
               this.$router.go(-1)
           },
-          addBookshelf(){
-            this.$store.dispatch('addBookshelf',this.comicId)
-          }
+          async addBookshelf(){
+             let result = await reqAddBookshelf(this.comicId);
+             if (result.state === 'ok'){
+                 Toast({
+                     message: result.message,
+                     iconClass: 'iconfont iconic_check'
+                 });
+             }
+              Toast({
+                  message: result.message,
+                  iconClass: 'iconfont iconcuowu'
+              });
+          },
       },
       created() {
           this.bookId = this.$route.query.bookId
@@ -85,6 +104,10 @@
 
 <style scoped>
   header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
     background: transparent;
   }
   .head-pic{
@@ -115,6 +138,7 @@
   .btn li{
     width: 50%;
     float: left;
+    text-align: center;
   }
   .btn button{
     line-height: 44px;
@@ -131,7 +155,10 @@
     border-radius: 40px;
     background: #FA6F5E;
     color: #ffffff;
-    margin: 0 0 0 10px;
+    display: block;
+    width: 60%;
+    padding: 6%;
+    margin: 0 auto;
   }
   .content{
     padding: 0 16px;

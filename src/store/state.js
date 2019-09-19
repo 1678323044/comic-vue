@@ -4,7 +4,6 @@ export default {
   changeRecommends: {}, //更换推荐列表
   classes: [],          //漫画分类
   rankSorts: [],        //排行榜排序方式
-  message: '',          //加入书架提示语
   comicInfo: {},        //漫画信息
   chapters: [],         //漫画章节列表
   collections: [],      //收藏漫画列表
@@ -22,6 +21,5 @@ export default {
   endEasySell: [],      //完结人气畅销列表
   endComics: [],        //完结整本列表
   recentEnds: [],       //最新完结列表
-  queryComics: [],      //查询全部分类漫画列表
-  rankingList: []       //排行榜漫画列表
+  comicList: [],         //排行榜/分类列表
 }

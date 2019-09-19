@@ -18,19 +18,19 @@
     <ul class="mui-table-view mui-table-view-chevron mine-list">
       <li class="mui-table-view-cell">
         <router-link class="mui-navigate-right" to="/memberCenter">
-          <i class="iconfont iconchongzhi2"></i>
+          <i class="iconfont iconhuiyuan1" style="color: #ff5729;"></i>
           会员中心
         </router-link>
       </li>
       <li class="mui-table-view-cell">
         <router-link class="mui-navigate-right" to="/recharge">
-          <i class="iconfont iconchongzhi2"></i>
+          <i class="iconfont iconjinbi" style="color: #5c8dff;"></i>
           金币充值
         </router-link>
       </li>
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
-          <i class="iconfont iconjilu"></i>
+          <i class="iconfont iconfenxiang" style="color: #8f64ff;"></i>
           推荐好友领会员
         </a>
       </li>
@@ -38,13 +38,13 @@
     <ul class="mui-table-view mui-table-view-chevron">
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
-          <i class="iconfont iconqianbi"></i>
+          <i class="iconfont icondianhua2" style="color: #40e37e;"></i>
           在线客服
         </a>
       </li>
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
-          <i class="iconfont iconqianbi"></i>
+          <i class="iconfont iconshezhi" style="color: #6ac8ff;"></i>
           系统设置
         </a>
       </li>
@@ -67,7 +67,6 @@
     background: #f6f6f6;
   }
   .mine-info{
-    display: flex;
     padding: 48px 20px;
     background: -webkit-linear-gradient(left,#e60817,#ff801a);
   }
@@ -117,7 +116,7 @@
     color: orange;
   }
   .iconfont{
-    font-size: 22px;
+    font-size: 26px;
     color: orange;
     vertical-align: middle;
     margin: 0 5px 0 0;
