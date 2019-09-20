@@ -22,7 +22,9 @@ import {
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
   RECEIVE_QUERYCOMICS,
-  RECEIVE_RANKINGLIST
+  RECEIVE_RANKINGLIST,
+  RECEIVE_PAYINFO,
+  RECEIVE_RECHARGE
 } from './mutations-type'
 
 import {
@@ -48,7 +50,9 @@ import {
   reqEndComics,
   reqRecentEnd,
   reqQueryComics,
-  reqRankingList
+  reqRankingList,
+  reqPayInfo,
+  reqRecharge
 } from '../api/index'
 
 export default {
@@ -234,6 +238,24 @@ export default {
     if (result.state === 'ok'){
       let queryComics = result.data;
       commit(RECEIVE_QUERYCOMICS,{queryComics})
+    }
+  },
+  //处理会员支付功能
+  async handlePay({commit},param){
+    let result = await reqPayInfo(param);
+    if (result.state === 'ok'){
+      let payInfo = result.data
+      window.location.href = payInfo.payUrl
+      commit(RECEIVE_PAYINFO,{payInfo})
+    }
+  },
+  //处理金币充值功能
+  async handleRecharge({commit},param){
+    let result = await reqRecharge(param);
+    if (result.state === 'ok'){
+      let rechargeInfo = result.data;
+      window.location.href = rechargeInfo.payUrl
+      commit(RECEIVE_RECHARGE,{rechargeInfo})
     }
   }
 }

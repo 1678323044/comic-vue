@@ -21,5 +21,7 @@ export default {
   endEasySell: [],      //完结人气畅销列表
   endComics: [],        //完结整本列表
   recentEnds: [],       //最新完结列表
-  comicList: [],         //排行榜/分类列表
+  comicList: [],        //排行榜/分类列表
+  payInfo: {},          //会员支付信息
+  rechargeInfo: {}      //金币充值信息
 }

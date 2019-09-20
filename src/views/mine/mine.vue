@@ -94,7 +94,19 @@
     background-color: #ffffff;
   }
   .mui-table-view-cell{
-    padding: 14px 15px;
+    padding: 1.4rem 0 1.4rem 3%;
+  }
+  .mui-table-view:before{
+    background: transparent;
+  }
+  .mui-table-view:after{
+    background: transparent;
+  }
+  .mui-table-view-cell:after{
+    background: #eeeeee;
+  }
+  .mui-table-view-chevron .mui-table-view-cell>a{
+    margin-right: 0;
   }
   .mui-tab-item{
     position: relative;

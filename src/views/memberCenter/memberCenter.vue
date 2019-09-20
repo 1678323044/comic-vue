@@ -25,13 +25,14 @@
       </div>
       <div class="set-meal">
         <h5>付费VIP套餐</h5>
-        <set-meals :setMeals="setMeals"></set-meals>
+        <set-meals :setMeals="setMeals" @setMeal="parentFn"></set-meals>
       </div>
       <problem :problems="problems"></problem>
       <div class="opening-btn">
-        <button>立即开通</button>
+        <button @click="handlePay">立即开通</button>
       </div>
     </section>
+    <pay-popup v-show="isShow" :setMeal="setMeal" @isShow="handleClose"></pay-popup>
   </section>
 </template>
 
@@ -40,12 +41,14 @@
   import mineInfo from '../../components/mineInfo/mineInfo'
   import problem from '../../components/problem/problem'
   import setMeals from '../../components/setMeals/setMeals'
+  import payPopup from '../../components/payPopup/payPopup'
   import {mapState} from 'vuex'
   export default {
     data(){
       return{
-          scrollHei: 0,
           isBg: false,
+          isShow: false,
+          setMeal: {},
           problems: [
               {
                   "state": false,
@@ -74,16 +77,24 @@
       headTitle,
       mineInfo,
       problem,
-      setMeals
+      setMeals,
+      payPopup
     },
     created() {
       this.$store.dispatch('getSetMeals');
-      addEventListener('scroll',this.scrollFunc,true)
-
     },
     methods: {
       returnFunc(){
         this.$router.go(-1)
+      },
+      handlePay(){
+          this.isShow = true
+      },
+      parentFn(item){
+          this.setMeal = item
+      },
+      handleClose(hide){
+          this.isShow = hide
       }
     },
     computed: {

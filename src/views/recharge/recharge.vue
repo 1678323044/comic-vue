@@ -9,9 +9,10 @@
       <div class="box">
         <p>漫币余额：222</p>
       </div>
-      <golds :rechargeList="rechargeList"></golds>
+      <golds :rechargeList="rechargeList" @golds="parentFn"></golds>
       <problem :problems="problems"></problem>
     </section>
+    <pay-popup v-show="isShow" :setMeal="setMeal" @isShow="handleClose"></pay-popup>
   </section>
 </template>
 
@@ -19,6 +20,7 @@
   import headTitle from '../../components/header/header'
   import problem from '../../components/problem/problem'
   import golds from '../../components/golds/golds'
+  import payPopup from "../../components/payPopup/payPopup";
   import {mapState} from 'vuex'
   export default {
     data(){
@@ -44,17 +46,27 @@
                   "doubt": "4、我卸载应用再下载，购买的金币没了？",
                   "answer": "付费VIP是本漫画平台推出的会员服务。在本平台内享有的二次元超级用户福利，VIP专享漫画免费看，福利不断更新中"
               }
-          ]
+          ],
+          setMeal: {},
+          isShow: false
       }
     },
     components: {
       headTitle,
       problem,
-      golds
+      golds,
+      payPopup
     },
     methods: {
         returnFunc(){
             this.$router.go(-1)
+        },
+        parentFn(item){
+            this.setMeal = item
+            this.isShow = true
+        },
+        handleClose(hide){
+            this.isShow = hide
         }
     },
     created() {

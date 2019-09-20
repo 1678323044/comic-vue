@@ -44,10 +44,10 @@
     width: 30%;
   }
   .mine-info div:nth-child(3) span{
-    padding: 4% 6%;
+    padding: 6% 10%;
     border-radius: 20px;
     background: orange;
     color: #ffffff;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 </style>

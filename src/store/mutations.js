@@ -22,7 +22,9 @@ import {
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
   RECEIVE_QUERYCOMICS,
-  RECEIVE_RANKINGLIST
+  RECEIVE_RANKINGLIST,
+  RECEIVE_PAYINFO,
+  RECEIVE_RECHARGE
 } from './mutations-type'
 
 export default {
@@ -94,5 +96,11 @@ export default {
   },
   [RECEIVE_RANKINGLIST](state,{rankingList}){
     state.comicList = rankingList
+  },
+  [RECEIVE_PAYINFO](state,{payInfo}){
+    state.payInfo = payInfo
+  },
+  [RECEIVE_RECHARGE](state,{rechargeInfo}){
+    state.rechargeInfo = rechargeInfo
   }
 }

@@ -6,7 +6,7 @@
           <i class="mui-icon mui-icon-back"></i>
         </router-link>
       </head-title>
-      <img src="./image/0.jpg" width="100%" alt="">
+      <img :src="comicInfo.bannerImagePath" width="100%" alt="">
       <div class="head-title">
         {{comicInfo.name}}
         <p>
@@ -38,7 +38,7 @@
       <div class="chapter">
         <dl v-for="chapter in chapters">
           <router-link :to="url+chapter.bookId+param+chapter.serialNumber">
-            <dt><img src="" width="100%" alt=""></dt>
+            <dt><img :src="chapter.coverImagePath" width="100%" alt=""></dt>
             <dd>
               <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
               <span>免费</span>
@@ -114,11 +114,15 @@
     position: relative;
   }
   .head-title{
-    top: 60%;
-    left: 5%;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     color: #ffffff;
     font-size: 20px;
     position: absolute;
+    background: linear-gradient(transparent,#333333);
+    padding: 7% 0 5% 5%;
+    box-sizing: border-box;
   }
   .head-title p{
     margin: 6px 0 0 0;
@@ -184,7 +188,7 @@
   }
   .list .chapter dt{
     width: 45%;
-    border-radius: 20px;
+    border-radius: 8px;
     overflow: hidden;
     float: left;
   }

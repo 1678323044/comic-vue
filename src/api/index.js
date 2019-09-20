@@ -4,8 +4,8 @@
 */
 import ajax from "./ajax"
 
-const API_URL = 'http://106.53.110.107/comic'
-//const API_URL = '/api'
+//const API_URL = 'http://106.53.110.107/comic'
+const API_URL = '/api'
 
 //推荐信息模块
 export const reqRecommends = () => ajax(`${API_URL}/recommends.do`)
@@ -83,7 +83,13 @@ export const reqEndComics = (data) => ajax(`${API_URL}/endBooks.do`,data)
 export const reqRecentEnd = (data) => ajax(`${API_URL}/recentEnd.do`,data);
 
 //分类查询模块
-export const reqQueryComics = (data) => ajax(`${API_URL}/querybooks.do`,data)
+export const reqQueryComics = (data) => ajax(`${API_URL}/querybooks.do`,data);
+
+//支付会员模块
+export const reqPayInfo = (data) => ajax(`${API_URL}/buyVip.do`,data);
+
+//金币充值模块
+export const reqRecharge = (data) => ajax(`${API_URL}/buyReadCoin.do`,data);
 
 
 

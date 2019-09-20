@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li :class="{'selected': index == ins}" v-for="(setMeal,index) in setMeals" @click="handlePay(index)">
+    <li :class="{'selected': index === ins}" v-for="(setMeal,index) in setMeals" @click="handleSelect(index,setMeal)">
       <h6>{{setMeal.name}}</h6>
       <p><i>￥</i>{{setMeal.payPrice | filterPrice}}</p>
       <s>{{setMeal.price | filterPrice}}</s>
@@ -14,12 +14,18 @@
       props: ['setMeals'],
       data(){
           return{
-              ins: 0
+              ins: 0,
+              setMeal: {}
           }
       },
+      beforeUpdate(){
+        this.$emit('setMeal',this.setMeals[0])
+      },
       methods: {
-          handlePay(index){
-              this.ins = index
+          handleSelect(index,item){
+              this.ins = index;
+              this.setMeal = item
+              this.$emit('setMeal',this.setMeal)
           }
       }
   }
@@ -43,6 +49,7 @@
   }
   .set-meal li.selected{
     border: solid 2px #ffea55;
+    background: #ffffff;
   }
   .set-meal li h6{
     line-height: 30px;

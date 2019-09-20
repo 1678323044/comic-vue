@@ -5,17 +5,17 @@
       <ul>
         <li>
           <router-link to="/memberArea">
-            <img src="./image/icon111.png" width="100%" alt="">
+            <img src="./image/icon0002.jpg" width="100%" alt="">
             <p>VIP专区</p>
           </router-link>
         </li>
         <li>
-          <img src="./image/icon111.png" width="100%" alt="">
+          <img src="./image/icon0001.jpg" width="100%" alt="">
           <p>充值优惠</p>
         </li>
         <li>
           <router-link to="/endingWorks">
-            <img src="./image/icon111.png" width="100%" alt="">
+            <img src="./image/icon0000.jpg" width="100%" alt="">
             <p>完美佳作</p>
           </router-link>
         </li>
@@ -31,7 +31,10 @@
         </h5>
         <div class="con-list"><dl v-for="dataItem in changeRecommends.datalist || recommend.datalist">
           <router-link :to="url+dataItem.id">
-            <dt><img :src="dataItem.coverImagePath" width="100%" alt=""></dt>
+            <dt>
+              <img :src="dataItem.coverImagePath" width="100%" alt="">
+              <span><i class="iconfont iconxingxing"></i>{{dataItem.avgscore}}</span>
+            </dt>
             <dd>
               <h6>{{dataItem.name}}</h6>
               <p>{{dataItem.author}}</p>
@@ -95,7 +98,7 @@
     text-align: center;
   }
   .neck-nav ul li img{
-    width: 40px;
+    width: 33%;
     margin: 0 auto 5%;
   }
   .neck-nav ul li p{
@@ -147,11 +150,28 @@
     margin-right: 0;
   }
   .con .con-list dl dt{
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
+    position: relative;
   }
   .con .con-list dl dt img{
     display: block;
+  }
+  .con .con-list dl dt span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    padding: 1% 7%;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background: #333333;
+    opacity: 0.85;
+  }
+  .con .con-list dl dt span i{
+    font-size: 1rem;
+    margin: 0 4% 0 0;
   }
   .con .con-list dd h6{
     margin: 6% 0 5% 0;

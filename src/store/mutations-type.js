@@ -23,4 +23,6 @@ export const RECEIVE_ENDCOMICS = 'receive_endComics'          //接收完结漫�
 export const RECEIVE_RECENTENDS = 'receive_recentEnds'        //接收最新完结漫画列表
 export const RECEIVE_QUERYCOMICS = 'receive_queryComics'      //接收条件查询漫画列表
 export const RECEIVE_RANKINGLIST = 'receive_rankingList'      //接收排行榜列表信息
+export const RECEIVE_PAYINFO = 'receive_payInfo'              //接收会员支付信息
+export const RECEIVE_RECHARGE = 'receive_recharge'            //接收金币充值信息
 

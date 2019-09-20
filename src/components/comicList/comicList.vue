@@ -3,8 +3,9 @@
     <li class="mui-table-view-cell mui-media" v-for="comicItem in comicList">
       <router-link :to="url+comicItem.id">
         <div class="pic">
-          <span>NO.1</span>
+          <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="comicItem.coverImagePath">
+          <span class="score"><i class="iconfont iconxingxing"></i>{{comicItem.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">
@@ -85,7 +86,10 @@
   .mui-media-body .btm-text p:nth-child(2){
     color: #FC5F45;
   }
-  .mui-table-view .pic span{
+  .mui-table-view .pic{
+    position: relative;
+  }
+  .mui-table-view .pic .rank{
     width: 45%;
     line-height: 2.6rem;
     background: #DB383C;
@@ -97,5 +101,21 @@
     text-align: center;
     font-size: 1.4rem;
     color: #ffffff;
+  }
+  .mui-table-view .pic .score{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    padding: 1% 7%;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background: #333333;
+    opacity: 0.85;
+  }
+  .mui-table-view .pic .score i{
+    font-size: 1rem;
+    margin: 0 4% 0 0;
   }
 </style>

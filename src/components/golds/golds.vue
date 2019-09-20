@@ -5,7 +5,7 @@
       <dd>
         <p>{{recharge.coinQuantity}}</p>
         <p>+送{{recharge.giveCoinQuantity}}金币</p>
-        <span>￥{{recharge.price}}.00</span>
+        <span @click="handlePay(recharge)">￥{{recharge.price}}.00</span>
       </dd>
     </dl>
   </div>
@@ -13,7 +13,12 @@
 
 <script>
   export default {
-    props: ['rechargeList']
+    props: ['rechargeList'],
+    methods: {
+        handlePay(item){
+            this.$emit('golds',item)
+        }
+    }
   }
 </script>
 
