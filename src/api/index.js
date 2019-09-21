@@ -32,7 +32,7 @@ export const reqComicInfo = (data) => ajax(`${API_URL}/bookinfo.do`,data)
 export const reqChapters = (data) => ajax(`${API_URL}/chapters.do`,data)
 
 //漫画内容模块
-export const reqComicContent = (data) => ajax(`${API_URL}/reading.do`,data,'POST')
+export const reqComicContent = (data) => ajax(`${API_URL}/reading.do`,data)
 
 //漫画收藏模块
 export const reqCollect = () => ajax(`${API_URL}/mycollect.do`)
@@ -91,5 +91,9 @@ export const reqPayInfo = (data) => ajax(`${API_URL}/buyVip.do`,data);
 //金币充值模块
 export const reqRecharge = (data) => ajax(`${API_URL}/buyReadCoin.do`,data);
 
+//用户评分模块
+export const reqScore = (data) => ajax(`${API_URL}/grade.do`,data)
 
+//查询订单状态模块
+export const reqOrderState = (data) => ajax(`${API_URL}/pay/state.do`,data)
 

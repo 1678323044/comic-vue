@@ -8,12 +8,11 @@
       </head-title>
       <img :src="comicInfo.bannerImagePath" width="100%" alt="">
       <div class="head-title">
-        {{comicInfo.name}}
-        <p>
-          <span class="iconfont iconxingxing"></span>
-          <span class="iconfont iconxingxing"></span>
-          <span class="iconfont iconxingxing"></span>
-        </p>
+        {{comicInfo.name}} <br>
+        <span @click="handleScoring">
+          <i v-for="item in 5" class="iconfont iconshoucangxingxing-xianxing"></i>
+          去评分
+        </span>
       </div>
     </div>
     <div class="btn">
@@ -37,22 +36,25 @@
       </div>
       <div class="chapter">
         <dl v-for="chapter in chapters">
-          <router-link :to="url+chapter.bookId+param+chapter.serialNumber">
+          <router-link :to="url+chapter.bookId+param+chapter.chapterId">
             <dt><img :src="chapter.coverImagePath" width="100%" alt=""></dt>
             <dd>
               <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
-              <span>免费</span>
+              <span v-if="chapter.readPermission === 0">免费</span>
+              <span v-else>{{chapter.readingCoin}}金币</span>
               <p>{{chapter.publishTime}}</p>
             </dd>
           </router-link>
         </dl>
       </div>
     </div>
+    <score-popup v-show="isShow" @closePopup="closePopup"></score-popup>
   </section>
 </template>
 
 <script>
   import headTitle from '../../components/header/header'
+  import scorePopup from "../../components/scorePopup/scorePopup";
   import {Toast} from 'mint-ui';
   import {reqAddBookshelf} from "../../api";
   import {mapState} from 'vuex'
@@ -62,12 +64,14 @@
             bookId: 0,
             comicId: {},
             url: '/chapter?bookId=',
-            param: '&serialNumber=',
-            tipsText: ''
+            param: '&chapterId=',
+            tipsText: '',
+            isShow: false
           }
       },
       components: {
-          headTitle
+          headTitle,
+          scorePopup
       },
       methods: {
           returnFunc(){
@@ -76,6 +80,7 @@
           async addBookshelf(){
              let result = await reqAddBookshelf(this.comicId);
              if (result.state === 'ok'){
+                 console.log(result.state)
                  Toast({
                      message: result.message,
                      iconClass: 'iconfont iconic_check'
@@ -86,6 +91,12 @@
                   iconClass: 'iconfont iconcuowu'
               });
           },
+          handleScoring(){
+            this.isShow = true
+          },
+          closePopup(hide){
+              this.isShow = hide
+          }
       },
       created() {
           this.bookId = this.$route.query.bookId
@@ -124,13 +135,14 @@
     padding: 7% 0 5% 5%;
     box-sizing: border-box;
   }
-  .head-title p{
-    margin: 6px 0 0 0;
+  .head-title span{
+    font-size: 1.4rem;
+    line-height: 2.6rem;
   }
-  .head-title p span{
+  .head-title span i{
     color: #FC5F45;
-    margin: 0 0 0 4px;
-    font-size: 14px;
+    margin-right: 1%;
+    font-size: 1.6rem;
   }
   .btn{
     padding: 10px 0;
@@ -203,8 +215,9 @@
   }
   .list .chapter dd span{
     float: right;
-    font-size: 16px;
+    font-size: 1.8rem;
     line-height: 38px;
+    color: #333333;
   }
   .list .chapter dd p{
     clear: right;

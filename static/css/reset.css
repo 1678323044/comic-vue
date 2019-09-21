@@ -42,3 +42,14 @@ img{
 .swiper-scrollbar-drag{
   background: rgba(252,95,69,1)!important;
 }
+
+/* 弹窗 */
+.popup-bg{
+  height: 100%;
+  width: 100%;
+  background: #333333;
+  opacity: 0.6;
+  position: fixed;
+  left: 0;
+  top: 0;
+}

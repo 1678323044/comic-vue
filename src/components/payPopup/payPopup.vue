@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="pay-bg" @click="handleClose"></div>
+    <div class="popup-bg" @click="handleClose"></div>
     <div class="pay-popup">
       <div class="top">
         <h6>充值{{setMeal.name}}</h6>
@@ -32,7 +32,13 @@
               if (this.setMeal.giveCoinQuantity == null){
                   let param = {"vipComboId": this.setMeal.id,"PayType": this.payId};
                   this.$store.dispatch('handlePay',param);
-                  return
+
+                  //查询订单是否支付成功
+                  /*let result = await reqOrderState()
+                  if (result.state === 'ok'){
+
+                  }
+                  return*/
               }
               let param = {"coincomboid": this.setMeal.id,"PayType": this.payId};
               this.$store.dispatch('handleRecharge',param);
@@ -41,6 +47,7 @@
               this.$emit('isShow',false)
           }
       },
+
       computed: {
           ...mapState(['payInfo'])
       }
@@ -48,15 +55,6 @@
 </script>
 
 <style scoped>
-  .pay-bg{
-    height: 100%;
-    width: 100%;
-    background: #333333;
-    opacity: 0.6;
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
   .pay-popup{
     width: 70%;
     height: 50%;

@@ -20,6 +20,9 @@ import store from './store/index'
 // 引入过滤器
 import './filters'
 
+//引入qs
+import qs from 'qs'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -27,5 +30,6 @@ new Vue({
   components: { App },
   template: '<App/>',
   MintUI,
-  store
+  store,
+  qs
 })

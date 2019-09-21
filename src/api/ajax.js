@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 export default function ajax (url,data={},type='GET'){
   return new Promise(function (resolve,reject){
@@ -21,7 +22,7 @@ export default function ajax (url,data={},type='GET'){
       })
     }else{
       //发送post请求
-      promise = axios.post(url,data,{
+      promise = axios.post(url,qs.stringify(data),{
         headers: {
           authorization: "d198dff49a696e8dc5a9b4036c87125b" // 授权码
         }

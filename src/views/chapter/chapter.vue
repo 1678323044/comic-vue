@@ -1,7 +1,8 @@
 <template>
-  <section>
-    <head-title class="float-bar top" title="第一话 莫欺少年穷">
+  <section :class="{'public-main': popupVisible}">
+    <head-title class="float-bar top" :title="comicContents.title+comicContents.name">
       <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+      <span slot="right"></span>
     </head-title>
     <div class="chapter">
       <ul>
@@ -13,22 +14,22 @@
     <div class="float-bar bottom">
       <div class="turning-page">
         <ul>
-          <li>
+          <li @click="handleFlip(comicContents.id - 1)">
             <i class="mui-icon mui-icon-arrowleft"></i>
             上一话
           </li>
-          <li>
+          <li @click="backTop">
             <i class="mui-icon mui-icon-arrowup"></i>
             顶部TOP
           </li>
-          <li>
+          <li @click="handleFlip(comicContents.id + 1)">
             <i class="mui-icon mui-icon-arrowright"></i>
             下一话
           </li>
         </ul>
       </div>
       <mt-tabbar>
-        <mt-tab-item id="tab1">
+        <mt-tab-item id="tab1" @click.native="handleCatalog">
           <i class="iconfont iconshouye"></i>
           目录
         </mt-tab-item>
@@ -37,32 +38,77 @@
           加入书架
         </mt-tab-item>
         <mt-tab-item id="tab3">
-          <i class="iconfont iconfenlei"></i>
-          亮度
-        </mt-tab-item>
-        <mt-tab-item id="tab4">
           <i class="iconfont iconicon_shujianor"></i>
           评分
         </mt-tab-item>
       </mt-tabbar>
     </div>
+    <mt-popup
+      v-model="popupVisible"
+      modal="true"
+      closeOnClickModal="true"
+      position="right">
+      <h6>{{comicContents.name}}</h6>
+      <div class="neck">
+        <span>共34话</span>
+        <span>连载中</span>
+      </div>
+      <ul>
+        <li v-for="(chapter,index) in chapters" :key="index">
+          <p>{{chapter.title}}&nbsp;{{chapter.name}}</p>
+        </li>
+      </ul>
+    </mt-popup>
   </section>
 </template>
 
 <script>
   import headTitle from '../../components/header/header'
+  import {mapState} from 'vuex'
   export default {
+      data(){
+        return{
+            popupVisible: false,
+            pageIndex: {},
+            bookId: 0
+        }
+      },
       components: {
           headTitle
+      },
+      created() {
+          this.bookId = this.$route.query.bookId
+          this.pageIndex = {"bookId": this.bookId,"chapterId": this.$route.query.chapterId}
+          this.$store.dispatch('getComicContent',this.pageIndex)
       },
       methods: {
         returnFunc(){
             this.$router.go(-1)
+        },
+        handleCatalog(){
+            this.popupVisible = true
+            let setPage = {"bookId": this.$route.query.bookId}
+            this.$store.dispatch('getChapters',setPage)
+        },
+        backTop(){
+            document.body.scrollTop = 0
+            document.documentElement.scrollTop = 0
+        },
+        handleFlip(pageIndex){
+          if (pageIndex === 0){
+              console.log('没有上一章了')
+              return
+          }if (pageIndex === 2){
+              console.log('没有下一章了')
+              return
+          }
+          let url = `/reading.do?bookId=${this.bookId}&chapterId=${pageIndex}`
+          this.$router.replace(url)
         }
       },
-      created() {
-        let id ={"bookId": this.$route.query.bookId,"chapterId": this.$route.query.serialNumber}
-        this.$store.dispatch('getComicContent',id)
+      computed: {
+          ...mapState(['chapters']),
+          ...mapState(['comicContents'])
       }
   }
 </script>
@@ -131,5 +177,35 @@
   }
   .float-bar.bottom .turning-page li i{
     font-size: 20px;
+  }
+  .mint-popup{
+    height: 100%;
+    width: 70%;
+    overflow-y: auto;
+    background: rgb(51,51,51);
+  }
+  .mint-popup h6{
+    font-size: 2.1rem;
+    text-align: center;
+    margin: 8% 0;
+    color: #ffffff;
+  }
+  .mint-popup .neck{
+    background: #000;
+    line-height: 2.2rem;
+    padding: 5% 0;
+    font-size: 1.6rem;
+  }
+  .mint-popup ul li{
+    line-height: 3.4rem;
+    color: #ffffff;
+    padding: 0 0 0 6%;
+  }
+  .mint-popup ul li p{
+    margin: 0;
+    padding: 2% 0;
+    color: #ffffff;
+    font-size: 1.6rem;
+    border-bottom: solid 1px #444444;
   }
 </style>

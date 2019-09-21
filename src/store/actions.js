@@ -52,7 +52,7 @@ import {
   reqQueryComics,
   reqRankingList,
   reqPayInfo,
-  reqRecharge
+  reqRecharge,
 } from '../api/index'
 
 export default {

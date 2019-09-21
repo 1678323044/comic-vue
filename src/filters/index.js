@@ -37,3 +37,4 @@ Vue.filter('filterReading',function (data) {
   }
   return '续看' + data
 })
+

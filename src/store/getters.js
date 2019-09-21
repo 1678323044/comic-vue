@@ -1,9 +1,9 @@
 /* vuex的计算属性 */
 export default {
   handleRead(state){
-    if (state.comicInfo.provChapterTitle == null){
-      return ''
+    if (state.comicInfo.provChapterId == null){
+      return '1'
     }
-    return this.state.comicInfo.provChapterTitle
+    return state.comicInfo.provChapterId
   }
 }
