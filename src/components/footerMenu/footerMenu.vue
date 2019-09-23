@@ -34,23 +34,26 @@
           goto(path){
               this.$router.replace(path)
           }
-      }
+      },
   }
 </script>
 
 <style scoped>
+  .mint-tabbar{
+    height: 7%;
+  }
   .iconfont{
     display: block;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     margin: 0 0 5px 0;
   }
   .mint-tab-item{
     color: #999999;
-    padding: 10px 0;
+    padding: 6px 0;
   }
   .mint-tabbar{
     position: fixed;
-    z-index: 99999;
+    z-index: 9999;
   }
   .mint-tabbar > .mint-tab-item.is-selected{
     background: transparent;

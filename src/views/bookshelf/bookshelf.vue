@@ -10,26 +10,18 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <my-books></my-books>
-          <div class="pop-up-btn buy-btn" v-show="isShow">
-            <span @click="buySelectAll">全选</span>
-            <span @click="buyDelete">删除</span>
-          </div>
         </div>
         <div class="swiper-slide">
-          <my-books :collections="collections" :isShow="isShow" :collectId="collectId"></my-books>
-          <div class="pop-up-btn collect-btn" v-show="isShow">
-            <span @click="collectSelectAll">全选</span>
-            <span @click="collectDelete">删除</span>
-          </div>
+          <my-books :collections="collections" :isShow="isShow" :collectionsId="collectionsId"></my-books>
         </div>
         <div class="swiper-slide">
-          <my-books :readHistories="readHistories" :isShow="isShow" :recordId="recordId"></my-books>
-          <div class="pop-up-btn record-btn" v-show="isShow">
-            <span @click="recordSelectAll">全选</span>
-            <span @click="recordDelete">删除</span>
-          </div>
+          <my-books :readHistories="readHistories" :isShow="isShow" :readHistoriesId="readHistoriesId"></my-books>
         </div>
       </div>
+    </div>
+    <div class="pop-up-btn buy-btn" v-show="isShow">
+      <span @click="handleSelectAll">全选</span>
+      <span @click="handleDelete">删除</span>
     </div>
   </section>
 </template>
@@ -46,8 +38,8 @@
         return{
             bookshelfTab: ['我的购买','兴趣收藏','历史记录'],
             isShow: false,
-            collectId: [],
-            recordId: [],
+            collectionsId: [],
+            readHistoriesId: [],
             currentPage: 0
         }
       },
@@ -60,38 +52,36 @@
           showEdit(isShow){
             this.isShow = !isShow;
           },
-          buySelectAll(){
-          },
-          async buyDelete(){
-          },
-          collectSelectAll(){
-              console.log(this.currentPage);
-              this.collectId = [];
-              this.collections.forEach((item) => {
-                  this.collectId.push(item.bookId)
-              })
-          },
-          async collectDelete(){
-              let param = {"bookId": this.collectId.join('$')};
-              let result = await reqCancelCollection(param);
-              if (result.state === 'ok'){
-                  alert(result.message)
+          handleSelectAll(){
+              if (this.currentPage === 1){
+                  this.collectionsId = [];
+                  this.collections.forEach((item) => {
+                      this.collectionsId.push(item.bookId)
+                  })
+              }else if (this.currentPage === 2){
+                  this.readHistoriesId = [];
+                  this.readHistories.forEach((item) => {
+                      this.readHistoriesId.push(item.bookId)
+                  })
+              }else if (this.currentPage === 0){
+
               }
           },
-          recordSelectAll(){
-              console.log(this.currentPage);
-              this.recordId = [];
-              this.readHistories.forEach((item) => {
-                  this.recordId.push(item.bookId)
-              })
-          },
-          async recordDelete(){
-              let param = {"bookId": this.recordId.join('$')};
-              let result = await reqDelHistory(param);
-              if (result.state === 'ok'){
-                  alert(result.message)
+          async handleDelete(){
+              if (this.currentPage === 1){
+                  let param = {"bookId": this.collectionsId.join('$')};
+                  let result = await reqCancelCollection(param);
+                  if (result.state === 'ok'){
+                      alert(result.message)
+                  }
+              }else if (this.currentPage === 2){
+                  let param = {"bookId": this.readHistoriesId.join('$')};
+                  let result = await reqCancelCollection(param);
+                  if (result.state === 'ok'){
+                      alert(result.message)
+                  }
               }
-          }
+          },
       },
       mounted(){
           this.$store.dispatch('getCollect');
@@ -105,6 +95,7 @@
           })
           mySwiper.on('slideChangeTransitionEnd', () => {
               this.currentPage = mySwiper.activeIndex
+              this.isShow = false
           })
       },
       computed: {
@@ -116,8 +107,8 @@
 
 <style scoped>
   .pop-up-btn{
-    position: absolute;
-    bottom: 102px;
+    position: fixed;
+    bottom: 0;
     left: 0;
     background: #333333;
     z-index: 99999;

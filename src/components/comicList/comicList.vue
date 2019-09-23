@@ -36,7 +36,7 @@
 
 <style scoped>
   .mui-table-view{
-    padding: 2% 3% 0;
+    padding: 4% 3% 0;
   }
   .mui-table-view-cell{
     margin: 0 0 3% 0;
@@ -52,10 +52,9 @@
   .mui-table-view .pic{
     position: relative;
     width: 30%;
-    margin: 0 3% 0 0;
   }
   .mui-table-view .mui-media-object{
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
     display: block;
     border-radius: 10px;
@@ -68,7 +67,7 @@
     height: 70%;
   }
   .mui-media-body .top-text p:nth-child(1){
-    margin: 3% 0 2% 0;
+    margin: 2% 0 0 0;
   }
   .mui-media-body .btm-text{
     height: 30%;
@@ -90,7 +89,7 @@
     position: relative;
   }
   .mui-table-view .pic .rank{
-    width: 45%;
+    width: 35%;
     line-height: 2.6rem;
     background: #DB383C;
     position: absolute;
@@ -105,10 +104,10 @@
   .mui-table-view .pic .score{
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10%;
     color: #ffffff;
-    font-size: 1.5rem;
-    padding: 1% 7%;
+    font-size: 1.3rem;
+    padding: 1% 4%;
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     background: #333333;

@@ -1,8 +1,8 @@
 <template>
   <section class="public-main">
     <head-title title="排行">
-      <router-link to="" slot="return"></router-link>
-      <router-link to="/search" slot="right"><i class="iconfont iconsousuo"></i></router-link>
+      <span slot="return"></span>
+      <router-link slot="right" to="/search"><i data-v-94cd00f6="" class="iconfont iconsousuo"></i></router-link>
     </head-title>
     <neck-tab :rankSorts="rankSorts"></neck-tab>
     <div class="swiper-scrollbar"></div>

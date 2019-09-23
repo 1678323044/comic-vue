@@ -2,7 +2,7 @@
   <ul class="mui-table-view">
     <li class="mui-table-view-cell mui-media" v-for="(collect,index) in collections" :key="index">
       <label>
-        <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectId">
+        <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectionsId">
         <router-link :to="url+collect.bookId">
           <img alt="" class="mui-media-object mui-pull-left" :src="collect.coverImagePath">
           <div class="mui-media-body">
@@ -16,7 +16,7 @@
     </li>
     <li class="mui-table-view-cell mui-media" v-for="(readHistory,index) in readHistories" :key="index">
       <label>
-        <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="recordId">
+        <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="readHistoriesId">
         <router-link :to="url+readHistory.bookId">
           <img alt="" class="mui-media-object mui-pull-left" :src="readHistory.coverImagePath">
           <div class="mui-media-body">
@@ -33,7 +33,7 @@
 
 <script>
   export default {
-      props: ['collections','readHistories','isShow','collectId','recordId'],
+      props: ['collections','readHistories','isShow','collectionsId','readHistoriesId'],
       data(){
           return{
               url: '/chapterList?bookId='

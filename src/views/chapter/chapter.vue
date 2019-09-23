@@ -1,17 +1,17 @@
 <template>
   <section :class="{'public-main': popupVisible}">
-    <head-title class="float-bar top" :title="comicContents.title+comicContents.name">
-      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+    <head-title v-show="isShow" class="float-bar top" :title="comicContents.title+comicContents.name">
+      <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back" style="color: white"></i></span>
       <span slot="right"></span>
     </head-title>
-    <div class="chapter">
+    <div @click="handleShow(isShow)" class="chapter">
       <ul>
         <li><img src="./image/800.jpg" alt=""></li>
         <li><img src="./image/801.jpg" alt=""></li>
         <li><img src="./image/802.jpg" alt=""></li>
       </ul>
     </div>
-    <div class="float-bar bottom">
+    <div v-show="isShow" class="float-bar bottom">
       <div class="turning-page">
         <ul>
           <li @click="handleFlip(comicContents.id - 1)">
@@ -37,10 +37,8 @@
           <i class="iconfont iconjindusvg"></i>
           加入书架
         </mt-tab-item>
-        <mt-tab-item id="tab3">
-          <i class="iconfont iconicon_shujianor"></i>
-          评分
-        </mt-tab-item>
+        <mt-tab-item id="tab3"></mt-tab-item>
+        <mt-tab-item id="tab4"></mt-tab-item>
       </mt-tabbar>
     </div>
     <mt-popup
@@ -50,8 +48,8 @@
       position="right">
       <h6>{{comicContents.name}}</h6>
       <div class="neck">
-        <span>共34话</span>
-        <span>连载中</span>
+        <span>共{{directoryNumber}}话</span>
+        <span>{{serialState | filterSerialState}}</span>
       </div>
       <ul>
         <li v-for="(chapter,index) in chapters" :key="index">
@@ -64,13 +62,18 @@
 
 <script>
   import headTitle from '../../components/header/header'
+  import storageUtil from "../../util/storageUtil/storageUtil";
   import {mapState} from 'vuex'
+  import {Toast} from 'mint-ui'
   export default {
       data(){
         return{
             popupVisible: false,
             pageIndex: {},
-            bookId: 0
+            bookId: 0,
+            isShow: false,
+            directoryNumber: storageUtil.readStorage().chapterTotalQuantity, // 总目录数
+            serialState: storageUtil.readStorage().endState  // 漫画连载状态
         }
       },
       components: {
@@ -96,14 +99,17 @@
         },
         handleFlip(pageIndex){
           if (pageIndex === 0){
-              console.log('没有上一章了')
+              Toast('没有上一章了');
               return
           }if (pageIndex === 2){
-              console.log('没有下一章了')
+              Toast('没有下一章了');
               return
           }
           let url = `/reading.do?bookId=${this.bookId}&chapterId=${pageIndex}`
           this.$router.replace(url)
+        },
+        handleShow(isShow){
+            this.isShow = !isShow
         }
       },
       computed: {
@@ -193,8 +199,12 @@
   .mint-popup .neck{
     background: #000;
     line-height: 2.2rem;
-    padding: 5% 0;
+    padding: 5% 0 5% 6%;
     font-size: 1.6rem;
+    color: #ffffff;
+  }
+  .mint-popup .neck span{
+    margin: 0 4% 0 0;
   }
   .mint-popup ul li{
     line-height: 3.4rem;

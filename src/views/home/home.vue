@@ -81,7 +81,7 @@
     padding: 0 0 50px 0;
   }
   .neck-nav{
-    margin: 5% 0;
+    margin: 2.5% 0 0;
   }
   main{
     padding: 0 10px;
@@ -106,7 +106,7 @@
   }
   .con{
     overflow: hidden;
-    margin: 0 0 30px 0;
+    margin: 0 0 10px 0;
   }
   .con h5{
     position: relative;
@@ -143,7 +143,7 @@
   }
   .con .con-list dl{
     width: 31.66%;
-    margin: 0 2.5% 2% 0;
+    margin: 0 2.5% 0.5% 0;
     box-sizing: border-box;
   }
   .con .con-list dl:nth-child(3n){
@@ -162,19 +162,19 @@
     top: 0;
     right: 0;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding: 1% 7%;
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     background: #333333;
-    opacity: 0.85;
+    opacity: 0.60;
   }
   .con .con-list dl dt span i{
     font-size: 1rem;
     margin: 0 4% 0 0;
   }
   .con .con-list dd h6{
-    margin: 6% 0 5% 0;
+    margin: 6% 0 2% 0;
     font-size: 1.6rem;
     color: #333333;
     overflow: hidden;
@@ -182,7 +182,7 @@
     white-space: nowrap;
   }
   .con .con-list dd p{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #666666;
     overflow: hidden;
     text-overflow:ellipsis;
@@ -193,9 +193,8 @@
     background: #f1f1f1;
     border-radius: 40px;
     border: none;
-    padding: 4% 0;
+    padding: 3% 0;
     color: #999999;
     font-size: 1.6rem;
-    margin: 4% 0 0 0;
   }
 </style>

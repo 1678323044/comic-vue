@@ -38,3 +38,11 @@ Vue.filter('filterReading',function (data) {
   return '续看' + data
 })
 
+Vue.filter('filterSerialState',function (data) {
+  switch (data) {
+    case 0 :
+      return '连载中'
+    case 1 :
+      return '已完结'
+  }
+})

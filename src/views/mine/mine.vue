@@ -42,12 +42,6 @@
           在线客服
         </a>
       </li>
-      <li class="mui-table-view-cell">
-        <a href="#" class="mui-navigate-right">
-          <i class="iconfont iconshezhi" style="color: #6ac8ff;"></i>
-          系统设置
-        </a>
-      </li>
     </ul>
   </section>
 </template>

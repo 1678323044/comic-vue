@@ -28,13 +28,14 @@
     align-items:center;
     justify-content:center;
   }
-  header a{
+  header span,header a{
     width: 14%;
     color: #FC5F45;
     display:flex;
     align-items:center;
     justify-content:center;
   }
+  header span i.iconfont,
   header a i.iconfont{
     font-size: 22px;
   }

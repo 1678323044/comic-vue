@@ -7,7 +7,6 @@
     </head-title>
     <section class="member-con">
       <div class="mine">
-        <mine-info></mine-info>
         <ul class="btm">
           <li>
             <span class="iconfont iconjiaoshi_shujia"></span>
@@ -28,17 +27,16 @@
         <set-meals :setMeals="setMeals" @setMeal="parentFn"></set-meals>
       </div>
       <problem :problems="problems"></problem>
-      <div class="opening-btn">
-        <button @click="handlePay">立即开通</button>
-      </div>
     </section>
+    <div class="opening-btn">
+      <button @click="handlePay">立即开通</button>
+    </div>
     <pay-popup v-show="isShow" :setMeal="setMeal" @isShow="handleClose"></pay-popup>
   </section>
 </template>
 
 <script>
   import headTitle from '../../components/header/header'
-  import mineInfo from '../../components/mineInfo/mineInfo'
   import problem from '../../components/problem/problem'
   import setMeals from '../../components/setMeals/setMeals'
   import payPopup from '../../components/payPopup/payPopup'
@@ -75,7 +73,6 @@
     },
     components: {
       headTitle,
-      mineInfo,
       problem,
       setMeals,
       payPopup
@@ -113,15 +110,15 @@
   }
   .member-con{
     overflow: auto;
-    height: 93%;
-    padding: 0 16px 85px 16px;
+    height: 83%;
+    padding: 0 4%;
   }
   .member-con > div{
     margin: 0 0 36px 0;
   }
   .member-con .mine{
     color: #ffffff;
-    padding: 0 0 10px 0;
+    padding: 3% 0 2% 0;
     border-radius: 8px;
     background: linear-gradient(90deg,#5D8EFB, #91DCFD);
   }
@@ -161,15 +158,17 @@
     background: #ffffff;
     text-align: center;
     border-top: solid 1px #eeeeee;
+    height: 8%;
   }
   .opening-btn button{
     width: 95%;
-    line-height: 43px;
+    padding: 3% 0;
+    display: block;
+    margin: 2% auto 0;
     border-radius: 50px;
     background: #FA6653;
     color: #ffffff;
     font-size: 18px;
-    margin: 14px 0;
     border: none;
   }
 </style>

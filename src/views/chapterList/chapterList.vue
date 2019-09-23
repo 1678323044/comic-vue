@@ -2,24 +2,27 @@
   <section>
     <div class="head-pic">
       <head-title>
-        <router-link to="" slot="return" @click.native="returnFunc">
-          <i class="mui-icon mui-icon-back"></i>
-        </router-link>
+        <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back"></i></span>
+        <span slot="right"></span>
       </head-title>
       <img :src="comicInfo.bannerImagePath" width="100%" alt="">
       <div class="head-title">
         {{comicInfo.name}} <br>
-        <span @click="handleScoring">
+        <p class="tags">
+          <span>{{comicInfo.tags}}</span>
+        </p>
+        <!--评分功能-->
+        <!--<span @click="handleScoring">
           <i v-for="item in 5" class="iconfont iconshoucangxingxing-xianxing"></i>
           去评分
-        </span>
+        </span>-->
       </div>
     </div>
     <div class="btn">
       <ul>
         <li><button @click="addBookshelf" class="addBookshelf">加入书架</button></li>
         <li>
-          <router-link class="reading" :to="url+this.bookId+param+this.$store.getters.handleRead">
+          <router-link class="reading" :to="url+this.bookId+'\&chapterId='+this.$store.getters.handleRead">
             {{comicInfo.provChapterTitle | filterReading}}
           </router-link>
         </li>
@@ -36,7 +39,7 @@
       </div>
       <div class="chapter">
         <dl v-for="chapter in chapters">
-          <router-link :to="url+chapter.bookId+param+chapter.chapterId">
+          <router-link :to="url+chapter.bookId+'\&chapterId='+chapter.serialNumber">
             <dt><img :src="chapter.coverImagePath" width="100%" alt=""></dt>
             <dd>
               <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
@@ -58,15 +61,15 @@
   import {Toast} from 'mint-ui';
   import {reqAddBookshelf} from "../../api";
   import {mapState} from 'vuex'
+  import storageUtil from "../../util/storageUtil/storageUtil";
   export default {
       data(){
           return{
             bookId: 0,
             comicId: {},
             url: '/chapter?bookId=',
-            param: '&chapterId=',
             tipsText: '',
-            isShow: false
+            isShow: false //评星窗口
           }
       },
       components: {
@@ -91,9 +94,10 @@
                   iconClass: 'iconfont iconcuowu'
               });
           },
-          handleScoring(){
+          /* 显示评分窗口 */
+          /*handleScoring(){
             this.isShow = true
-          },
+          },*/
           closePopup(hide){
               this.isShow = hide
           }
@@ -109,6 +113,12 @@
           ...mapState(['comicInfo']),
           ...mapState(['chapters']),
           ...mapState(['message'])
+      },
+      watch: {
+          comicInfo: {
+              deep: true, // 深度监视,将最新的值保存到localStorage
+              handler: storageUtil.saveStorage
+          }
       }
   }
 </script>
@@ -135,7 +145,18 @@
     padding: 7% 0 5% 5%;
     box-sizing: border-box;
   }
-  .head-title span{
+  .head-title p{
+    margin: 2% 0 0 0;
+  }
+  .head-title p span{
+    padding: 1% 2%;
+    background: orange;
+    color: #ffffff;
+    font-size: 1.2rem;
+    border-radius: 4px;
+  }
+  /* 评星样式 */
+  /*.head-title span{
     font-size: 1.4rem;
     line-height: 2.6rem;
   }
@@ -143,7 +164,8 @@
     color: #FC5F45;
     margin-right: 1%;
     font-size: 1.6rem;
-  }
+  }*/
+
   .btn{
     padding: 10px 0;
     margin: 0 0 20px 0;
