@@ -6,9 +6,8 @@
       </router-link>
     </head-title>
     <section class="main">
-      <div class="bg-img"></div>
+      <div class="bg-img"><img src="./image/bg0000.png" width="100%" alt=""></div>
       <div class="con">
-        <mine-info :color="color"></mine-info>
         <nav class="mui-bar mui-bar-tab">
           <a class="mui-tab-item" href="#Popover_0">VIP畅销</a>
           <a class="mui-tab-item" href="#Popover_1">VIP连载</a>
@@ -85,11 +84,6 @@
     height: 91%;
     overflow-y: auto;
     background: #333333;
-  }
-  .main .bg-img{
-    background: url("./image/bg0000.png") no-repeat;
-    background-size: 100%;
-    height: 152px;
   }
   .main .con{
     padding: 0 3%;

@@ -22,9 +22,12 @@ import {
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
   RECEIVE_QUERYCOMICS,
-  RECEIVE_RANKINGLIST,
   RECEIVE_PAYINFO,
-  RECEIVE_RECHARGE
+  RECEIVE_RECHARGE,
+  RECEIVE_POPULARITYLIST,
+  RECEIVE_NEWLIST,
+  RECEIVE_WEEKLYRANKING,
+  RECEIVE_MONTHLYRANKING
 } from './mutations-type'
 
 import {
@@ -88,12 +91,36 @@ export default {
       commit(RECEIVE_RANKSORT,{rankSorts})
     }
   },
-  //异步获取排行榜列表
-  async getRankingList({commit},pageNumber){
+  //异步获取人气榜列表
+  async getPopularityList({commit},pageNumber){
     let result = await reqRankingList(pageNumber);
     if (result.state === 'ok'){
-      let rankingList = result.data
-      commit(RECEIVE_RANKINGLIST,{rankingList})
+      let popularityList = result.data
+      commit(RECEIVE_POPULARITYLIST,{popularityList})
+    }
+  },
+  //异步获取新番榜列表
+  async getNewList({commit},pageNumber){
+    let result = await reqRankingList(pageNumber);
+    if (result.state === 'ok'){
+      let newList = result.data
+      commit(RECEIVE_NEWLIST,{newList})
+    }
+  },
+  //异步获取周排行列表
+  async getWeeklyRanking({commit},pageNumber){
+    let result = await reqRankingList(pageNumber);
+    if (result.state === 'ok'){
+      let weeklyRanking = result.data
+      commit(RECEIVE_WEEKLYRANKING,{weeklyRanking})
+    }
+  },
+  //异步获取月排行列表
+  async getMonthlyRanking({commit},pageNumber){
+    let result = await reqRankingList(pageNumber);
+    if (result.state === 'ok'){
+      let monthlyRanking = result.data
+      commit(RECEIVE_MONTHLYRANKING,{monthlyRanking})
     }
   },
   //异步获取漫画信息

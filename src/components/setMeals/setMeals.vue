@@ -49,7 +49,7 @@
     background: #f8f8f8;
     box-sizing: border-box;
     border: 2px solid transparent;
-    margin: 0 2% 0 0;
+    margin: 0 2% 2% 0;
     position: relative;
   }
   .set-meal li:nth-child(2n){

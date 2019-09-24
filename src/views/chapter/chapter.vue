@@ -63,8 +63,9 @@
 <script>
   import headTitle from '../../components/header/header'
   import storageUtil from "../../util/storageUtil/storageUtil";
+  import {reqAddBookshelf} from '../../api/index'
   import {mapState} from 'vuex'
-  import {Toast} from 'mint-ui'
+  import {Toast,MessageBox} from 'mint-ui'
   export default {
       data(){
         return{
@@ -73,7 +74,8 @@
             bookId: 0,
             isShow: false,
             directoryNumber: storageUtil.readStorage().chapterTotalQuantity, // 总目录数
-            serialState: storageUtil.readStorage().endState  // 漫画连载状态
+            serialState: storageUtil.readStorage().endState,                 // 漫画连载状态
+            collectState: storageUtil.readStorage().collectState             // 漫画收藏状态
         }
       },
       components: {
@@ -115,6 +117,21 @@
       computed: {
           ...mapState(['chapters']),
           ...mapState(['comicContents'])
+      },
+      destroyed(){
+          if (this.collectState === 0){
+              MessageBox.confirm('是否将该漫画加入书架？').then(async action => {
+                  let param = {'bookId': this.bookId};
+                  let result = await reqAddBookshelf(param);
+                  if (result.state === 'ok'){
+                      Toast({
+                          message: result.message,
+                          iconClass: 'iconfont iconic_check'
+                      });
+                  }
+              }).catch(hide => {
+              })
+          }
       }
   }
 </script>

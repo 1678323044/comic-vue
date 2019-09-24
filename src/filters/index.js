@@ -46,3 +46,12 @@ Vue.filter('filterSerialState',function (data) {
       return '已完结'
   }
 })
+
+Vue.filter('filterCollect',function (data) {
+  switch (data) {
+    case 0 :
+      return '加入书架'
+    case 1 :
+      return '已加入书架'
+  }
+})

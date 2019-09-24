@@ -3,6 +3,7 @@ body,h1,h6,h5,ul,li,p,dl,dd{
   margin: 0;
   padding: 0;
   list-style: none;
+  font-family: '米兰方正加粗10.ttf';
 }
 body{
   background: #ffffff!important;
@@ -14,6 +15,10 @@ html{
   html{
     font-size: 46%!important;
   }
+}
+@font-face{
+  font-family: '米兰方正加粗10';
+  src: url("../font/米兰方正加粗10.ttf");
 }
 
 html,body,#app{

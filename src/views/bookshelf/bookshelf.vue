@@ -91,7 +91,8 @@
               //滚动条
               scrollbar: {
                   el: '.swiper-scrollbar',
-              }
+              },
+              touchAngle : 80, //滑动角度
           })
           mySwiper.on('slideChangeTransitionEnd', () => {
               this.currentPage = mySwiper.activeIndex
@@ -136,4 +137,5 @@
     left: 0;
     top: 8px;
   }
+
 </style>

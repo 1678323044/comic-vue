@@ -20,7 +20,7 @@
     </div>
     <div class="btn">
       <ul>
-        <li><button @click="addBookshelf" class="addBookshelf">加入书架</button></li>
+        <li><button @click="addBookshelf" class="addBookshelf">{{comicInfo.collectState | filterCollect}}</button></li>
         <li>
           <router-link class="reading" :to="url+this.bookId+'\&chapterId='+this.$store.getters.handleRead">
             {{comicInfo.provChapterTitle | filterReading}}
@@ -35,7 +35,10 @@
     <div class="list">
       <div class="title">
         <h6>章节列表（47）</h6>
-        <span></span>
+        <span @click="handleSort(isSelected)">
+          <a :class="{'active': isSelected}">正序</a>
+          <a :class="{'active': !isSelected}">倒序</a>
+        </span>
       </div>
       <div class="chapter">
         <dl v-for="chapter in chapters">
@@ -58,7 +61,7 @@
 <script>
   import headTitle from '../../components/header/header'
   import scorePopup from "../../components/scorePopup/scorePopup";
-  import {Toast} from 'mint-ui';
+  import {Toast,Switch} from 'mint-ui';
   import {reqAddBookshelf} from "../../api";
   import {mapState} from 'vuex'
   import storageUtil from "../../util/storageUtil/storageUtil";
@@ -69,7 +72,9 @@
             comicId: {},
             url: '/chapter?bookId=',
             tipsText: '',
-            isShow: false //评星窗口
+            isShow: false,     //评星窗口
+            isSelected: true,  //排序选中
+            sortType: 1        //排序方式 1正序 2倒序
           }
       },
       components: {
@@ -83,16 +88,16 @@
           async addBookshelf(){
              let result = await reqAddBookshelf(this.comicId);
              if (result.state === 'ok'){
-                 console.log(result.state)
                  Toast({
                      message: result.message,
                      iconClass: 'iconfont iconic_check'
                  });
+                 return
              }
-              Toast({
+             Toast({
                   message: result.message,
                   iconClass: 'iconfont iconcuowu'
-              });
+             });
           },
           /* 显示评分窗口 */
           /*handleScoring(){
@@ -100,14 +105,25 @@
           },*/
           closePopup(hide){
               this.isShow = hide
+          },
+          getChapters(sortType){
+              let setPage = {"bookId": this.bookId,"sortType": sortType}
+              this.$store.dispatch('getChapters',setPage)
+          },
+          handleSort(isSelected){
+            this.isSelected = !isSelected
+            if (this.isSelected === true){
+                this.getChapters(this.sortType = 1)
+                return
+            }
+            this.getChapters(this.sortType = 2)
           }
       },
       created() {
           this.bookId = this.$route.query.bookId
           this.comicId = {"bookId": this.bookId}
           this.$store.dispatch('getComicInfo',this.comicId)
-          let setPage = {"bookId": this.bookId,"page": 1,"pageSize": 3}
-          this.$store.dispatch('getChapters',setPage)
+          this.getChapters(this.sortType)
       },
       computed: {
           ...mapState(['comicInfo']),
@@ -188,6 +204,7 @@
     background: url("./image/icon111.png") no-repeat;
     background-size: 36%;
     margin: 0 0 0 60px;
+    color: #FA6F5E;
   }
   .btn .reading{
     border-radius: 40px;
@@ -212,10 +229,33 @@
     border-top: 10px solid #F6F6F6;
     padding: 0 16px;
   }
+  .list .title{
+    display: flex;
+    margin: 4% 0;
+    justify-content: space-between;
+  }
   .list .title h6{
-    padding: 10px 0;
     font-size: 18px;
     color: #333333;
+    margin: 0;
+  }
+  .list .title span{
+    background: #FA6F5E;
+    border-radius: 40px;
+    padding: 1px;
+    overflow: hidden;
+  }
+  .list .title span a{
+    color: #ffffff;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    display: inline-block;
+    padding: 0 4px;
+    float: left;
+  }
+  .list .title span a.active{
+    background: #ffffff;
+    color: #FA6F5E;
   }
   .list dl{
     overflow: hidden;

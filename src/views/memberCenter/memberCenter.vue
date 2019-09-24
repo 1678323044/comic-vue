@@ -7,23 +7,10 @@
     </head-title>
     <section class="member-con">
       <div class="mine">
-        <ul class="btm">
-          <li>
-            <span class="iconfont iconjiaoshi_shujia"></span>
-            VIP漫画免费
-          </li>
-          <li>
-            <span class="iconfont iconjiaoshi_shujia"></span>
-            VIP尊贵标识
-          </li>
-          <li>
-            <span class="iconfont iconjiaoshi_shujia"></span>
-            精品漫画折扣
-          </li>
-        </ul>
+        升级会员，更过瘾看神秘隐藏内容！
       </div>
       <div class="set-meal">
-        <h5>付费VIP套餐</h5>
+        <h5>VIP优惠套餐</h5>
         <set-meals :setMeals="setMeals" @setMeal="parentFn"></set-meals>
       </div>
       <problem :problems="problems"></problem>
@@ -114,33 +101,20 @@
     padding: 0 4%;
   }
   .member-con > div{
-    margin: 0 0 36px 0;
+    margin: 0 0 5% 0;
   }
   .member-con .mine{
-    color: #ffffff;
-    padding: 3% 0 2% 0;
+    color: #ffea55;
+    padding: 4% 0 4% 3%;
     border-radius: 8px;
+    font-size: 1.8rem;
     background: linear-gradient(90deg,#5D8EFB, #91DCFD);
   }
   .member-con .mine .mine-info{
     padding: 25px 16px;
   }
-  .member-con .mine .btm{
-    display: flex;
-    padding: 6px 0;
-  }
-  .member-con .mine .btm li{
-    width: 33.33%;
-    font-size: 14px;
-    text-align: center;
-  }
-  .member-con .mine .btm li span{
-    display: block;
-    font-size: 32px;
-    margin: 0 0 10px 0;
-  }
   .member-con .set-meal h5{
-    line-height: 60px;
+    line-height: 40px;
     font-size: 18px;
     color: #333333;
   }

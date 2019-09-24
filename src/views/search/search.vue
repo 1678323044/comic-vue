@@ -6,27 +6,35 @@
       <span @click="returnFunc">取消</span>
     </div>
     <ul class="search-list" v-show="listState">
-      <li @click="lookComic(item.bookId)" v-for="item in searchList">{{item.bookName}}</li>
+      <li @click="lookComic(item.id)" v-for="(item,index) in searchList" :key="index">{{item.name}}</li>
     </ul>
-    <ul class="mui-table-view" v-show="resultState">
+    <ul class="mui-table-view" v-show="resultState" @click="goTo('/chapterList?bookId='+searchResult.bookId)">
+      <li style="font-size: 1.3rem;margin-bottom: 2%">搜索结果</li>
       <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <div class="pic">
-            <img alt="" class="mui-media-object mui-pull-left" src="../../common/image/210.jpg">
-          </div>
-          <div class="mui-media-body">
-            {{searchResult.name}}
-            <p class="mui-ellipsis">作者：{{searchResult.author}}</p>
-            <p class="text">{{searchResult.introduction}}</p>
-            <p class="update">更新至{{searchResult.lastUpdateChapterTitle}}</p>
-          </div>
-        </a>
-      </li>
+      <div class="pic">
+        <span class="rank">NO.1</span>
+        <img alt="" class="mui-media-object mui-pull-left" :src="searchResult.coverImagePath">
+        <span class="score"><i class="iconfont iconxingxing"></i>{{searchResult.score}}</span>
+      </div>
+      <div class="mui-media-body">
+        <div class="top-text">
+          {{searchResult.name}}
+          <p>作者：{{searchResult.author}}</p>
+          <p>{{searchResult.introduction}}</p>
+        </div>
+        <div class="btm-text">
+          <p><span>{{searchResult.tags}}</span></p>
+          <p>{{searchResult.lastUpdateTime}}</p>
+        </div>
+      </div>
+
+    </li>
     </ul>
   </section>
 </template>
 
 <script>
+  import comicList from "../../components/comicList/comicList";
   import {mapState} from 'vuex'
   export default {
       data(){
@@ -35,31 +43,36 @@
               comicKey: {},
               comicIndex: {},
               resultState: false,
-              listState: true
+              listState: false
           }
+      },
+      components: {
+          comicList
       },
       methods: {
           returnFunc(){
               this.$router.go(-1)
           },
           lookComic(index){
+              this.resultState = true
+              this.listState = false
               this.comicIndex = {"bookId": index}
               this.$store.dispatch('getSearchResult',this.comicIndex)
+          },
+          goTo(path){
+              this.$router.replace(path)
           }
       },
       watch: {
           comicName(){
               this.$nextTick(() => {
+                  console.log(this.comicName)
                   this.comicKey = {"nameKeyword": this.comicName}
                   this.$store.dispatch('getSearchList',this.comicKey)
+                  this.resultState = false
+                  this.listState = true
               })
           },
-          searchResult(){
-              this.$nextTick(() => {
-                  this.resultState = true
-                  this.listState= false
-              })
-          }
       },
       computed: {
           ...mapState(['searchList']),
@@ -75,7 +88,7 @@
     position: relative;
   }
   .search input{
-    width: 80%;
+    width: 90%;
     border-radius: 40px;
     padding: 0 0 0 34px;
     height: 36px;
@@ -85,8 +98,8 @@
     margin-bottom: 0;
   }
   .search span{
-    width: 20%;
-    font-size: 16px;
+    width: 10%;
+    font-size: 1.6rem;
     margin: 6px 0 0 4px;
   }
   .search i{
@@ -103,24 +116,92 @@
     font-size: 16px;
     border-bottom: solid 1px #f6f6f6;
   }
-  .mui-media-body{
-    font-size: 18px;
+
+  /* 这里的样式 重复使用了 */
+  .mui-table-view{
+    padding: 2% 3% 0;
+  }
+  .mui-table-view-cell{
+    margin: 0 0 3% 0;
+    padding: 0;
+  }
+  .mui-table-view-cell:after{
+    background: transparent;
+  }
+  .mui-table-view-cell a{
+    display: flex;
+    margin: 0;
+  }
+  .mui-table-view .pic{
+    position: relative;
+    width: 30%;
   }
   .mui-table-view .mui-media-object{
+    max-width: 90%;
     height: auto;
-    max-width: 120px;
-  }
-  .mui-table-view .mui-media-object.mui-pull-left{
+    display: block;
     border-radius: 10px;
+  }
+  .mui-media-body{
+    font-size: 18px;
+    width: 67%;
+  }
+  .mui-media-body .top-text{
+    height: 70%;
+  }
+  .mui-media-body .top-text p:nth-child(1){
+    margin: 2% 0 0 0;
+  }
+  .mui-media-body .btm-text{
+    height: 30%;
+  }
+  .mui-media-body .btm-text p{
+    height: 50%;
+  }
+  .mui-media-body .btm-text p:nth-child(1) span{
+    padding: 1% 2%;
+    background: orange;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .mui-media-body .btm-text p:nth-child(2){
+    color: #FC5F45;
   }
   .mui-table-view .pic{
     position: relative;
   }
-  .mui-ellipsis{
-    line-height: 34px;
+  .mui-table-view .pic .rank{
+    width: 35%;
+    line-height: 2.6rem;
+    background: #DB383C;
+    position: absolute;
+    left: 0;
+    top: 7%;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 40px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #ffffff;
   }
-  .update{
-    margin-top: 50px;
-    color: orange;
+  .mui-table-view .pic .score{
+    position: absolute;
+    top: 0;
+    right: 10%;
+    color: #ffffff;
+    font-size: 1.3rem;
+    padding: 1% 4%;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background: #333333;
+    opacity: 0.85;
+  }
+  .mui-table-view .pic .score i{
+    font-size: 1rem;
+    margin: 0 4% 0 0;
+  }
+
+  .mui-table-view:before,.mui-table-view:after{
+    background: transparent;
   }
 </style>

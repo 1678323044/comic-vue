@@ -175,7 +175,7 @@
   }
   .con .con-list dd h6{
     margin: 6% 0 2% 0;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #333333;
     overflow: hidden;
     text-overflow:ellipsis;

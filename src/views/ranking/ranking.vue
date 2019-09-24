@@ -9,16 +9,16 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <comic-list :comicList="comicList"></comic-list>
+          <comic-list :popularityList="popularityList"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :comicList="comicList"></comic-list>
+          <comic-list :newList="newList"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :comicList="comicList"></comic-list>
+          <comic-list :weeklyRanking="weeklyRanking"></comic-list>
         </div>
         <div class="swiper-slide">
-          <comic-list :comicList="comicList"></comic-list>
+          <comic-list :monthlyRanking="monthlyRanking"></comic-list>
         </div>
       </div>
     </div>
@@ -32,51 +32,42 @@
   import Swiper from 'swiper'
   import {mapState} from 'vuex'
   export default {
-      data(){
-        return{
-            currentPage: 0
-        }
-      },
       components: {
           headTitle,
           neckTab,
           comicList
       },
       mounted() {
+          //发送获取排行榜分类请求
           this.$store.dispatch('getRankSort');
-          let pageNumber = {"rankcategoryid": 1}
-          this.$store.dispatch('getRankingList',pageNumber);
-          let mySwiper = new Swiper('.swiper-container',{
+          //发送获取排行榜数据请求
+          this.$store.dispatch('getPopularityList',{"rankcategoryid": 1});
+          this.$store.dispatch('getNewList',{"rankcategoryid": 2});
+          this.$store.dispatch('getWeeklyRanking',{"rankcategoryid": 3});
+          this.$store.dispatch('getMonthlyRanking',{"rankcategoryid": 4});
+          new Swiper('.swiper-container',{
               // 如果需要滚动条
               scrollbar: {
                   el: '.swiper-scrollbar',
               },
-          });
-          mySwiper.on('slideChangeTransitionEnd',() => {
-              this.currentPage = mySwiper.activeIndex
-              if (this.currentPage === 0){
-                  let pageNumber = {"rankcategoryid": 1}
-                  this.$store.dispatch('getRankingList',pageNumber);
-              }
-              if (this.currentPage === 1){
-                  let pageNumber = {"rankcategoryid": 2}
-                  this.$store.dispatch('getRankingList',pageNumber);
-              }if (this.currentPage === 2){
-                  let pageNumber = {"rankcategoryid": 3}
-                  this.$store.dispatch('getRankingList',pageNumber);
-              }if (this.currentPage === 3){
-                  let pageNumber = {"rankcategoryid": 4}
-                  this.$store.dispatch('getRankingList',pageNumber);
-              }
+              resistanceRatio : 0,
+              iOSEdgeSwipeDetection : true,
+              touchAngle : 80, //滑动角度
+              /*on:{
+                  touchMoveOpposite(event){
+                      this.is = false
+                  },
+              },*/
           })
-      },
-      methods: {
-
+          /*mySwiper.scrollbar.$el.css('height','4px');
+          mySwiper.scrollbar.$dragEl.css('background','#ff6600');*/
       },
       computed: {
           ...mapState(['rankSorts']),
-          ...mapState(['comicList'])
+          ...mapState(['popularityList']),
+          ...mapState(['newList']),
+          ...mapState(['weeklyRanking']),
+          ...mapState(['monthlyRanking'])
       }
   }
 </script>
-

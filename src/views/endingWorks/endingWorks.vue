@@ -5,22 +5,8 @@
         <i class="mui-icon mui-icon-back"></i>
       </router-link>
     </head-title>
-    <neck-tab :endComicsTab="endComicsTab"></neck-tab>
     <section class="ending-list">
-      <div class="swiper-container">
-        <div class="swiper-scrollbar"></div>
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <end-comics :endEasySell="endEasySell"></end-comics>
-          </div>
-          <div class="swiper-slide">
-            <end-comics :endComics="endComics"></end-comics>
-          </div>
-          <div class="swiper-slide">
-            <end-comics :recentEnds="recentEnds"></end-comics>
-          </div>
-        </div>
-      </div>
+      <end-comics :endEasySell="endEasySell"></end-comics>
     </section>
   </section>
 </template>
@@ -28,7 +14,6 @@
 <script>
   import headTitle from '../../components/header/header'
   import endComics from '../../components/endComics/endComics'
-  import neckTab from '../../components/neckTab/neckTab'
   import {mapState} from 'vuex'
   import Swiper from 'swiper'
   export default {
@@ -51,7 +36,6 @@
       components: {
           headTitle,
           endComics,
-          neckTab
       },
       methods: {
           returnFunc(){

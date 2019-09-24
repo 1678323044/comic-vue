@@ -22,9 +22,12 @@ import {
   RECEIVE_ENDCOMICS,
   RECEIVE_RECENTENDS,
   RECEIVE_QUERYCOMICS,
-  RECEIVE_RANKINGLIST,
   RECEIVE_PAYINFO,
-  RECEIVE_RECHARGE
+  RECEIVE_RECHARGE,
+  RECEIVE_POPULARITYLIST,
+  RECEIVE_NEWLIST,
+  RECEIVE_WEEKLYRANKING,
+  RECEIVE_MONTHLYRANKING
 } from './mutations-type'
 
 export default {
@@ -94,8 +97,17 @@ export default {
   [RECEIVE_QUERYCOMICS](state,{queryComics}){
     state.comicList = queryComics
   },
-  [RECEIVE_RANKINGLIST](state,{rankingList}){
-    state.comicList = rankingList
+  [RECEIVE_POPULARITYLIST](state,{popularityList}){
+    state.popularityList = popularityList
+  },
+  [RECEIVE_NEWLIST](state,{newList}){
+    state.newList = newList
+  },
+  [RECEIVE_WEEKLYRANKING](state,{weeklyRanking}){
+    state.weeklyRanking = weeklyRanking
+  },
+  [RECEIVE_MONTHLYRANKING](state,{monthlyRanking}){
+    state.monthlyRanking = monthlyRanking
   },
   [RECEIVE_PAYINFO](state,{payInfo}){
     state.payInfo = payInfo

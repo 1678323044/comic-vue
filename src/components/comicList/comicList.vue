@@ -20,15 +20,95 @@
         </div>
       </router-link>
     </li>
+    <li class="mui-table-view-cell mui-media" v-for="item in popularityList">
+      <router-link :to="url+item.id">
+        <div class="pic">
+          <span class="rank">NO.1</span>
+          <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
+          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+        </div>
+        <div class="mui-media-body">
+          <div class="top-text">
+            {{item.name}}
+            <p>作者：{{item.author}}</p>
+            <p>{{item.introduction}}</p>
+          </div>
+          <div class="btm-text">
+            <p><span>{{item.tags}}</span></p>
+            <p>{{item.lastUpdateTime}}</p>
+          </div>
+        </div>
+      </router-link>
+    </li>
+    <li class="mui-table-view-cell mui-media" v-for="item in newList">
+      <router-link :to="url+item.id">
+        <div class="pic">
+          <span class="rank">NO.1</span>
+          <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
+          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+        </div>
+        <div class="mui-media-body">
+          <div class="top-text">
+            {{item.name}}
+            <p>作者：{{item.author}}</p>
+            <p>{{item.introduction}}</p>
+          </div>
+          <div class="btm-text">
+            <p><span>{{item.tags}}</span></p>
+            <p>{{item.lastUpdateTime}}</p>
+          </div>
+        </div>
+      </router-link>
+    </li>
+    <li class="mui-table-view-cell mui-media" v-for="item in weeklyRanking">
+      <router-link :to="url+item.id">
+        <div class="pic">
+          <span class="rank">NO.1</span>
+          <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
+          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+        </div>
+        <div class="mui-media-body">
+          <div class="top-text">
+            {{item.name}}
+            <p>作者：{{item.author}}</p>
+            <p>{{item.introduction}}</p>
+          </div>
+          <div class="btm-text">
+            <p><span>{{item.tags}}</span></p>
+            <p>{{item.lastUpdateTime}}</p>
+          </div>
+        </div>
+      </router-link>
+    </li>
+    <li class="mui-table-view-cell mui-media" v-for="item in monthlyRanking">
+      <router-link :to="url+item.id">
+        <div class="pic">
+          <span class="rank">NO.1</span>
+          <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
+          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+        </div>
+        <div class="mui-media-body">
+          <div class="top-text">
+            {{item.name}}
+            <p>作者：{{item.author}}</p>
+            <p>{{item.introduction}}</p>
+          </div>
+          <div class="btm-text">
+            <p><span>{{item.tags}}</span></p>
+            <p>{{item.lastUpdateTime}}</p>
+          </div>
+        </div>
+      </router-link>
+    </li>
   </ul>
 </template>
 
 <script>
   export default {
-      props: ['comicList'],
+      props: ['comicList','popularityList','newList','weeklyRanking','monthlyRanking'],
       data(){
           return{
-              url: '/chapterList?bookId='
+              url: '/chapterList?bookId=',
           }
       }
   }
@@ -60,7 +140,7 @@
     border-radius: 10px;
   }
   .mui-media-body{
-    font-size: 18px;
+    font-size: 16px;
     width: 67%;
   }
   .mui-media-body .top-text{
@@ -116,5 +196,8 @@
   .mui-table-view .pic .score i{
     font-size: 1rem;
     margin: 0 4% 0 0;
+  }
+  .mui-table-view:after{
+    background: transparent;
   }
 </style>

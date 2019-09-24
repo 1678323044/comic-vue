@@ -43,6 +43,9 @@
 </script>
 
 <style scoped>
+  .mui-table-view{
+    padding: 4% 0 0 0;
+  }
   .mui-table-view label{
     display: flex;
   }
@@ -54,9 +57,20 @@
   }
   .mui-table-view .mui-media-object{
     height: auto;
-    max-width: 120px;
+    max-width: 105px;
   }
   .mui-table-view .mui-media-object.mui-pull-left{
     border-radius: 10px;
+  }
+  .mui-table-view:before,
+  .mui-table-view-cell:after{
+    background: transparent;
+  }
+  .mui-table-view-cell{
+    padding: 0 15px;
+    margin: 0 0 3% 0;
+  }
+  .mui-table-view:after{
+    background: transparent;
   }
 </style>

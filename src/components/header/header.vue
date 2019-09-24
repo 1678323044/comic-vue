@@ -15,7 +15,7 @@
 <style>
   header{
     text-align: center;
-    height: 9%;
+    height: 8%;
     background: #ffffff;
     display:flex;
   }
