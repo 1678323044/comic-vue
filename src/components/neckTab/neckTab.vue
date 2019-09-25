@@ -1,20 +1,24 @@
 <template>
   <nav class="neck-tab">
-    <a v-for="rankSort in rankSorts">
+    <a :style="{'color': color}" :class="{'active': index === currentPage}" @click="handleSwitch(index)" v-for="(rankSort,index) in rankSorts" :key="index">
       {{rankSort.name}}
-    </a>
-    <a v-for="item in bookshelfTab">
-      {{item}}
-    </a>
-    <a v-for="item in endComicsTab">
-      {{item}}
     </a>
   </nav>
 </template>
 
 <script>
   export default {
-    props: ['rankSorts','bookshelfTab','endComicsTab']
+    props: ['rankSorts','color','currentPage'],
+    data(){
+        return{
+            num: 0
+        }
+    },
+    methods: {
+        handleSwitch(index){
+            this.$emit('num',index)
+        }
+    }
   }
 </script>
 
@@ -30,6 +34,6 @@
     font-size: 1.7rem;
   }
   .neck-tab a.active{
-    color: #FC5F45;
+    color: #FC5F45!important;
   }
 </style>

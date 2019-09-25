@@ -140,7 +140,7 @@
     border-radius: 10px;
   }
   .mui-media-body{
-    font-size: 16px;
+    font-size: 1.6rem;
     width: 67%;
   }
   .mui-media-body .top-text{

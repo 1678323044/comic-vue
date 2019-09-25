@@ -4,7 +4,7 @@
       <router-link to="" slot="return"></router-link>
       <router-link to="" slot="right" @click.native="showEdit(isShow)"><i class="iconfont iconbianji"></i></router-link>
     </head-title>
-    <neck-tab :bookshelfTab="bookshelfTab"></neck-tab>
+    <neck-tab :rankSorts="rankSorts" @num="parentFn" :currentPage="currentPage"></neck-tab>
     <div class="swiper-scrollbar"></div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -12,10 +12,10 @@
           <my-books></my-books>
         </div>
         <div class="swiper-slide">
-          <my-books :collections="collections" :isShow="isShow" :collectionsId="collectionsId"></my-books>
+          <my-books :collections="collections" :isShow="isShow" :collectionsId="collectionsId" @emitCollectionsId="reqCollectionsId"></my-books>
         </div>
         <div class="swiper-slide">
-          <my-books :readHistories="readHistories" :isShow="isShow" :readHistoriesId="readHistoriesId"></my-books>
+          <my-books :readHistories="readHistories" :isShow="isShow" :readHistoriesId="readHistoriesId" @emitReadHistoriesId="reqReadHistoriesId"></my-books>
         </div>
       </div>
     </div>
@@ -31,16 +31,22 @@
   import neckTab from '../../components/neckTab/neckTab'
   import myBooks from '../../components/myBooks/myBooks'
   import {reqCancelCollection,reqDelHistory} from '../../api/index'
+  import {Toast} from 'mint-ui'
   import Swiper from 'swiper'
   import {mapState} from 'vuex'
   export default {
       data(){
         return{
-            bookshelfTab: ['我的购买','兴趣收藏','历史记录'],
+            rankSorts: [
+                {"name": '我的购买'},
+                {"name": "兴趣收藏"},
+                {"name": '历史记录'}
+            ],
             isShow: false,
             collectionsId: [],
             readHistoriesId: [],
-            currentPage: 0
+            currentPage: 0,
+            mySwiper: new function () {}
         }
       },
       components: {
@@ -52,6 +58,7 @@
           showEdit(isShow){
             this.isShow = !isShow;
           },
+          // 处理全选功能
           handleSelectAll(){
               if (this.currentPage === 1){
                   this.collectionsId = [];
@@ -64,39 +71,56 @@
                       this.readHistoriesId.push(item.bookId)
                   })
               }else if (this.currentPage === 0){
-
               }
           },
+          // 处理单次选择功能
+          reqCollectionsId(indexes){
+              this.collectionsId = indexes
+          },
+          reqReadHistoriesId(indexes){
+            this.readHistoriesId = indexes
+          },
+          //处理删除功能
           async handleDelete(){
               if (this.currentPage === 1){
                   let param = {"bookId": this.collectionsId.join('$')};
                   let result = await reqCancelCollection(param);
                   if (result.state === 'ok'){
-                      alert(result.message)
+                      Toast({
+                          message: result.message,
+                      });
+                      this.$router.go(0)  // 刷新当前页面
                   }
               }else if (this.currentPage === 2){
-                  let param = {"bookId": this.readHistoriesId.join('$')};
-                  let result = await reqCancelCollection(param);
+                  let param = {"bookIds": this.readHistoriesId.join('$')};
+                  let result = await reqDelHistory(param);
                   if (result.state === 'ok'){
-                      alert(result.message)
+                      Toast({
+                          message: '操作'+ result.message,
+                      });
+                      this.$router.go(0)
                   }
               }
           },
+          parentFn(index){
+              this.currentPage = index
+              this.mySwiper.slideTo(index, 200, false); //点击切换到第n页
+          }
       },
       mounted(){
           this.$store.dispatch('getCollect');
           this.$store.dispatch('getReadHistory');
           this.$store.dispatch('getBuyHistory');
-          let mySwiper = new Swiper('.swiper-container',{
+          this.mySwiper = new Swiper('.swiper-container',{
               //滚动条
               scrollbar: {
                   el: '.swiper-scrollbar',
               },
               touchAngle : 80, //滑动角度
           })
-          mySwiper.on('slideChangeTransitionEnd', () => {
-              this.currentPage = mySwiper.activeIndex
-              this.isShow = false
+          this.mySwiper.on('slideChangeTransitionEnd', () => {
+              this.currentPage = this.mySwiper.activeIndex
+              this.isShow = false // 当页面滚动，关闭多选框
           })
       },
       computed: {

@@ -3,16 +3,12 @@
     <mine-info></mine-info>
     <nav class="mui-bar mui-bar-tab ">
       <a class="mui-tab-item" href="#">
-        <span><i>0.00</i>元</span>
-        我的余额
+        <span>0</span>
+        会员到期时间
       </a>
       <a class="mui-tab-item" href="#">
-        <span><i>0</i>个</span>
-        我的优惠
-      </a>
-      <a class="mui-tab-item" href="#">
-        <span><i>0</i>个</span>
-        我的积分
+        <span>0</span>
+        我的阅读币
       </a>
     </nav>
     <ul class="mui-table-view mui-table-view-chevron mine-list">
@@ -25,9 +21,17 @@
       <li class="mui-table-view-cell">
         <router-link class="mui-navigate-right" to="/recharge">
           <i class="iconfont iconjinbi" style="color: #5c8dff;"></i>
+          充值阅读币
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell">
+        <router-link class="mui-navigate-right" to="">
+          <i class="iconfont iconfenxiang" style="color: #5c8dff;"></i>
           推荐一个好友领10000个阅读币
         </router-link>
       </li>
+    </ul>
+    <ul class="mui-table-view mui-table-view-chevron mine-list">
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
           <i class="iconfont icondianhua2" style="color: #8f64ff;"></i>
@@ -104,10 +108,8 @@
   }
   .mui-bar span{
     display: block;
-  }
-  .mui-bar span i{
-    font-size: 20px;
-    color: orange;
+    color: #FC5F45;
+    font-size: 1.9rem;
   }
   .iconfont{
     font-size: 26px;

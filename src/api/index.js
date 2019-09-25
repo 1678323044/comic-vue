@@ -97,3 +97,6 @@ export const reqScore = (data) => ajax(`${API_URL}/grade.do`,data)
 //查询订单状态模块
 export const reqOrderState = (data) => ajax(`${API_URL}/pay/state.do`,data)
 
+//购买漫画章节模块
+export const reqBuyChapter = (data) => ajax(`${API_URL}/buyChapter.do`,data)
+

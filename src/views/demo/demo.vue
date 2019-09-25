@@ -1,9 +1,9 @@
 <template>
   <div id="app" style="font-size: 24px">
-    <input @change="headleQuery" type="radio" id="male" value="Male" v-model="gender"> Male
-    <input @change="headleQuery" type="radio" id="female" value="Female" v-model="gender"> Femalea
-    <input @change="headleQuery" type="radio" id="hello" value="hello" v-model="gender"> hello
-    <p>{{gender}}</p>
+    <input class="weui-check" type="checkbox" name="checkbox1" value="123" v-model="checkVal" />123
+    <input class="weui-check" type="checkbox" name="checkbox1" value="456" v-model="checkVal" />456
+    <input class="weui-check" type="checkbox" name="checkbox1" value="789" v-model="checkVal" />789
+    <p>{{checkVal}}</p>
   </div>
 </template>
 
@@ -12,12 +12,7 @@
         name: 'app',
         data () {
             return {
-                gender: ''
-            }
-        },
-        methods: {
-            headleQuery(){
-                console.log(this.gender)
+                checkVal: []
             }
         }
     }

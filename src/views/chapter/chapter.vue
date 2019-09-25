@@ -1,5 +1,5 @@
 <template>
-  <section :class="{'public-main': popupVisible}">
+  <section :class="{'public-main': popupVisible}" :style="[{'overflow': val.v},{'height': val.h}]">
     <head-title v-show="isShow" class="float-bar top" :title="comicContents.title+comicContents.name">
       <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back" style="color: white"></i></span>
       <span slot="right"></span>
@@ -41,6 +41,14 @@
         <mt-tab-item id="tab4"></mt-tab-item>
       </mt-tabbar>
     </div>
+    <!-- 遮罩层 -->
+    <div class="mask" v-show="maskIsShow">
+      <p>{{comicContents.title}}</p>
+      <p>立即阅读需要支付<span>{{comicContents.readingCoin}}</span>金币</p>
+      <button @click="handleBuy">购买本话</button>
+      <p>金币余额：缺少该字段</p>
+    </div>
+    <!-- 侧边目录栏 -->
     <mt-popup
       v-model="popupVisible"
       modal="true"
@@ -63,28 +71,40 @@
 <script>
   import headTitle from '../../components/header/header'
   import storageUtil from "../../util/storageUtil/storageUtil";
-  import {reqAddBookshelf} from '../../api/index'
+  import {reqAddBookshelf,reqBuyChapter} from '../../api/index'
   import {mapState} from 'vuex'
   import {Toast,MessageBox} from 'mint-ui'
   export default {
       data(){
         return{
-            popupVisible: false,
+            popupVisible: false,   // 显示章节列表,并禁止漫画内容上下滚动
             pageIndex: {},
             bookId: 0,
             isShow: false,
+            maskIsShow: false,    // 遮罩层隐藏
+            val: {"v": 'visible',"h": "auto"},       // 默认允许漫画内容上下滚动
             directoryNumber: storageUtil.readStorage().chapterTotalQuantity, // 总目录数
             serialState: storageUtil.readStorage().endState,                 // 漫画连载状态
-            collectState: storageUtil.readStorage().collectState             // 漫画收藏状态
+            collectState: storageUtil.readStorage().collectState,            // 漫画收藏状态
+            readPermission: 0                                                // 阅读权限 0 免费 1 VIP/阅读币
         }
       },
       components: {
           headTitle
       },
       created() {
+          //发送获取漫画内容的请求
           this.bookId = this.$route.query.bookId
           this.pageIndex = {"bookId": this.bookId,"chapterId": this.$route.query.chapterId}
           this.$store.dispatch('getComicContent',this.pageIndex)
+
+          //判断该章节是否需要付费
+          this.readPermission = this.$route.query.readPermission
+          if (this.readPermission === '1'){ // 1 需要付费
+              this.maskIsShow = true                 // 开启遮罩层
+              this.val = {"v": 'hidden',"h": "100%"} // 禁止漫画内容上下滚动
+              this.isShow = true                     // 显示头部标题和返回键
+          }
       },
       methods: {
         returnFunc(){
@@ -92,7 +112,7 @@
         },
         handleCatalog(){
             this.popupVisible = true
-            let setPage = {"bookId": this.$route.query.bookId}
+            let setPage = {"bookId": this.bookId}
             this.$store.dispatch('getChapters',setPage)
         },
         backTop(){
@@ -112,6 +132,21 @@
         },
         handleShow(isShow){
             this.isShow = !isShow
+        },
+        async handleBuy(){
+            let result = await reqBuyChapter(this.pageIndex);
+            if (result.state === 'ok'){
+                this.val = {"v": 'visible',"h": "auto"} //允许漫画内容上下滚动
+                this.isShow = false                     //隐藏头部标题
+                this.maskIsShow = false                 // 关闭遮罩层
+                Toast({
+                    message: result.message,            // 提示购买金币成功
+                });
+                return
+            }
+            Toast({
+                message: result.message,            // 提示购买金币失败
+            });
         }
       },
       computed: {
@@ -170,6 +205,7 @@
     line-height: 60px;
     text-align: center;
     font-size: 16px;
+    z-index: 99999;
   }
   .float-bar.top span{
     float: left;
@@ -201,6 +237,7 @@
   .float-bar.bottom .turning-page li i{
     font-size: 20px;
   }
+  /* 侧边目录栏 */
   .mint-popup{
     height: 100%;
     width: 70%;
@@ -234,5 +271,40 @@
     color: #ffffff;
     font-size: 1.6rem;
     border-bottom: solid 1px #444444;
+  }
+  /* 遮罩层 */
+  .mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 90% 0 0 0;
+    text-align: center;
+    background: linear-gradient(transparent,#000000,#000000);
+  }
+  .mask p{
+    color: #ffffff;
+    font-size: 1.6rem;
+  }
+  .mask p:nth-child(1){
+    margin: 0 0 6% 0;
+  }
+  .mask p:nth-child(2){
+    margin: 0 0 4% 0;
+  }
+  .mask p span{
+    font-size: 2.4rem;
+    color: orange;
+  }
+  .mask button{
+    width: 80%;
+    border-radius: 40px;
+    background: #FA6F5E;
+    border: none;
+    padding: 3% 0;
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin: 0 0 10% 0;
   }
 </style>

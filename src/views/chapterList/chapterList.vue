@@ -42,7 +42,7 @@
       </div>
       <div class="chapter">
         <dl v-for="chapter in chapters">
-          <router-link :to="url+chapter.bookId+'\&chapterId='+chapter.serialNumber">
+          <router-link :to="url+chapter.bookId+'\&chapterId='+chapter.serialNumber+'\&readPermission='+chapter.readPermission">
             <dt><img :src="chapter.coverImagePath" width="100%" alt=""></dt>
             <dd>
               <h6>{{chapter.title}}&nbsp;{{chapter.name}}</h6>
@@ -92,6 +92,7 @@
                      message: result.message,
                      iconClass: 'iconfont iconic_check'
                  });
+                 this.$router.go(0)
                  return
              }
              Toast({

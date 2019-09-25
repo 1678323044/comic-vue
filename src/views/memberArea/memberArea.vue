@@ -8,12 +8,7 @@
     <section class="main">
       <div class="bg-img"><img src="./image/bg0000.png" width="100%" alt=""></div>
       <div class="con">
-        <nav class="mui-bar mui-bar-tab">
-          <a class="mui-tab-item" href="#Popover_0">VIP畅销</a>
-          <a class="mui-tab-item" href="#Popover_1">VIP连载</a>
-          <a class="mui-tab-item" href="#Popover_2">VIP完结</a>
-          <a class="mui-tab-item" href="#Popover_2">全部</a>
-        </nav>
+        <neck-tab :rankSorts="rankSorts" :color="color" @num="parentFn" :currentPage="currentPage"></neck-tab>
         <div class="swiper-scrollbar"></div>
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -40,26 +35,39 @@
   import headTitle from '../../components/header/header'
   import mineInfo from '../../components/mineInfo/mineInfo'
   import vipComicList from '../../components/vipComicList/vipComicList'
+  import neckTab from "../../components/neckTab/neckTab";
   import Swiper from 'swiper'
   import {mapState} from 'vuex'
   export default {
       data(){
         return{
-            color: '#333333'
+            color: '#ffffff',
+            rankSorts: [
+                {"name": 'VIP畅销'},
+                {"name": 'VIP连载'},
+                {"name": 'VIP完结'},
+                {"name": '全部'}
+            ],
+            mySwiper: new function () {},
+            currentPage: 0
         }
       },
       components: {
           headTitle,
           mineInfo,
-          vipComicList
+          vipComicList,
+          neckTab
       },
       mounted() {
-          new Swiper('.swiper-container',{
-              //滚动条
+          this.mySwiper = new Swiper('.swiper-container',{
               scrollbar: {
-                  el: '.swiper-scrollbar',
+                  el: '.swiper-scrollbar', //滚动条
               }
           });
+          this.mySwiper.on('slideChangeTransitionEnd',() => {
+              this.currentPage = this.mySwiper.activeIndex
+          })
+
           this.$store.dispatch('getSellWellComics');
           this.$store.dispatch('getSerialComics');
           this.$store.dispatch('getMemberEndComics');
@@ -68,6 +76,10 @@
       methods: {
           returnFunc(){
               this.$router.go(-1)
+          },
+          parentFn(index){
+              this.currentPage = index
+              this.mySwiper.slideTo(index, 200, false); //点击切换到第n页
           }
       },
       computed: {
@@ -100,14 +112,7 @@
   .swiper-container{
     padding: 6px 0 0 0;
   }
-  .mui-bar-tab{
-    box-shadow: 0 0 0 transparent;
-    font-size: 14px;
-    position: static;
-    top: 40px;
-    background: transparent;
-  }
-  .mui-bar-tab .mui-tab-item{
-    color: #ffffff;
+  .neck-tab{
+    padding: 3% 0;
   }
 </style>
