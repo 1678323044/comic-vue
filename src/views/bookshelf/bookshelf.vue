@@ -54,7 +54,11 @@
           neckTab,
           myBooks
       },
+      inject: ['reload'],
       methods:{
+          refresh () {
+              this.reload() // 操作完成后，刷新当前页面
+          },
           showEdit(isShow){
             this.isShow = !isShow;
           },
@@ -82,23 +86,37 @@
           },
           //处理删除功能
           async handleDelete(){
+              //当前页0 我的购买
+              if (this.currentPage === 0){
+                  let param = {"bookId": this.collectionsId.join('$')};
+                  let result = await reqCancelCollection(param);
+                  if (result.state === 'ok'){
+                      Toast({
+                          message: '操作'+result.message,
+                      });
+                      this.refresh()
+                  }
+              }
+              //当前页1 兴趣收藏
               if (this.currentPage === 1){
                   let param = {"bookId": this.collectionsId.join('$')};
                   let result = await reqCancelCollection(param);
                   if (result.state === 'ok'){
                       Toast({
-                          message: result.message,
+                          message: '操作'+result.message,
                       });
-                      this.$router.go(0)  // 刷新当前页面
+                      this.refresh()
                   }
-              }else if (this.currentPage === 2){
+              }
+              //当前页2 历史记录
+              if (this.currentPage === 2){
                   let param = {"bookIds": this.readHistoriesId.join('$')};
                   let result = await reqDelHistory(param);
                   if (result.state === 'ok'){
                       Toast({
                           message: '操作'+ result.message,
                       });
-                      this.$router.go(0)
+                      this.refresh()
                   }
               }
           },
@@ -125,7 +143,8 @@
       },
       computed: {
           ...mapState(['collections']),
-          ...mapState(['readHistories'])
+          ...mapState(['readHistories']),
+          ...mapState(['buyHistory'])
       }
   }
 </script>

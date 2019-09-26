@@ -147,12 +147,16 @@
             Toast({
                 message: result.message,            // 提示购买金币失败
             });
+        },
+        refresh(){
+            this.reload()
         }
       },
       computed: {
           ...mapState(['chapters']),
           ...mapState(['comicContents'])
       },
+      inject: ['reload'],
       destroyed(){
           if (this.collectState === 0){
               MessageBox.confirm('是否将该漫画加入书架？').then(async action => {
@@ -163,6 +167,7 @@
                           message: result.message,
                           iconClass: 'iconfont iconic_check'
                       });
+                      this.refresh()
                   }
               }).catch(hide => {
               })

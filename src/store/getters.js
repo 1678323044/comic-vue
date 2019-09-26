@@ -5,5 +5,11 @@ export default {
       return '1'
     }
     return state.comicInfo.provChapterId
+  },
+  handleVipLevel(state){
+    if (state.accountInfo.vipLevel === 0){
+      return true
+    }
+    return false
   }
 }

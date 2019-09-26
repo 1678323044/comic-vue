@@ -27,7 +27,8 @@ import {
   RECEIVE_POPULARITYLIST,
   RECEIVE_NEWLIST,
   RECEIVE_WEEKLYRANKING,
-  RECEIVE_MONTHLYRANKING
+  RECEIVE_MONTHLYRANKING,
+  RECEIVE_ACCOUNTINFO
 } from './mutations-type'
 
 import {
@@ -56,6 +57,7 @@ import {
   reqRankingList,
   reqPayInfo,
   reqRecharge,
+  reqAccountInfo
 } from '../api/index'
 
 export default {
@@ -283,6 +285,14 @@ export default {
       let rechargeInfo = result.data;
       window.location.href = rechargeInfo.payUrl
       commit(RECEIVE_RECHARGE,{rechargeInfo})
+    }
+  },
+  //异步获取账号信息
+  async getAccountInfo({commit}){
+    let result = await reqAccountInfo()
+    if (result.state === 'ok'){
+      let accountInfo = result.data;
+      commit(RECEIVE_ACCOUNTINFO,{accountInfo})
     }
   }
 }

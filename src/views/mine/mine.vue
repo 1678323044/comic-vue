@@ -1,13 +1,23 @@
 <template>
   <section class="mine-page">
-    <mine-info></mine-info>
-    <nav class="mui-bar mui-bar-tab ">
+    <div class="mine-info info" v-if="this.$store.getters.handleVipLevel">
+      <p>会员分包月VIP和按章节付阅读币两种方式：</p>
+      <p>VIP包月可完整看所有隐藏内容，省钱划算，推荐。</p>
+      <p>按章节付阅读币可单独购买某章节内容。</p>
+      <p>（点下方“开通VIP”或“阅读币充值”）</p>
+    </div>
+    <div class="mine-info" v-else>
+      <p>您已经是VIP，到期时间2019-09-11</p>
+      <p>您的阅读币13000个</p>
+      <p>推荐好友N个，获得赠送N天会员资格（已赠送时间）。</p>
+    </div>
+    <nav class="mui-bar mui-bar-tab">
       <a class="mui-tab-item" href="#">
-        <span>0</span>
+        <span>{{accountInfo.vipEndTimeStr || 0}}</span>
         会员到期时间
       </a>
       <a class="mui-tab-item" href="#">
-        <span>0</span>
+        <span>{{accountInfo.readingCoin || 0}}</span>
         我的阅读币
       </a>
     </nav>
@@ -43,18 +53,40 @@
 </template>
 
 <script>
-  import mineInfo from "../../components/mineInfo/mineInfo"
+  import {mapState} from 'vuex'
   export default {
-      components: {
-          mineInfo
+      created() {
+          this.$store.dispatch('getAccountInfo')
+      },
+      computed: {
+        ...mapState(['accountInfo'])
       }
   }
 </script>
 
 <style scoped>
+  .mine-info{
+    padding: 6% 4%;
+    background: -webkit-linear-gradient(left,#e60817,#ff801a);
+  }
+  .info :nth-child(1){
+    text-indent: 0;
+  }
+  .info{
+    text-indent: 1.6rem;
+  }
+  .mine-info p{
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0;
+    line-height: 2.3rem;
+  }
   .mine-page{
     height: 100%;
     background: #f6f6f6;
+  }
+  .mui-bar-tab .mui-tab-item{
+    font-size: 1.6rem;
   }
   .mui-table-view{
     margin: 10px 0 0 0;

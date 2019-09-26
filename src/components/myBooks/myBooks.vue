@@ -2,11 +2,11 @@
   <ul class="mui-table-view">
     <li class="mui-table-view-cell mui-media" v-for="(collect,index) in collections" :key="index">
       <label>
-        <input type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectId" @change="handleChoice('collect')">
-        <router-link :to="url+collect.bookId">
+        <input class="iconfont iconic_check" type="checkbox" v-show="isShow" :value="collect.bookId" v-model="collectId" @change="handleChoice('collect')">
+        <div class="con-list" @click="handleJump(url+collect.bookId)">
           <div class="pic">
             <img alt="" class="mui-media-object mui-pull-left" :src="collect.coverImagePath">
-            <span class="score"><i class="iconfont iconxingxing"></i>{{collect.score}}</span>
+            <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{collect.score}}</span>
           </div>
           <div class="mui-media-body">
             <div class="top">
@@ -18,16 +18,16 @@
               <p>更新至：{{collect.lastUpdateChapterTitle}}</p>
             </div>
           </div>
-        </router-link>
+        </div>
       </label>
     </li>
     <li class="mui-table-view-cell mui-media" v-for="(readHistory,index) in readHistories" :key="index" @change="handleChoice('readHistories')">
       <label>
-        <input type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="HistoryId">
-        <router-link :to="url+readHistory.bookId">
+        <input class="iconfont iconic_check" type="checkbox" v-show="isShow" :value="readHistory.bookId" v-model="HistoryId">
+        <div class="con-list" @click="handleJump(url+readHistory.bookId)">
           <div class="pic">
             <img alt="" class="mui-media-object mui-pull-left" :src="readHistory.coverImagePath">
-            <span class="score"><i class="iconfont iconxingxing"></i>{{readHistory.score}}</span>
+            <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{readHistory.score}}</span>
           </div>
           <div class="mui-media-body">
             <div class="top">
@@ -39,7 +39,7 @@
               <p>更新至：{{readHistory.lastUpdateChapterTitle}}</p>
             </div>
           </div>
-        </router-link>
+        </div>
       </label>
     </li>
   </ul>
@@ -63,6 +63,11 @@
               if (param === 'readHistories'){
                   this.$emit('emitReadHistoriesId',this.HistoryId)
               }
+          },
+          handleJump(path){
+            if (this.isShow === false){
+                this.$router.replace(path)
+            }
           }
       },
       watch: {
@@ -84,7 +89,7 @@
     padding: 0;
     margin: 0 0 3% 0;
   }
-  .mui-table-view li.mui-table-view-cell a{
+  .mui-table-view li.mui-table-view-cell .con-list{
     display: flex;
   }
   .mui-table-view li.mui-table-view-cell .pic{
@@ -119,27 +124,33 @@
     margin: 0;
   }
 
-
   .mui-table-view label{
     display: flex;
   }
   .mui-table-view label input{
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
     align-self: center;
     margin: 0 15px 0 0;
+    color: #999999;
+    -webkit-appearance:none;
+    appearance:none;
+    outline: none;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid #999999;
   }
-
-
+  .mui-table-view label input:checked{
+    color: #FC5F45;
+    border: 1px solid #FC5F45;
+  }
   .mui-table-view:before,
-  .mui-table-view-cell:after{
-    background: transparent;
-  }
-
+  .mui-table-view-cell:after,
   .mui-table-view:after{
     background: transparent;
   }
-
   .mui-table-view .mui-media-body .top{
     height: 85%;
     font-size: 1.6rem;

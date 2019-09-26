@@ -27,5 +27,6 @@ export default {
   popularityList: [],   //人气榜列表
   newList: [],          //新番榜列表
   weeklyRanking: [],    //周排名列表
-  monthlyRanking: []    //月排名列表
+  monthlyRanking: [],   //月排名列表
+  accountInfo: {}       //个人账号信息
 }

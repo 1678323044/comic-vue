@@ -117,9 +117,9 @@
     border-bottom: solid 1px #f6f6f6;
   }
 
-  /* 这里的样式 重复使用了 */
+  /* 漫画列表 */
   .mui-table-view{
-    padding: 2% 3% 0;
+    padding: 4% 3% 0;
   }
   .mui-table-view-cell{
     margin: 0 0 3% 0;
@@ -200,7 +200,6 @@
     font-size: 1rem;
     margin: 0 4% 0 0;
   }
-
   .mui-table-view:before,.mui-table-view:after{
     background: transparent;
   }

@@ -20,7 +20,7 @@
     </div>
     <div class="btn">
       <ul>
-        <li><button @click="addBookshelf" class="addBookshelf">{{comicInfo.collectState | filterCollect}}</button></li>
+        <li><button @click="addBookshelf" :class="['addBookshelf',{addColor: comicInfo.collectState === 1}]">{{comicInfo.collectState | filterCollect}}</button></li>
         <li>
           <router-link class="reading" :to="url+this.bookId+'\&chapterId='+this.$store.getters.handleRead">
             {{comicInfo.provChapterTitle | filterReading}}
@@ -81,7 +81,11 @@
           headTitle,
           scorePopup
       },
+      inject: ['reload'],
       methods: {
+          refresh(){
+              this.reload()
+          },
           returnFunc(){
               this.$router.go(-1)
           },
@@ -92,7 +96,7 @@
                      message: result.message,
                      iconClass: 'iconfont iconic_check'
                  });
-                 this.$router.go(0)
+                 this.refresh()
                  return
              }
              Toast({
@@ -205,6 +209,8 @@
     background: url("./image/icon111.png") no-repeat;
     background-size: 36%;
     margin: 0 0 0 60px;
+  }
+  .btn .addColor{
     color: #FA6F5E;
   }
   .btn .reading{

@@ -33,7 +33,6 @@
 
 <script>
   import headTitle from '../../components/header/header'
-  import mineInfo from '../../components/mineInfo/mineInfo'
   import vipComicList from '../../components/vipComicList/vipComicList'
   import neckTab from "../../components/neckTab/neckTab";
   import Swiper from 'swiper'
@@ -54,7 +53,6 @@
       },
       components: {
           headTitle,
-          mineInfo,
           vipComicList,
           neckTab
       },

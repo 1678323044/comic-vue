@@ -28,4 +28,5 @@ export const RECEIVE_POPULARITYLIST = 'popularityList'        //接收人气榜�
 export const RECEIVE_NEWLIST = 'receive_NewList'              //接收新番榜列表
 export const RECEIVE_WEEKLYRANKING = 'receive_weeklyRanking'  //接收周排行列表
 export const RECEIVE_MONTHLYRANKING = 'monthlyRanking'        //接收月排行列表
+export const RECEIVE_ACCOUNTINFO = 'receive_accountInfo'      //接收账号信息
 

@@ -100,3 +100,5 @@ export const reqOrderState = (data) => ajax(`${API_URL}/pay/state.do`,data)
 //购买漫画章节模块
 export const reqBuyChapter = (data) => ajax(`${API_URL}/buyChapter.do`,data)
 
+//查询账号信息模块
+export const reqAccountInfo = () => ajax(`${API_URL}/accountInfo.do`)

@@ -32,13 +32,6 @@
               if (this.setMeal.giveCoinQuantity == null){
                   let param = {"vipComboId": this.setMeal.id,"PayType": this.payId};
                   this.$store.dispatch('handlePay',param);
-
-                  //查询订单是否支付成功
-                  /*let result = await reqOrderState()
-                  if (result.state === 'ok'){
-
-                  }
-                  return*/
               }
               let param = {"coincomboid": this.setMeal.id,"PayType": this.payId};
               this.$store.dispatch('handleRecharge',param);

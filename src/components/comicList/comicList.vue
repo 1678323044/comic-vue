@@ -5,7 +5,7 @@
         <div class="pic">
           <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="comicItem.coverImagePath">
-          <span class="score"><i class="iconfont iconxingxing"></i>{{comicItem.avgscore}}</span>
+          <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{comicItem.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">
@@ -25,7 +25,7 @@
         <div class="pic">
           <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
-          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+          <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{item.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">
@@ -45,7 +45,7 @@
         <div class="pic">
           <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
-          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+          <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{item.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">
@@ -65,7 +65,7 @@
         <div class="pic">
           <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
-          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+          <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{item.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">
@@ -85,7 +85,7 @@
         <div class="pic">
           <span class="rank">NO.1</span>
           <img alt="" class="mui-media-object mui-pull-left" :src="item.coverImagePath">
-          <span class="score"><i class="iconfont iconxingxing"></i>{{item.avgscore}}</span>
+          <span class="score"><i class="iconfont iconshoucangxingxing-xianxing"></i>{{item.avgscore}}</span>
         </div>
         <div class="mui-media-body">
           <div class="top-text">

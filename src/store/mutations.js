@@ -27,7 +27,7 @@ import {
   RECEIVE_POPULARITYLIST,
   RECEIVE_NEWLIST,
   RECEIVE_WEEKLYRANKING,
-  RECEIVE_MONTHLYRANKING
+  RECEIVE_MONTHLYRANKING, RECEIVE_ACCOUNTINFO
 } from './mutations-type'
 
 export default {
@@ -114,5 +114,8 @@ export default {
   },
   [RECEIVE_RECHARGE](state,{rechargeInfo}){
     state.rechargeInfo = rechargeInfo
+  },
+  [RECEIVE_ACCOUNTINFO](state,{accountInfo}){
+    state.accountInfo = accountInfo
   }
 }

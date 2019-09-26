@@ -20,7 +20,7 @@
           <label :class="{'active': item.isSelected}" v-for="item in comicHot">
             <input @change="handleClassify(item,'hot')" v-model="orderItem" type="radio" :value="item.id">{{item.name}}
           </label>
-          <span v-on:click="showClassify(isShow)"><i class="mui-icon mui-icon-arrowup"></i>筛选</span>
+          <span v-on:click="showClassify(isShow)"><i :class="['mui-icon',{'mui-icon-arrowup': isShow},{'mui-icon-arrowdown': !isShow}]"></i>筛选</span>
         </form>
       </nav>
       <comic-list :comicList="comicList"></comic-list>

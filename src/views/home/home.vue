@@ -33,7 +33,7 @@
           <router-link :to="url+dataItem.id">
             <dt>
               <img :src="dataItem.coverImagePath" width="100%" alt="">
-              <span><i class="iconfont iconxingxing"></i>{{dataItem.avgscore}}</span>
+              <span><i class="iconfont iconshoucangxingxing-xianxing"></i>{{dataItem.avgscore}}</span>
             </dt>
             <dd>
               <h6>{{dataItem.name}}</h6>
