@@ -2,16 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
+const bookshelf = () => import('../views/bookshelf/bookshelf')
+const classify = () => import('../views/classify/classify')
+const chapter = () => import('../views/chapter/chapter')
+const chapterList = () => import('../views/chapterList/chapterList')
+
 import home from '../views/home/home'
-import bookshelf from '../views/bookshelf/bookshelf'
-import classify from '../views/classify/classify'
 import mine from '../views/mine/mine'
 import ranking from '../views/ranking/ranking'
 import memberCenter from "../views/memberCenter/memberCenter"
-import chapterList from '../views/chapterList/chapterList'
-import chapter from '../views/chapter/chapter'
 import endingWorks from "../views/endingWorks/endingWorks"
-import memberArea from "../views/memberArea/memberArea";
+import memberArea from "../views/memberArea/memberArea"
 import recharge from '../views/recharge/recharge'
 import search from '../views/search/search'
 import demo from '../views/demo/demo'

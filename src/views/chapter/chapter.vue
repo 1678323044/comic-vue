@@ -4,12 +4,16 @@
       <span @click="returnFunc" slot="return"><i class="mui-icon mui-icon-back" style="color: white"></i></span>
       <span slot="right"></span>
     </head-title>
-    <div @click="handleShow(isShow)" class="chapter">
+    <div @click="handleShow(isShow)" class="chapter-main">
       <ul>
         <li><img src="./image/800.jpg" alt=""></li>
         <li><img src="./image/801.jpg" alt=""></li>
         <li><img src="./image/802.jpg" alt=""></li>
       </ul>
+      <div class="footer">
+        <p>本平台漫画内容，皆受著作权法令的保护作品均来自出版社正规授权，未经许可不可转载</p>
+        <button @click="handleFlip(comicContents.id + 1)">观看下一话</button>
+      </div>
     </div>
     <div v-show="isShow" class="float-bar bottom">
       <div class="turning-page">
@@ -123,7 +127,7 @@
           if (pageIndex === 0){
               Toast('没有上一章了');
               return
-          }if (pageIndex === 2){
+          }if (pageIndex > this.directoryNumber){
               Toast('没有下一章了');
               return
           }
@@ -196,9 +200,30 @@
   .mint-tabbar .mint-tab-item{
     color: #ffffff;
   }
-  .chapter li img{
+  .chapter-main li img{
     width: 100%;
   }
+  .chapter-main .footer{
+    background: #000000;
+    padding: 10% 6%;
+    text-align: center;
+  }
+  .chapter-main .footer p{
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-indent: 1.2rem;
+    line-height: 3.2rem;
+  }
+  .chapter-main .footer button{
+    width: 80%;
+    background: #FA6F5E;
+    margin: 5% auto 0;
+    border: none;
+    color: #ffffff;
+    padding: 4% 0;
+    font-size: 1.8rem;
+  }
+  /* 浮动目录层 */
   .float-bar{
     position: fixed;
     width: 100%;

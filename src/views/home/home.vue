@@ -21,7 +21,7 @@
         </li>
       </ul>
     </div>
-    <main>
+    <main v-if="recommends.length">
       <div class="con" v-for="recommend in recommends">
         <h5>{{recommend.name}}
           <span @click="changeContents(recommend.id)">
@@ -44,6 +44,7 @@
         <router-link to="/classify"><button class="btn">查看更多 >></button></router-link>
       </div>
     </main>
+    <img v-else src="../../common/image/list-bg.svg" width="100%" alt="">
   </section>
 </template>
 

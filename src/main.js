@@ -6,7 +6,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-// 引入mint-ui
+// 按需引入mint-ui
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)

@@ -4,8 +4,8 @@
 */
 import ajax from "./ajax"
 
-const API_URL = 'http://106.53.110.107/comic'
-//const API_URL = '/api'
+//const API_URL = 'http://106.53.110.107/comic'
+const API_URL = '/api'
 
 //推荐信息模块
 export const reqRecommends = () => ajax(`${API_URL}/recommends.do`)
