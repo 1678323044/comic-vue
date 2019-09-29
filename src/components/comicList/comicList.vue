@@ -14,7 +14,7 @@
             <p>{{comicItem.introduction}}</p>
           </div>
           <div class="btm-text">
-            <p><span>{{comicItem.tags}}</span></p>
+            <p><span v-for="(tag,index) in (comicItem.tags || '').split('$')" :key="index">{{tag}}</span></p>
             <p>{{comicItem.lastUpdateTime}}</p>
           </div>
         </div>
@@ -34,7 +34,7 @@
             <p>{{item.introduction}}</p>
           </div>
           <div class="btm-text">
-            <p><span>{{item.tags}}</span></p>
+            <p><span v-for="(tag,index) in (item.tags || '').split('$')" :key="index">{{tag}}</span></p>
             <p>{{item.lastUpdateTime}}</p>
           </div>
         </div>
@@ -54,7 +54,7 @@
             <p>{{item.introduction}}</p>
           </div>
           <div class="btm-text">
-            <p><span>{{item.tags}}</span></p>
+            <p><span v-for="(tag,index) in (item.tags || '').split('$')" :key="index">{{tag}}</span></p>
             <p>{{item.lastUpdateTime}}</p>
           </div>
         </div>
@@ -74,7 +74,7 @@
             <p>{{item.introduction}}</p>
           </div>
           <div class="btm-text">
-            <p><span>{{item.tags}}</span></p>
+            <p><span v-for="(tag,index) in (item.tags || '').split('$')">{{tag}}</span></p>
             <p>{{item.lastUpdateTime}}</p>
           </div>
         </div>
@@ -94,7 +94,7 @@
             <p>{{item.introduction}}</p>
           </div>
           <div class="btm-text">
-            <p><span>{{item.tags}}</span></p>
+            <p><span v-for="(tag,index) in (item.tags || '').split('$')" :key="index">{{tag}}</span></p>
             <p>{{item.lastUpdateTime}}</p>
           </div>
         </div>
@@ -146,6 +146,14 @@
   .mui-media-body .top-text{
     height: 70%;
   }
+  .mui-media-body .top-text p{
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
   .mui-media-body .top-text p:nth-child(1){
     margin: 2% 0 0 0;
   }
@@ -161,6 +169,7 @@
     color: #ffffff;
     border-radius: 4px;
     font-size: 12px;
+    margin: 0 2% 0 0;
   }
   .mui-media-body .btm-text p:nth-child(2){
     color: #FC5F45;

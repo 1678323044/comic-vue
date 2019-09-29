@@ -1,7 +1,7 @@
 <template>
   <section class="public-main">
     <head-title title="书架">
-      <router-link to="" slot="return"></router-link>
+      <span slot="return"></span>
       <router-link to="" slot="right" @click.native="showEdit(isShow)"><i class="iconfont iconbianji"></i></router-link>
     </head-title>
     <neck-tab :rankSorts="rankSorts" @num="parentFn" :currentPage="currentPage"></neck-tab>
@@ -135,7 +135,7 @@
                   el: '.swiper-scrollbar',
               },
               touchAngle : 80, //滑动角度
-          })
+          });
           this.mySwiper.on('slideChangeTransitionEnd', () => {
               this.currentPage = this.mySwiper.activeIndex
               this.isShow = false // 当页面滚动，关闭多选框

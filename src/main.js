@@ -7,9 +7,10 @@ import router from './router'
 Vue.config.productionTip = false
 
 // 按需引入mint-ui
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
+import {Tabbar,TabItem,Popup} from 'mint-ui'
+Vue.component(Tabbar.name, Tabbar)
+Vue.component(TabItem.name, TabItem)
+Vue.component(Popup.name, Popup)
 
 // 引入swiper
 import 'swiper/dist/css/swiper.min.css'
@@ -29,7 +30,6 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
-  MintUI,
   store,
   qs
 })

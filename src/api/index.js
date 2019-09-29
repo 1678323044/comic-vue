@@ -102,3 +102,6 @@ export const reqBuyChapter = (data) => ajax(`${API_URL}/buyChapter.do`,data)
 
 //查询账号信息模块
 export const reqAccountInfo = () => ajax(`${API_URL}/accountInfo.do`)
+
+//分享推广模块
+export const reqShareLink = () => ajax(`${API_URL}/spreadLink.do`)

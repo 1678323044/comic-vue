@@ -27,7 +27,8 @@ export default new Router({
       path: '/home',
       component: home,
       meta: {
-        showFooter: true
+        showFooter: true,
+        keepAlive: true
       }
     },
     {
@@ -45,15 +46,15 @@ export default new Router({
       }
     },
     {
-      path: '/mine',
-      component: mine,
+      path: '/ranking',
+      component: ranking,
       meta: {
-        showFooter: true
+        showFooter: true,
       }
     },
     {
-      path: '/ranking',
-      component: ranking,
+      path: '/mine',
+      component: mine,
       meta: {
         showFooter: true
       }

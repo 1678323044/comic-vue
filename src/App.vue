@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view v-if="isRefresh"/>
+    <keep-alive include="home">
+      <router-view v-if="isRefresh"></router-view>
+    </keep-alive>
     <footer-menu v-show="$route.meta.showFooter"></footer-menu>
   </div>
 </template>
@@ -29,6 +31,6 @@
         return{
             reload: this.reload
         }
-    }
+    },
   }
 </script>

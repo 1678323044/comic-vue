@@ -34,9 +34,9 @@
           充值阅读币
         </router-link>
       </li>
-      <li class="mui-table-view-cell">
+      <li class="mui-table-view-cell" @click="handleShare">
         <router-link class="mui-navigate-right" to="">
-          <i class="iconfont iconfenxiang" style="color: #5c8dff;"></i>
+          <i class="iconfont iconfenxiang" style="color: #8f64ff;"></i>
           推荐一个好友领10000个阅读币
         </router-link>
       </li>
@@ -44,7 +44,7 @@
     <ul class="mui-table-view mui-table-view-chevron mine-list">
       <li class="mui-table-view-cell">
         <a href="#" class="mui-navigate-right">
-          <i class="iconfont icondianhua2" style="color: #8f64ff;"></i>
+          <i class="iconfont icondianhua2" style="color: #3fe37e;"></i>
           在线客服
         </a>
       </li>
@@ -54,9 +54,18 @@
 
 <script>
   import {mapState} from 'vuex'
+  import {reqShareLink} from '../../api/index'
   export default {
       created() {
           this.$store.dispatch('getAccountInfo')
+      },
+      methods: {
+          async handleShare(){
+              let result = await reqShareLink()
+              if (result.state === 'ok'){
+                  window.location.href = result.data
+              }
+          }
       },
       computed: {
         ...mapState(['accountInfo'])
